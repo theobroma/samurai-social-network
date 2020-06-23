@@ -1,44 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import HeaderComponent from '../../@components/Header';
-import ListComponent from '../../@components/List';
-import FooterComponent from '../../@components/Footer';
-import { todosSelector } from '../../@store/selectors';
-import { TodoType } from '../../@store/types';
+import { Container, Row, Col } from 'react-bootstrap';
+import LoginForm from '../../@components/LoginForm/LoginForm';
 
 const MainApp: React.FC = () => {
-  const todos = useSelector(todosSelector).data;
-
-  const activeTodoCount = todos.reduce((accum: number, todo: TodoType) => {
-    return todo.completed ? accum : accum + 1;
-  }, 0);
-
-  const completedCount = todos.length - activeTodoCount;
-
-  let footer;
-
-  if (activeTodoCount || completedCount) {
-    footer = (
-      <FooterComponent
-        activeTodoCount={activeTodoCount}
-        completedCount={completedCount}
-      />
-    );
-  }
-
   return (
-    <div className="App">
-      <section className="todoapp">
-        <div>
-          {/* Header */}
-          <HeaderComponent />
-          {/* Main */}
-          <ListComponent activeTodoCount={activeTodoCount} />
-          {/* Footer */}
-          {footer}
-        </div>
-      </section>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={12} md={4}>
+          xs=12 md=8
+        </Col>
+        <Col xs={12} md={4}>
+          <LoginForm />
+        </Col>
+        <Col xs={12} md={4}>
+          xs=12 md=8
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
