@@ -1,12 +1,12 @@
 // apiKey is https://social-network.samuraijs.com/ access string
-import { apiKey } from './keys';
 import axios, { AxiosInstance } from 'axios';
+import { apiKey } from './keys';
 import { AuthData, Photos, Profile, User } from '../@types/index';
 
 interface IResponse {
   resultCode: number;
   messages: Array<string>;
-  data: Object;
+  data: Record<string, any>;
 }
 
 interface IAuthResponse extends IResponse {
@@ -62,7 +62,7 @@ export const AuthAPI = {
   login: async (
     email: string,
     password: string,
-    rememberMe: boolean = false,
+    rememberMe = false,
     captcha?: string,
   ): Promise<
     | { resultCode: number; userId: number }
@@ -81,17 +81,17 @@ export const AuthAPI = {
           resultCode: 0,
           userId: serverResponse.data.userId,
         };
-      } else if (serverResponse.resultCode === 10) {
+      }
+      if (serverResponse.resultCode === 10) {
         return {
           resultCode: 10,
           error: serverResponse.messages[0],
         };
-      } else {
-        return {
-          resultCode: serverResponse.resultCode,
-          error: serverResponse.messages[0],
-        };
       }
+      return {
+        resultCode: serverResponse.resultCode,
+        error: serverResponse.messages[0],
+      };
     } catch (e) {
       return e.message;
     }
@@ -122,8 +122,8 @@ export const AuthAPI = {
 
 export const UsersAPI = {
   getUsers: async (
-    count: number = 10,
-    page: number = 1,
+    count = 10,
+    page = 1,
     term?: string,
     friend?: boolean,
   ): Promise<IUsersResponse | ErrorMessage> => {
@@ -183,9 +183,8 @@ export const ProfileAPI = {
       const response = await instance.get(`profile/${userId}`);
       if (response.status === 200) {
         return response.data;
-      } else {
-        return `Can't access to server with status code: ${response.status}`;
       }
+      return `Can't access to server with status code: ${response.status}`;
     } catch (e) {
       return e.message;
     }
@@ -195,9 +194,8 @@ export const ProfileAPI = {
       const response = await instance.get(`profile/status/${userId}`);
       if (response.status === 200) {
         return response.data;
-      } else {
-        return `Can't access to server with status code: ${response.status}`;
       }
+      return `Can't access to server with status code: ${response.status}`;
     } catch (e) {
       return e.message;
     }
@@ -233,7 +231,7 @@ export const ProfileAPI = {
   },
   updatePhoto: async (file: File): Promise<Photos | ErrorMessage> => {
     try {
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('image', file);
       const response = await instance.put(
         'profile/photo',
