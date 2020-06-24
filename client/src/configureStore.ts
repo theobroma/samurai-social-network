@@ -7,11 +7,13 @@ import { loadState, saveState } from './@utils/localStorage';
 import { rootReducer, RootState } from './@store/index';
 import { todosInitialState } from './@store/todos-reducer';
 import { filterInitialState } from './@store/filter-reducer';
+import { authInitialState } from './@store/auth/reducer';
 
 const configureStore = () => {
   const persistedState = loadState();
 
   let totalInitialState: RootState = {
+    auth: authInitialState,
     filter: filterInitialState,
     todos: todosInitialState,
   };
