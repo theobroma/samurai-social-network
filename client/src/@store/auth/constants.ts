@@ -1,2 +1,2 @@
 // action type constants
-export const TOGGLE_FILTER = '@@filter/TOGGLE_FILTER' as const;
+export const SET_USER_ID = '@@auth/SET_USER_ID' as const;

@@ -1,12 +1,12 @@
 import { createAction } from 'typesafe-actions';
 // import { createAsyncAction } from 'typesafe-actions';
-import { TOGGLE_FILTER } from './constants';
+import { SET_USER_ID } from './constants';
 
 // create action functions
-export const toggleFilter = createAction(TOGGLE_FILTER)<string>();
+export const setUserId = createAction(SET_USER_ID)<string>();
 
 export const actions = {
-  toggleFilter,
+  setUserId,
 };
 
 // const fetchTodosAsync = createAsyncAction(

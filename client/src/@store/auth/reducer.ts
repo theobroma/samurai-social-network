@@ -1,15 +1,16 @@
 import { createReducer } from 'typesafe-actions';
-import { TOGGLE_FILTER } from './constants';
-import { ClientsListType, ClientsActionType } from './types';
+import { SET_USER_ID } from './constants';
+// import { ClientsListType, ClientsActionType } from './types';
 
-export const authInitialState: ClientsListType = {
-  data: [],
+export const authInitialState = {
+  id: null as number | null,
 };
 
 export const authReducer = createReducer<any, any>(authInitialState, {
-  [TOGGLE_FILTER]: (state) => {
+  [SET_USER_ID]: (state, { payload: userId }) => {
     return {
       ...state,
+      id: userId,
     };
   },
 });

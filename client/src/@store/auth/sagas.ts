@@ -1,5 +1,6 @@
 import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
 import { AuthAPI } from '../../@api/socialNetworkAPIs';
+import { actions } from './actions';
 
 export type LoginPayload = {
   email: string;
@@ -22,15 +23,28 @@ export function* loginSaga() {
 
 export function* login(action: any) {
   try {
-    const user = yield call(
+    const response = yield call(
       AuthAPI.login,
       action.payload.email,
       action.payload.password,
       action.payload.rememberMe,
     );
-    yield put({ type: 'USER_FETCH_SUCCEEDED', user });
+    if (response.resultCode === 0) {
+      yield put(actions.setUserId(response.userId));
+    }
+    // else if (response.resultCode === 10) {
+    //   yield all([
+    //     call(captchaRequest),
+    //     put(actions.setErrorMessage(response.error)),
+    //   ]);
+    // }
+    else {
+      //   put(actions.setErrorMessage(response.error));
+    }
   } catch (e) {
-    yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+    console.log(e.message);
+  } finally {
+    // yield put(actions.setFetchingStatus(false));
   }
 }
 
@@ -40,7 +54,7 @@ export function* login(action: any) {
 //   yield takeLatest(startLogin, login);
 // }
 
-// function* login(action: SagaAction<LoginPayload>) {
+// function* login123(action: SagaAction<LoginPayload>) {
 //   try {
 //     yield put(actions.setFetchingStatus(true));
 //     const response = yield call(
