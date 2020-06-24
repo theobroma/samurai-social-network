@@ -4,20 +4,20 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-// import { LoginPayload } from "../../../../redux/auth-reducer.sagas";
+import { LoginPayload } from '../../@store/auth/sagas';
 
 interface LoginForm {
   error?: string | null;
   captchaUrl?: string | null;
-  submitCallback?: (payload: any) => void;
-  //   submitCallback: (payload: LoginPayload) => void;
+  // submitCallback?: (payload: any) => void;
+  submitCallback: (payload: LoginPayload) => void;
 }
 
 const LoginForm: FC<LoginForm> = ({ captchaUrl, submitCallback, error }) => {
   const [wait, setWait] = useState(false);
 
-  const trySubmit = useCallback((error) => {
-    if (typeof error === 'string') {
+  const trySubmit = useCallback((err) => {
+    if (typeof err === 'string') {
       setWait(true);
       setTimeout(() => {
         setWait(false);
@@ -46,7 +46,7 @@ const LoginForm: FC<LoginForm> = ({ captchaUrl, submitCallback, error }) => {
         captcha: undefined,
       }}
       onSubmit={async (values) => {
-        // submitCallback(values);
+        submitCallback(values);
         console.log(values);
       }}
       validationSchema={validationSchema}
@@ -54,7 +54,7 @@ const LoginForm: FC<LoginForm> = ({ captchaUrl, submitCallback, error }) => {
       {({
         handleSubmit,
         handleChange,
-        handleBlur,
+        // handleBlur,
         values,
         touched,
         errors,
