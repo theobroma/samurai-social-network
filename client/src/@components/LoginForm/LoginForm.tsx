@@ -130,7 +130,7 @@ const LoginForm: FC<LoginForm> = ({ captchaUrl, submitCallback, error }) => {
                 <Button
                   className="w-100"
                   variant="danger"
-                  disabled={true}
+                  disabled
                   type="submit"
                 >
                   {error}
