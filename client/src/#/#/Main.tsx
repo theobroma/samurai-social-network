@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from '../../@components/LoginForm/LoginForm';
 import Header from '../../@components/Header/Header';
-import { LoginPayload, startLoginProcess } from '../../@store/auth/sagas';
+import {
+  LoginPayload,
+  startLoginProcess,
+  startAuthenticationProcess,
+} from '../../@store/auth/sagas';
+import { getUserId } from '../../@store/auth/selectors';
 
 const MainApp: React.FC = () => {
   const dispatch = useDispatch();
+
   const callback = (payload: LoginPayload) => {
     dispatch(startLoginProcess(payload));
   };
+
+  const userId = useSelector(getUserId);
+
+  useEffect(() => {
+    dispatch(startAuthenticationProcess());
+  }, [dispatch, userId]);
+
   return (
     <>
       <Header />

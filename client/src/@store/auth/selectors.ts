@@ -1,5 +1,5 @@
 import { RootState } from '../index';
 
-export const clientsSelector = (state: RootState) => {
-  return state;
+export const getUserId = (state: RootState): number | null => {
+  return state.auth.id;
 };
