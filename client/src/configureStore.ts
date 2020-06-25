@@ -3,13 +3,8 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
-import throttle from 'lodash/throttle';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { loadState, saveState } from './@utils/localStorage';
-import { rootReducer, RootState } from './@store/index';
-import { todosInitialState } from './@store/todos-reducer';
-import { filterInitialState } from './@store/filter-reducer';
-import { authInitialState } from './@store/auth/reducer';
+import { rootReducer } from './@store/index';
 
 // SAGAS
 import { loginSaga } from './@store/auth/sagas';
@@ -19,18 +14,6 @@ function* rootSaga(): IterableIterator<any> {
 }
 
 const configureStore = () => {
-  const persistedState = loadState();
-
-  let totalInitialState: RootState = {
-    auth: authInitialState,
-    filter: filterInitialState,
-    todos: todosInitialState,
-  };
-  // if persistedState is not empty then assign parsed persistedState to initState
-  if (persistedState) {
-    totalInitialState = persistedState;
-  }
-
   const logger = createLogger({
     collapsed: true,
   });
@@ -45,18 +28,10 @@ const configureStore = () => {
 
   const store = createStore(
     rootReducer,
-    totalInitialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 
   sagaMiddleware.run(rootSaga);
-
-  store.subscribe(
-    throttle(() => {
-      console.log('saved to localStorage');
-      saveState(store.getState());
-    }, 1000),
-  );
 
   return store;
 };
