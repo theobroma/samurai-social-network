@@ -36,7 +36,7 @@ export function* login(action: any) {
       action.payload.rememberMe,
     );
     if (response.resultCode === 0) {
-      yield put(actions.setUserId(response.userId));
+      yield put(actions.setUserId(response.data.userId));
     }
     // else if (response.resultCode === 10) {
     //   yield all([
@@ -62,7 +62,7 @@ export function* authMe() {
       // yield put(actions.setErrorMessage(response));
     } else {
       yield all([
-        put(actions.setAuthData(response)),
+        put(actions.setAuthUserData(response.data)),
         // put(actions.loginSuccess()),
       ]);
     }
@@ -72,36 +72,3 @@ export function* authMe() {
     // yield put(actions.setFetchingStatus(false));
   }
 }
-
-// export function* loginSaga() {
-//   yield takeEvery(getAuthUserData, authMe);
-//   yield takeLatest(clearAuthUserData, logout);
-//   yield takeLatest(startLogin, login);
-// }
-
-// function* login123(action: SagaAction<LoginPayload>) {
-//   try {
-//     yield put(actions.setFetchingStatus(true));
-//     const response = yield call(
-//       AuthAPI.login,
-//       action.payload.email,
-//       action.payload.password,
-//       action.payload.rememberMe,
-//       action.payload.captcha,
-//     );
-//     if (response.resultCode === 0) {
-//       yield put(actions.setUserId(response.userId));
-//     } else if (response.resultCode === 10) {
-//       yield all([
-//         call(captchaRequest),
-//         put(actions.setErrorMessage(response.error)),
-//       ]);
-//     } else {
-//       put(actions.setErrorMessage(response.error));
-//     }
-//   } catch (e) {
-//     console.log(e.message);
-//   } finally {
-//     yield put(actions.setFetchingStatus(false));
-//   }
-// }
