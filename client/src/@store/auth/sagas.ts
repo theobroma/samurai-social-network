@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
-import { AuthAPI } from '../../@api/socialNetworkAPIs';
+import { AuthAPI } from '../../@api/auth';
+// import { AuthAPI } from '../../@api/socialNetworkAPIs';
 import { actions } from './actions';
-import { SET_AUTH_USER_DATA } from './constants';
 
 export type LoginPayload = {
   email: string;

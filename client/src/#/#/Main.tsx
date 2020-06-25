@@ -29,7 +29,7 @@ const MainApp: React.FC = () => {
       <Container>
         <Row>
           <Col xs={12} md={4}>
-            xs=12 md=8
+            xs=12 md=8111
           </Col>
           <Col xs={12} md={4}>
             <LoginForm submitCallback={callback} />
