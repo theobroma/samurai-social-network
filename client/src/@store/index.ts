@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import { filterReducer } from './filter-reducer';
-import { todosReducer } from './todos-reducer';
 import { authReducer } from './auth/reducer';
+import { profileReducer } from './profile/reducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
-  filter: filterReducer,
-  todos: todosReducer,
+  profile: profileReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
