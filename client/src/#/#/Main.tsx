@@ -1,22 +1,13 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from '../../@components/LoginForm/LoginForm';
 import Header from '../../@components/Header/Header';
 import Sidebar from '../../@components/Sidebar/Sidebar';
-import {
-  LoginPayload,
-  startLoginProcess,
-  startAuthenticationProcess,
-} from '../../@store/auth/sagas';
+import { startAuthenticationProcess } from '../../@store/auth/sagas';
 import { getUserId } from '../../@store/auth/selectors';
 
 const MainApp: React.FC = () => {
   const dispatch = useDispatch();
-
-  const callback = (payload: LoginPayload) => {
-    dispatch(startLoginProcess(payload));
-  };
 
   const userId = useSelector(getUserId);
 
@@ -33,7 +24,7 @@ const MainApp: React.FC = () => {
             <Sidebar />
           </Col>
           <Col xs={12} md={4}>
-            <LoginForm submitCallback={callback} />
+            Content
           </Col>
           <Col xs={12} md={4}>
             xs=12 md=8

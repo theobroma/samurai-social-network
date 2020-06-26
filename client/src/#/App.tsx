@@ -30,6 +30,10 @@ export const APP_MAIN_ROUTES: IRoute[] = [
     path: ROUTES.USERS,
   },
   {
+    component: lazy(() => import('./#login')),
+    path: ROUTES.LOGIN,
+  },
+  {
     component: lazy(() => import('./#/Main')),
     path: ROUTES.ROOT,
   },

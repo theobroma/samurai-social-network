@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { LoginPayload } from '../../@store/auth/sagas';
+import { LoginPayload } from '../../../@store/auth/sagas';
 
 interface LoginForm {
   error?: string | null;
