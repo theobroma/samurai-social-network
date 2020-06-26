@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from '../../@components/LoginForm/LoginForm';
 import Header from '../../@components/Header/Header';
+import Sidebar from '../../@components/Sidebar/Sidebar';
 import {
   LoginPayload,
   startLoginProcess,
@@ -29,7 +30,7 @@ const MainApp: React.FC = () => {
       <Container>
         <Row>
           <Col xs={12} md={4}>
-            xs=12 md=8111
+            <Sidebar />
           </Col>
           <Col xs={12} md={4}>
             <LoginForm submitCallback={callback} />
