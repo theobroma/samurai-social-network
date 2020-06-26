@@ -1,4 +1,5 @@
 export enum ROUTES {
+  ROOT = '/',
   PROFILE = '/profile',
   DIALOGS = '/dialogs',
   USERS = '/users',
