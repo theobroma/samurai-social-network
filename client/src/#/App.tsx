@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import MainAppContainer from './#/#/Main';
-import configureStore from './configureStore';
-import { Music } from './@components/Music';
+import MainAppContainer from './#/Main';
+import configureStore from '../configureStore';
+import { Music } from '../@components/Music';
 
 const store = configureStore();
 
