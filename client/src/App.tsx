@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import MainAppContainer from './#/#/Main';
 import configureStore from './configureStore';
+import { Music } from './@components/Music';
 
 const store = configureStore();
 
@@ -12,9 +13,9 @@ export default function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Route exact path="/" render={() => <MainAppContainer />} />
-          {/* <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route exact path="/users" render={() => <Users />} />
-          <Route exact path="/music" render={() => <Music />} /> */}
+          {/* <Route path="/profile/:userId?" render={() => <ProfileContainer />} /> */}
+          {/* <Route exact path="/users" render={() => <Users />} /> */}
+          <Route exact path="/music" render={() => <Music />} />
           {/* <Route exact path="/settings" component={() => <Settings />} /> */}
         </BrowserRouter>
       </Provider>
