@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
@@ -13,7 +13,11 @@ interface LoginForm {
   submitCallback: (payload: LoginPayload) => void;
 }
 
-const LoginForm: FC<LoginForm> = ({ captchaUrl, submitCallback, error }) => {
+const LoginForm: React.FC<LoginForm> = ({
+  captchaUrl,
+  submitCallback,
+  error,
+}) => {
   const [wait, setWait] = useState(false);
 
   const trySubmit = useCallback((err) => {

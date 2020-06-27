@@ -2,14 +2,7 @@ import React from 'react';
 import { StyledSideNav } from './Styled';
 import NavItem from './NavItem';
 
-interface Props {
-  path?: any;
-  onItemClick?: any;
-  active?: any;
-  css?: any;
-}
-
-const Sidebar: React.FC<Props> = React.memo(() => {
+const Sidebar: React.FC = React.memo(() => {
   return (
     <StyledSideNav>
       <NavItem path="/profile">Profile</NavItem>
@@ -17,6 +10,7 @@ const Sidebar: React.FC<Props> = React.memo(() => {
       <NavItem path="/users">Users</NavItem>
       <NavItem path="/music">Music</NavItem>
       <NavItem path="/settings">Settings</NavItem>
+      <NavItem path="/login">Login</NavItem>
     </StyledSideNav>
   );
 });
