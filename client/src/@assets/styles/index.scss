@@ -1,16 +1,16 @@
-@import "~bootstrap/scss/bootstrap";
-@import "variables";
+@import '~bootstrap/scss/bootstrap';
+@import 'variables';
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: $c-grey-light;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $c-grey-light;
 }
 //for React
 #root {
-    // display: flex;
-    // flex-direction: column;
-    min-height: 100vh;
-    width: 100vw;
-    background-color: $c-orange;
+  // display: flex;
+  // flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: $c-grey-light;
 }

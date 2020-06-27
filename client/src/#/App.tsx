@@ -8,9 +8,15 @@ import { NestedRoute } from './@common/NestedRoute/NestedRoute';
 
 const store = configureStore();
 
+const MUSIC = lazy(() => {
+  return new Promise<any>((resolve) => {
+    setTimeout(() => resolve(import('./Music')), 300);
+  });
+});
+
 export const APP_MAIN_ROUTES: IRoute[] = [
   {
-    component: lazy(() => import('./Music')),
+    component: MUSIC,
     path: ROUTES.MUSIC,
   },
   {
