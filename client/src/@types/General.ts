@@ -72,7 +72,7 @@ export type ProfileType = {
   userId: number | null;
   lookingForAJob: boolean | null;
   lookingForAJobDescription: string | null;
-  // aboutMe?: string | null;
+  aboutMe?: string | null;
   fullName: string | null;
   contacts: ContactsType;
   photos: PhotosType;

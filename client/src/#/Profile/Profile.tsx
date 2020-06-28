@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-// import { getProfile } from '../../@store/profile/actions';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUserId } from '../../@store/auth/selectors';
-// import classes from './Music.module.scss';
+import { actions } from '../../@store/profile/actions';
 
 export const Profile: React.FC = React.memo(() => {
+  const dispatch = useDispatch();
   const userId = useSelector(getUserId);
+
   useEffect(() => {
-    console.log('Profile component');
-    // getProfile(userId);
-  }, [userId]);
+    dispatch(actions.fetchProfileAsync.request(userId));
+  }, [dispatch, userId]);
 
   return <div>Profile</div>;
 });

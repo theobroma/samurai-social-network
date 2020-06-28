@@ -1,7 +1,6 @@
 import { createReducer } from 'typesafe-actions';
-import { SET_USER_ID, SET_AUTH_USER_DATA } from './constants';
-import { PostType, ProfileType } from '../../@types';
-// import { ClientsListType, ClientsActionType } from './types';
+import { ProfileType } from '../../@types';
+import { actions, ProfileAction } from './actions';
 
 const profileInitialState: ProfileType = {
   userId: null,
@@ -24,17 +23,18 @@ const profileInitialState: ProfileType = {
   },
 };
 
-export const profileReducer = createReducer<any, any>(profileInitialState, {
-  [SET_USER_ID]: (state) => {
-    return {
-      ...state,
-    };
-  },
-  [SET_AUTH_USER_DATA]: (state) => {
-    return {
-      ...state,
-    };
-  },
-});
+export const profileReducer = createReducer(profileInitialState, {
+  // [CONSTANT]: (state) => {
+  //   return {
+  //     ...state,
+  //   };
+  // },
+}).handleAction(
+  actions.fetchProfileAsync.success,
+  (state: ProfileType, action: any) => ({
+    ...state,
+    ...action.payload,
+  }),
+);
 
 export default profileReducer;
