@@ -1,13 +1,21 @@
-import { createAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 import { SET_USER_ID, SET_AUTH_USER_DATA } from './constants';
+import { ProfileAPI } from '../../@api/profile';
+import { ProfileType } from '../../@types';
 
-// create action functions
-export const setUserId = createAction(SET_USER_ID)<string>();
-export const setAuthUserData = createAction(SET_AUTH_USER_DATA)<
-  Record<string, any>
->();
+// Create the set of async actions
+const fetchProfileAsync = createAsyncAction(
+  'FETCH_PROFILE_REQUEST',
+  'FETCH_PROFILE_SUCCESS',
+  'FETCH_PROFILE_FAILURE',
+)<string, ProfileType, Error>();
 
 export const actions = {
-  setUserId,
-  setAuthUserData,
+  fetchProfileAsync,
 };
+
+// export const getProfile = (id: number | null): any => async (dispatch: any) => {
+//   const data = await ProfileAPI.getProfile(id);
+//   console.log(data);
+//   // dispatch(profileActions.setProfile(data));
+// };

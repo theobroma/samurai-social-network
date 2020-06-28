@@ -22,7 +22,7 @@ type ProfileSaveAvatar = {
 };
 
 export const ProfileAPI = {
-  getProfile(id: number) {
+  getProfile(id: number | null) {
     return instance.get<ProfileGetAPI>(`profile/${id}`).then((res) => res.data);
   },
   getStatus(id: number) {

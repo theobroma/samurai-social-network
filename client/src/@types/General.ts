@@ -69,11 +69,11 @@ export type PhotosType = {
   large: string | null;
 };
 export type ProfileType = {
-  userId: number;
-  lookingForAJob: boolean;
+  userId: number | null;
+  lookingForAJob: boolean | null;
   lookingForAJobDescription: string | null;
-  aboutMe?: string | null;
-  fullName: string;
+  // aboutMe?: string | null;
+  fullName: string | null;
   contacts: ContactsType;
   photos: PhotosType;
 };
