@@ -1,5 +1,6 @@
 import { RootState } from '../index';
+// import { ProfileType } from '../../@types';
 
-export const getUserId = (state: RootState): number | null => {
-  return state.auth.id;
+export const getProfile = (state: RootState): any => {
+  return state.profile;
 };

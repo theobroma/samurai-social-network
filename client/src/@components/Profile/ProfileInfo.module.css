@@ -1,0 +1,35 @@
+.bigImageWrapper {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.bigImageWrapper img {
+    width: 100%;
+}
+
+.smallImage {
+    width: 150px;
+    height: 150px;
+}
+
+.descriptionBlock {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-gap: 20px;
+}
+
+.buttonsGroup {
+}
+
+.buttonGroupItem:nth-child(1) {
+    border: none;
+    border-radius: 50px 0 0 50px;
+}
+
+.buttonGroupItem:nth-child(2) {
+    background: aqua !important;
+    border: none;
+    border-radius:  0 50px 50px 0;
+}
