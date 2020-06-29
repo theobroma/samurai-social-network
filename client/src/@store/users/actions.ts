@@ -1,13 +1,15 @@
-import { createAction } from 'typesafe-actions';
-import { SET_USER_ID, SET_AUTH_USER_DATA } from './constants';
+import { createAsyncAction, ActionType } from 'typesafe-actions';
+import { UserType } from '../../@types';
 
-// create action functions
-export const setUserId = createAction(SET_USER_ID)<string>();
-export const setAuthUserData = createAction(SET_AUTH_USER_DATA)<
-  Record<string, any>
->();
+// Create the set of async actions
+export const fetchUsersAsync = createAsyncAction(
+  'FETCH_USERS_REQUEST',
+  'FETCH_USERS_SUCCESS',
+  'FETCH_USERS_FAILURE',
+)<number | null, any, Error>();
 
 export const actions = {
-  setUserId,
-  setAuthUserData,
+  fetchUsersAsync,
 };
+
+export type UsersAction = ActionType<typeof actions>;

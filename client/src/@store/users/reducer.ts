@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { ProfileType, UserType } from '../../@types';
-// import { actions, ProfileAction } from './actions';
+import { actions } from './actions';
 
 const userInitialState = {
   users: [] as Array<UserType>,
@@ -18,13 +18,9 @@ export const usersReducer = createReducer(userInitialState, {
   //     ...state,
   //   };
   // },
-});
-// .handleAction(
-//   actions.fetchProfileAsync.success,
-//   (state: ProfileType, action: any) => ({
-//     ...state,
-//     ...action.payload,
-//   }),
-// );
+}).handleAction(actions.fetchUsersAsync.success, (state: any, action: any) => ({
+  ...state,
+  ...action.payload,
+}));
 
 export default usersReducer;
