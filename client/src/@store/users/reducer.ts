@@ -3,7 +3,7 @@ import { ProfileType, UserType } from '../../@types';
 import { actions } from './actions';
 
 const userInitialState = {
-  users: [] as Array<UserType>,
+  items: [] as Array<UserType>,
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,

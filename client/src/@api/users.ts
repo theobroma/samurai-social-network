@@ -13,11 +13,12 @@ export const UsersAPI = {
   //     .get<any>(`users?page=${currentPage}&count=${pageSize}`)
   //     .then((res) => res.data);
   // },
-  getUsers: async (currentPage: number, pageSize: number): Promise<any> => {
+  getUsers: async (currentPage: number, pageSize = 10): Promise<any> => {
     try {
-      return await instance
-        .get<any>(`users?page=${currentPage}&count=${pageSize}`)
-        .then((res) => res.data);
+      const response = await instance.get<any>(
+        `users?page=${currentPage}&count=${pageSize}`,
+      );
+      return response.data;
     } catch (e) {
       return e.message;
     }

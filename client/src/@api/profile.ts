@@ -22,9 +22,18 @@ type ProfileSaveAvatar = {
 };
 
 export const ProfileAPI = {
-  getProfile(id: number | null) {
-    return instance.get<any>(`profile/${id}`).then((res) => res.data);
+  // getProfile(id: number | null) {
+  //   return instance.get<any>(`profile/${id}`).then((res) => res.data);
+  // },
+  getProfile: async (id: number | null): Promise<any> => {
+    try {
+      const response = await instance.get<any>(`profile/${id}`);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
   },
+
   // getStatus(id: number) {
   //   return instance.get<string>(`profile/status/${id}`).then((res) => res.data);
   // },

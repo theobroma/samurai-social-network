@@ -6,7 +6,7 @@ export const fetchUsersAsync = createAsyncAction(
   'FETCH_USERS_REQUEST',
   'FETCH_USERS_SUCCESS',
   'FETCH_USERS_FAILURE',
-)<number | null, any, Error>();
+)<any, any, Error>();
 
 export const actions = {
   fetchUsersAsync,

@@ -7,7 +7,7 @@ export function* getUsersSaga(
   action: any,
 ): Generator {
   try {
-    const response: any = yield call(UsersAPI.getUsers(1, 10), action.payload);
+    const response: any = yield call(UsersAPI.getUsers, action.payload);
     yield put(fetchUsersAsync.success(response));
   } catch (err) {
     yield put(fetchUsersAsync.failure(err));
