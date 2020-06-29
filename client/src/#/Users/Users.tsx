@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserId } from '../../@store/auth/selectors';
-import { actions } from '../../@store/profile/actions';
-import { Profile as ProfileComponent } from '../../@components/Profile';
+import { Users as UsersComponent } from '../../@components/Users/Users';
 import { getProfile } from '../../@store/profile/selectors';
 import { fetchUsersAsync } from '../../@store/users/actions';
+import { getUsers } from '../../@store/users/selectors';
 
 export const Users: React.FC = React.memo(() => {
   const dispatch = useDispatch();
-  // const userId = useSelector(getUserId);
+  const users = useSelector(getUsers).items;
   const profile = useSelector(getProfile);
 
   useEffect(() => {
@@ -17,7 +16,8 @@ export const Users: React.FC = React.memo(() => {
 
   return (
     <>
-      <ProfileComponent profile={profile} />
+      Users
+      <UsersComponent users={users} />
     </>
   );
 });
