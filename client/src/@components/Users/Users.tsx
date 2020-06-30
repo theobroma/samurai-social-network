@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import User from './User/User';
 import { UserType } from '../../@types';
-import Paginator from '../UI/Paginator/Paginator';
+// import Paginator from '../UI/Paginator/Paginator';
+import { PaginationFC } from '../UI/Pagination';
 
 type PropsType = {
   currentPage?: number;
@@ -23,25 +24,31 @@ export const Users: FC<PropsType> = ({
   users,
   ...props
 }) => {
+  const handlePageClick = (state: any) => {
+    console.log('handlePageClick');
+  };
+
   return (
     <>
-      <Paginator
+      {/* <Paginator
         // onPageChanged={onPageChanged}
         totalItemsCount={totalUsersCount}
         pageSize={pageSize}
         currentPage={currentPage}
-      />
+      /> */}
+      <PaginationFC handlePageClick={handlePageClick} />
 
-      {users.map((user) => (
-        <User
-          user={user}
-          key={user.id}
-          isFetching={props.isFetching}
-          follow={props.follow}
-          unfollow={props.unfollow}
-          followingInProgress={props.followingInProgress}
-        />
-      ))}
+      {users &&
+        users.map((user: UserType) => (
+          <User
+            user={user}
+            key={user.id}
+            isFetching={props.isFetching}
+            follow={props.follow}
+            unfollow={props.unfollow}
+            followingInProgress={props.followingInProgress}
+          />
+        ))}
     </>
   );
 };
