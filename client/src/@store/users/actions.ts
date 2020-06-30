@@ -1,5 +1,6 @@
-import { createAsyncAction, ActionType } from 'typesafe-actions';
+import { createAsyncAction, ActionType, createAction } from 'typesafe-actions';
 import { UserType } from '../../@types';
+import { SET_CURRENT_PAGE } from './constants';
 
 // Create the set of async actions
 export const fetchUsersAsync = createAsyncAction(
@@ -8,8 +9,11 @@ export const fetchUsersAsync = createAsyncAction(
   'FETCH_USERS_FAILURE',
 )<any, any, Error>();
 
+export const setCurrentPage = createAction(SET_CURRENT_PAGE)<number>();
+
 export const actions = {
   fetchUsersAsync,
+  setCurrentPage,
 };
 
 export type UsersAction = ActionType<typeof actions>;

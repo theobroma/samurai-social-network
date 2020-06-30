@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Users as UsersComponent } from '../../@components/Users/Users';
-import { fetchUsersAsync } from '../../@store/users/actions';
+import { fetchUsersAsync, setCurrentPage } from '../../@store/users/actions';
 import { getUsers } from '../../@store/users/selectors';
 
 export const Users: React.FC = React.memo(() => {
@@ -9,12 +9,11 @@ export const Users: React.FC = React.memo(() => {
   const { items, pageSize, totalCount, currentPage } = useSelector(getUsers);
 
   useEffect(() => {
-    dispatch(fetchUsersAsync.request(1));
-  }, [dispatch]);
+    dispatch(fetchUsersAsync.request(currentPage));
+  }, [dispatch, currentPage]);
 
   const handlePageClick = (state: any) => {
-    console.log('handlePageClick');
-    console.log(state);
+    dispatch(setCurrentPage(state.selected + 1)); // +1 fix diff start position
   };
 
   return (

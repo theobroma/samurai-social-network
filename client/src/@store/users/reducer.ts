@@ -1,6 +1,7 @@
 import { createReducer } from 'typesafe-actions';
 import { ProfileType, UserType } from '../../@types';
 import { actions } from './actions';
+import { SET_CURRENT_PAGE } from './constants';
 
 const userInitialState = {
   items: [] as Array<UserType>,
@@ -13,11 +14,12 @@ const userInitialState = {
 export type InitialStateType = typeof userInitialState;
 
 export const usersReducer = createReducer(userInitialState, {
-  // [CONSTANT]: (state) => {
-  //   return {
-  //     ...state,
-  //   };
-  // },
+  [SET_CURRENT_PAGE]: (state, { payload: page }) => {
+    return {
+      ...state,
+      currentPage: page,
+    };
+  },
 }).handleAction(actions.fetchUsersAsync.success, (state: any, action: any) => ({
   ...state,
   ...action.payload,

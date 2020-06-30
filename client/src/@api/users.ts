@@ -14,7 +14,7 @@ export const UsersAPI = {
   //     .then((res) => res.data);
   // },
   // pageSize max = 100
-  getUsers: async (currentPage: number, pageSize = 100): Promise<any> => {
+  getUsers: async (currentPage: number, pageSize = 10): Promise<any> => {
     try {
       const response = await instance.get<any>(
         `users?page=${currentPage}&count=${pageSize}`,
