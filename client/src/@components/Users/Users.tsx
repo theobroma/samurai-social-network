@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import s from './Users.module.css';
-// import Paginator from '../common/Paginator/Paginator';
 import User from './User/User';
 import { UserType } from '../../@types';
+import Paginator from '../UI/Paginator/Paginator';
 
 type PropsType = {
   currentPage?: number;
@@ -17,21 +16,22 @@ type PropsType = {
 };
 
 export const Users: FC<PropsType> = ({
-  currentPage,
-  totalUsersCount,
-  pageSize,
+  currentPage = 1,
+  totalUsersCount = 9999,
+  pageSize = 10,
   onPageChanged,
   users,
   ...props
 }) => {
   return (
     <>
-      {/* <Paginator
-        onPageChanged={onPageChanged}
+      <Paginator
+        // onPageChanged={onPageChanged}
         totalItemsCount={totalUsersCount}
         pageSize={pageSize}
         currentPage={currentPage}
-      /> */}
+      />
+
       {users.map((user) => (
         <User
           user={user}

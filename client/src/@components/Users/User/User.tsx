@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import * as s from './User.module.css';
 
 type Props = {
   user?: any;

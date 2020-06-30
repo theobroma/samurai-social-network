@@ -10,6 +10,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-console': 0,
     'no-param-reassign': 0,
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-underscore-dangle': 0,
     'react/jsx-props-no-spreading': 0,
     'react/state-in-constructor': 0,
