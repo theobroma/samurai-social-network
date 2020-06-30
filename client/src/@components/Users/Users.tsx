@@ -6,9 +6,9 @@ import { PaginationFC } from '../UI/Pagination';
 
 type PropsType = {
   currentPage?: number;
-  totalUsersCount?: number;
+  totalCount?: number;
   pageSize?: number;
-  onPageChanged?: (currentPage: number) => void;
+  handlePageClick?: any;
   users: Array<UserType>;
   isFetching?: boolean;
   follow?: (id: number) => void;
@@ -18,16 +18,12 @@ type PropsType = {
 
 export const Users: FC<PropsType> = ({
   currentPage = 1,
-  totalUsersCount = 9999,
+  totalCount = 999,
   pageSize = 10,
-  onPageChanged,
+  handlePageClick,
   users,
   ...props
 }) => {
-  const handlePageClick = (state: any) => {
-    console.log('handlePageClick');
-  };
-
   return (
     <>
       {/* <Paginator
@@ -36,7 +32,11 @@ export const Users: FC<PropsType> = ({
         pageSize={pageSize}
         currentPage={currentPage}
       /> */}
-      <PaginationFC handlePageClick={handlePageClick} />
+      <PaginationFC
+        handlePageClick={handlePageClick}
+        totalCount={totalCount}
+        pageSize={pageSize}
+      />
 
       {users &&
         users.map((user: UserType) => (

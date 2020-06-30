@@ -5,7 +5,7 @@ import { actions } from './actions';
 const userInitialState = {
   items: [] as Array<UserType>,
   pageSize: 10,
-  totalUsersCount: 0,
+  totalCount: 0,
   currentPage: 1,
   isFetching: false,
   followingInProgress: [] as Array<number>,

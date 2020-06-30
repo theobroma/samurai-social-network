@@ -3,14 +3,14 @@ import ReactPaginate from 'react-paginate';
 import { StyledBreakLabel } from './Pagination.styled';
 
 type Props = {
-  totalCount?: any;
-  limit?: any;
-  handlePageClick: (state: any) => void;
+  totalCount: any;
+  pageSize: any;
+  handlePageClick: any;
 };
 
 export const PaginationFC: React.FC<Props> = ({
   totalCount = 80,
-  limit = 10,
+  pageSize = 10,
   handlePageClick,
 }) => {
   return (
@@ -19,7 +19,7 @@ export const PaginationFC: React.FC<Props> = ({
       nextLabel="next"
       breakLabel={<StyledBreakLabel>...</StyledBreakLabel>}
       breakClassName="page-item"
-      pageCount={totalCount / limit || 10}
+      pageCount={totalCount / pageSize || 10}
       marginPagesDisplayed={2}
       pageRangeDisplayed={3}
       onPageChange={(state) => handlePageClick(state)}
