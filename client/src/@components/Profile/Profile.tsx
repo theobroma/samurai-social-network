@@ -27,9 +27,9 @@ export const Profile: React.FC<Props> = ({ profile, status }) => {
               status={status}
               // updateStatus={updateStatus}
             />
-            <ProfileData profile={profile} />
           </Col>
         </Row>
+        <ProfileData profile={profile} />
       </Card.Body>
     </Card>
   );
