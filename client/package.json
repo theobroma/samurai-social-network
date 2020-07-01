@@ -45,6 +45,7 @@
     "shortid": "^2.2.15",
     "styled-components": "^5.1.1",
     "todomvc-app-css": "^2.3.0",
+    "typeface-roboto": "0.0.75",
     "typesafe-actions": "^5.1.0",
     "typescript": "^3.9.5",
     "uuid": "^8.1.0",

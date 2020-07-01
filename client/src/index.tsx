@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import 'todomvc-app-css/index.css';
 import './@assets/styles/index.scss';
 
+require('typeface-roboto');
+
 const rootEl = document.getElementById('root');
 render(<App />, rootEl);
 

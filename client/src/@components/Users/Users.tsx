@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 import User from './User/User';
 import { UserType } from '../../@types';
 // import Paginator from '../UI/Paginator/Paginator';
@@ -49,18 +49,19 @@ export const Users: FC<PropsType> = ({
             totalCount={totalCount}
             pageSize={pageSize}
           />
-
-          {users &&
-            users.map((user: UserType) => (
-              <User
-                user={user}
-                key={user.id}
-                isFetching={props.isFetching}
-                follow={props.follow}
-                unfollow={props.unfollow}
-                followingInProgress={props.followingInProgress}
-              />
-            ))}
+          <Row>
+            {users &&
+              users.map((user: UserType) => (
+                <User
+                  user={user}
+                  key={user.id}
+                  isFetching={props.isFetching}
+                  follow={props.follow}
+                  unfollow={props.unfollow}
+                  followingInProgress={props.followingInProgress}
+                />
+              ))}
+          </Row>
         </Card.Body>
       </Card>
     </>
