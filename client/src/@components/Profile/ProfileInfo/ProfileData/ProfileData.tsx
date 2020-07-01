@@ -24,7 +24,7 @@ type ProfileDataProps = {
 const ProfileData: React.FC<ProfileDataProps> = ({ profile }) => (
   <div className={s.descriptionBlock}>
     <ul>
-      {profile &&
+      {profile.contacts &&
         Object.keys(profile.contacts).map((c) => (
           <Contact
             title={c}
