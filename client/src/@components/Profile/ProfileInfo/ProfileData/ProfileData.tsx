@@ -1,21 +1,9 @@
 import React from 'react';
+import shortid from 'shortid';
+import { FaInstagram, FaFacebookSquare } from 'react-icons/fa';
 import s from '../../ProfileInfo.module.css';
 import { ProfileType, ContactsType } from '../../../../@types';
-
-type ContactType = {
-  title: string;
-  value: string;
-};
-const Contact: React.FC<ContactType> = ({
-  title,
-  value = 'https://www.facebook.com/',
-}) => (
-  <li>
-    <a href={value} target="_blank">
-      {title}
-    </a>
-  </li>
-);
+import ContactsData from './ContactsData';
 
 type ProfileDataProps = {
   profile: ProfileType;
@@ -23,16 +11,7 @@ type ProfileDataProps = {
 
 const ProfileData: React.FC<ProfileDataProps> = ({ profile }) => (
   <div className={s.descriptionBlock}>
-    <ul>
-      {profile.contacts &&
-        Object.keys(profile.contacts).map((c) => (
-          <Contact
-            title={c}
-            value={profile.contacts[c as keyof ContactsType]}
-            key={c}
-          />
-        ))}
-    </ul>
+    <ContactsData contacts={profile.contacts} />
     <div>
       <div>
         <div>Name :{profile.fullName}</div>
