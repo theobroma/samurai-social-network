@@ -26,8 +26,8 @@ export const Users: FC<PropsType> = ({
   ...props
 }) => {
   const BlockTitle = (
-    <div className="row mt-4">
-      <div className="col-6">
+    <div className="row mt-4 mb-3">
+      <div className="col-12">
         <h4>USERS</h4>
       </div>
     </div>
