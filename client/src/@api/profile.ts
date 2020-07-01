@@ -33,7 +33,14 @@ export const ProfileAPI = {
       return e.message;
     }
   },
-
+  getStatus: async (id: number | null) => {
+    try {
+      const response = await instance.get<string>(`profile/status/${id}`);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
   // getStatus(id: number) {
   //   return instance.get<string>(`profile/status/${id}`).then((res) => res.data);
   // },

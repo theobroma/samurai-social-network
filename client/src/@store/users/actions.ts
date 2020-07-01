@@ -2,7 +2,6 @@ import { createAsyncAction, ActionType, createAction } from 'typesafe-actions';
 import { UserType } from '../../@types';
 import { SET_CURRENT_PAGE } from './constants';
 
-// Create the set of async actions
 export const fetchUsersAsync = createAsyncAction(
   'FETCH_USERS_REQUEST',
   'FETCH_USERS_SUCCESS',

@@ -38,12 +38,20 @@ export const profileReducer = createReducer<InitialStateType, any>(
     //   };
     // },
   },
-).handleAction(
-  actions.fetchProfileAsync.success,
-  (state: InitialStateType, action: any) => ({
-    ...state,
-    profile: action.payload,
-  }),
-);
+)
+  .handleAction(
+    actions.fetchProfileAsync.success,
+    (state: InitialStateType, action: any) => ({
+      ...state,
+      profile: action.payload,
+    }),
+  )
+  .handleAction(
+    actions.fetchStatusAsync.success,
+    (state: InitialStateType, action: any) => ({
+      ...state,
+      status: action.payload,
+    }),
+  );
 
 export default profileReducer;
