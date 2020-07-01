@@ -18,7 +18,6 @@ export const Users: React.FC = React.memo(() => {
 
   return (
     <>
-      Users
       <UsersComponent
         users={items}
         pageSize={pageSize}

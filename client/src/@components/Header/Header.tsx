@@ -12,9 +12,7 @@ const Header = () => {
     <Container
       fluid
       as="header"
-      className={[classes.header, 'bg-dark d-flex align-items-center'].join(
-        ' ',
-      )}
+      className={`${classes.header} d-flex align-items-center bg-dark mb-3`}
     >
       <Container className="d-flex justify-content-between align-items-center">
         <NavLink to="/" className={classes.logo}>

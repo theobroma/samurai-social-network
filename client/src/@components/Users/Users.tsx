@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Card } from 'react-bootstrap';
 import User from './User/User';
 import { UserType } from '../../@types';
 // import Paginator from '../UI/Paginator/Paginator';
@@ -24,6 +25,14 @@ export const Users: FC<PropsType> = ({
   users,
   ...props
 }) => {
+  const BlockTitle = (
+    <div className="row mt-4">
+      <div className="col-6">
+        <h4>USERS</h4>
+      </div>
+    </div>
+  );
+
   return (
     <>
       {/* <Paginator
@@ -32,23 +41,28 @@ export const Users: FC<PropsType> = ({
         pageSize={pageSize}
         currentPage={currentPage}
       /> */}
-      <PaginationFC
-        handlePageClick={handlePageClick}
-        totalCount={totalCount}
-        pageSize={pageSize}
-      />
-
-      {users &&
-        users.map((user: UserType) => (
-          <User
-            user={user}
-            key={user.id}
-            isFetching={props.isFetching}
-            follow={props.follow}
-            unfollow={props.unfollow}
-            followingInProgress={props.followingInProgress}
+      <Card>
+        <Card.Body>
+          {BlockTitle}
+          <PaginationFC
+            handlePageClick={handlePageClick}
+            totalCount={totalCount}
+            pageSize={pageSize}
           />
-        ))}
+
+          {users &&
+            users.map((user: UserType) => (
+              <User
+                user={user}
+                key={user.id}
+                isFetching={props.isFetching}
+                follow={props.follow}
+                unfollow={props.unfollow}
+                followingInProgress={props.followingInProgress}
+              />
+            ))}
+        </Card.Body>
+      </Card>
     </>
   );
 };
