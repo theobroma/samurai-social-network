@@ -24,13 +24,14 @@ type ProfileDataProps = {
 const ProfileData: React.FC<ProfileDataProps> = ({ profile }) => (
   <div className={s.descriptionBlock}>
     <ul>
-      {Object.keys(profile.contacts).map((c) => (
-        <Contact
-          title={c}
-          value={profile.contacts[c as keyof ContactsType]}
-          key={c}
-        />
-      ))}
+      {profile &&
+        Object.keys(profile.contacts).map((c) => (
+          <Contact
+            title={c}
+            value={profile.contacts[c as keyof ContactsType]}
+            key={c}
+          />
+        ))}
     </ul>
     <div>
       <div>

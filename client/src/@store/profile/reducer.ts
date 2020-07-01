@@ -2,38 +2,47 @@ import { createReducer } from 'typesafe-actions';
 import { ProfileType } from '../../@types';
 import { actions, ProfileAction } from './actions';
 
-const profileInitialState: ProfileType = {
-  userId: null,
-  lookingForAJob: null,
-  lookingForAJobDescription: null,
-  fullName: null,
-  contacts: {
-    github: '',
-    vk: '',
-    facebook: '',
-    instagram: '',
-    twitter: '',
-    website: '',
-    youtube: '',
-    mainLink: '',
+const profileInitialState = {
+  profile: {
+    userId: null,
+    lookingForAJob: null,
+    lookingForAJobDescription: null,
+    fullName: null,
+    contacts: {
+      github: '',
+      vk: '',
+      facebook: '',
+      instagram: '',
+      twitter: '',
+      website: '',
+      youtube: '',
+      mainLink: '',
+    },
+    photos: {
+      small: null,
+      large: null,
+    },
   },
-  photos: {
-    small: null,
-    large: null,
-  },
+  // profile: null as null | ProfileType,
+  status: '',
 };
 
-export const profileReducer = createReducer(profileInitialState, {
-  // [CONSTANT]: (state) => {
-  //   return {
-  //     ...state,
-  //   };
-  // },
-}).handleAction(
+export type InitialStateType = typeof profileInitialState;
+
+export const profileReducer = createReducer<InitialStateType, any>(
+  profileInitialState,
+  {
+    // [CONSTANT]: (state) => {
+    //   return {
+    //     ...state,
+    //   };
+    // },
+  },
+).handleAction(
   actions.fetchProfileAsync.success,
-  (state: ProfileType, action: any) => ({
+  (state: InitialStateType, action: any) => ({
     ...state,
-    ...action.payload,
+    profile: action.payload,
   }),
 );
 

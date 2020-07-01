@@ -1,6 +1,6 @@
 import { RootState } from '../index';
-// import { ProfileType } from '../../@types';
+import { ProfileType } from '../../@types';
 
-export const getProfile = (state: RootState): any => {
-  return state.profile;
+export const getProfile = (state: RootState): ProfileType => {
+  return state.profile.profile;
 };
