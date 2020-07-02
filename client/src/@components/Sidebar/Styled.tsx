@@ -11,7 +11,9 @@ export const StyledNavItem = styled.div`
   margin-bottom: 0;
   a {
     font-size: 1em;
-    color: '#9FFFCB';
+    &.active {
+      color: #155724;
+    }
     :hover {
       opacity: 0.7;
       text-decoration: none;
