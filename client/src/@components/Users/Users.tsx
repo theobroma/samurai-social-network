@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import User from './User/User';
 import { UserType } from '../../@types';
 // import Paginator from '../UI/Paginator/Paginator';
 import { PaginationFC } from '../UI/Pagination';
+import { ListGridSwitcher } from './ListGridSwitcher';
 
 type PropsType = {
   currentPage?: number;
@@ -44,11 +45,16 @@ export const Users: FC<PropsType> = ({
       <Card>
         <Card.Body>
           {BlockTitle}
-          <PaginationFC
-            handlePageClick={handlePageClick}
-            totalCount={totalCount}
-            pageSize={pageSize}
-          />
+          <Row className="bg-dark py-3">
+            <Col>
+              <PaginationFC
+                handlePageClick={handlePageClick}
+                totalCount={totalCount}
+                pageSize={pageSize}
+              />
+              <ListGridSwitcher />
+            </Col>
+          </Row>
           <Row>
             {users &&
               users.map((user: UserType) => (
