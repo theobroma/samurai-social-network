@@ -10,6 +10,7 @@ export const StyledNavItem = styled.div`
   padding: 15px 15px 15px 15px;
   margin-bottom: 0;
   a {
+    color: #2a5885;
     font-size: 1em;
     &.active {
       color: #155724;
