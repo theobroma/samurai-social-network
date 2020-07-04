@@ -7,7 +7,7 @@ import NotFoundPage from '../NotFoundPage';
 import { getUserId } from '../../../@store/auth/selectors';
 import { startAuthenticationProcess } from '../../../@store/auth/sagas';
 import Sidebar from '../../../@components/Sidebar/Sidebar';
-import Header from '../../../@components/Header/Header';
+import Header from '../../../@components/Header';
 
 interface INestedRoute {
   location?: any;
