@@ -3,9 +3,8 @@ import { render } from 'react-dom';
 import App from './#/App';
 import * as serviceWorker from './serviceWorker';
 // All styles
-import 'todomvc-app-css/index.css';
 import './@assets/styles/index.scss';
-
+// Open Source typefaces
 require('typeface-roboto');
 
 const rootEl = document.getElementById('root');
