@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
-import { ProfileType, UserType } from '../../@types';
-import { actions } from './actions';
+import { UserType } from '../../@types';
+import { fetchUsersAsync, UsersAction } from './actions';
 import { SET_CURRENT_PAGE } from './constants';
 
 const userInitialState = {
@@ -20,9 +20,12 @@ export const usersReducer = createReducer(userInitialState, {
       currentPage: page,
     };
   },
-}).handleAction(actions.fetchUsersAsync.success, (state: any, action: any) => ({
-  ...state,
-  ...action.payload,
-}));
+}).handleAction(
+  fetchUsersAsync.success,
+  (state: InitialStateType, action: UsersAction) => ({
+    ...state,
+    ...action.payload,
+  }),
+);
 
 export default usersReducer;

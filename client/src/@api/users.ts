@@ -8,11 +8,6 @@ type UsersGet = {
 };
 
 export const UsersAPI = {
-  // getUsers1(currentPage: number, pageSize: number) {
-  //   return instance
-  //     .get<any>(`users?page=${currentPage}&count=${pageSize}`)
-  //     .then((res) => res.data);
-  // },
   // pageSize max = 100
   getUsers: async (currentPage: number, pageSize = 10): Promise<any> => {
     try {
@@ -25,9 +20,15 @@ export const UsersAPI = {
     }
   },
 
-  // follow(id: number) {
-  //   return instance.post<ResponseAPI>(`follow/${id}`).then((res) => res.data);
-  // },
+  followUser: async (id: number): Promise<any> => {
+    // return instance.post<ResponseAPI>(`follow/${id}`).then((res) => res.data);
+    try {
+      const response = await instance.post<ResponseAPI>(`follow/${id}`);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
   // unfollow(id: number) {
   //   return instance.delete(`unfollow/${id}`).then((res) => res.data) as Promise<
   //     Response

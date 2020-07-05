@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Users as UsersComponent } from '../../@components/Users/Users';
-import { fetchUsersAsync, setCurrentPage } from '../../@store/users/actions';
+import {
+  fetchUsersAsync,
+  setCurrentPage,
+  followUserAsync,
+} from '../../@store/users/actions';
 import { getUsers } from '../../@store/users/selectors';
 
 export const Users: React.FC = React.memo(() => {
@@ -16,6 +20,10 @@ export const Users: React.FC = React.memo(() => {
     dispatch(setCurrentPage(state.selected + 1)); // +1 fix diff start position
   };
 
+  const handleFollow = (id: number) => {
+    dispatch(followUserAsync.request(id));
+  };
+
   return (
     <>
       <UsersComponent
@@ -24,6 +32,7 @@ export const Users: React.FC = React.memo(() => {
         totalCount={totalCount}
         currentPage={currentPage}
         handlePageClick={handlePageClick}
+        follow={handleFollow}
       />
     </>
   );

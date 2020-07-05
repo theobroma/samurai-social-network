@@ -2,19 +2,20 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { StyledUser } from './User.styled';
+import { UserType } from '../../../@types';
 
 type Props = {
-  user?: any;
+  user: UserType;
   isFetching?: any;
   followingInProgress?: any;
-  follow?: any;
+  follow: any;
   unfollow?: any;
 };
 
 const User: React.FC<Props> = ({
   user,
   isFetching,
-  followingInProgress,
+  // followingInProgress,
   follow,
   unfollow,
 }) => {
@@ -56,7 +57,9 @@ const User: React.FC<Props> = ({
         // >
         //   Follow
         // </button>
-        <Button variant="outline-primary">Follow</Button>
+        <Button variant="outline-primary" onClick={() => follow(user.id)}>
+          Follow
+        </Button>
       )}
     </StyledUser>
   );

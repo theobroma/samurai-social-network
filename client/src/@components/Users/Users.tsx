@@ -13,7 +13,7 @@ type PropsType = {
   handlePageClick?: any;
   users: Array<UserType>;
   isFetching?: boolean;
-  follow?: (id: number) => void;
+  follow: (id: number) => void;
   unfollow?: (id: number) => void;
   followingInProgress?: Array<number>;
 };
@@ -23,6 +23,7 @@ export const Users: FC<PropsType> = ({
   totalCount = 999,
   pageSize = 10,
   handlePageClick,
+  follow,
   users,
   ...props
 }) => {
@@ -62,7 +63,7 @@ export const Users: FC<PropsType> = ({
                   user={user}
                   key={user.id}
                   isFetching={props.isFetching}
-                  follow={props.follow}
+                  follow={follow}
                   unfollow={props.unfollow}
                   followingInProgress={props.followingInProgress}
                 />
