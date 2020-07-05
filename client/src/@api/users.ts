@@ -21,7 +21,6 @@ export const UsersAPI = {
   },
 
   followUser: async (id: number): Promise<any> => {
-    // return instance.post<ResponseAPI>(`follow/${id}`).then((res) => res.data);
     try {
       const response = await instance.post<ResponseAPI>(`follow/${id}`);
       return response.data;
@@ -29,9 +28,13 @@ export const UsersAPI = {
       return e.message;
     }
   },
-  // unfollow(id: number) {
-  //   return instance.delete(`unfollow/${id}`).then((res) => res.data) as Promise<
-  //     Response
-  //   >;
-  // },
+
+  unfollowUser: async (id: number): Promise<any> => {
+    try {
+      const response = await instance.delete<ResponseAPI>(`follow/${id}`);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
 };

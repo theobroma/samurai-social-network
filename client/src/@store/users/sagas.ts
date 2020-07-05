@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
-import { fetchUsersAsync, followUserAsync } from './actions';
+import { fetchUsersAsync, followUserAsync, unfollowUserAsync } from './actions';
 import { UsersAPI } from '../../@api/users';
 
 export function* getUsersSaga(
@@ -23,5 +23,17 @@ export function* followUserSaga(
     yield put(followUserAsync.success(response));
   } catch (err) {
     yield put(followUserAsync.failure(err));
+  }
+}
+
+export function* unfollowUserSaga(
+  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
+  action: any,
+): Generator {
+  try {
+    const response: any = yield call(UsersAPI.unfollowUser, action.payload);
+    yield put(unfollowUserAsync.success(response));
+  } catch (err) {
+    yield put(unfollowUserAsync.failure(err));
   }
 }

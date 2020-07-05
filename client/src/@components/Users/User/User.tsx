@@ -9,7 +9,7 @@ type Props = {
   isFetching?: any;
   followingInProgress?: any;
   follow: any;
-  unfollow?: any;
+  unfollow: any;
 };
 
 const User: React.FC<Props> = ({
@@ -48,7 +48,9 @@ const User: React.FC<Props> = ({
         // >
         //   Unfollow
         // </button>
-        <Button variant="primary">Unfollow</Button>
+        <Button variant="primary" onClick={() => unfollow(user.id)}>
+          Unfollow
+        </Button>
       ) : (
         // <button
         //   type="button"

@@ -5,6 +5,7 @@ import {
   fetchUsersAsync,
   setCurrentPage,
   followUserAsync,
+  unfollowUserAsync,
 } from '../../@store/users/actions';
 import { getUsers } from '../../@store/users/selectors';
 
@@ -24,6 +25,10 @@ export const Users: React.FC = React.memo(() => {
     dispatch(followUserAsync.request(id));
   };
 
+  const handleUnFollow = (id: number) => {
+    dispatch(unfollowUserAsync.request(id));
+  };
+
   return (
     <>
       <UsersComponent
@@ -33,6 +38,7 @@ export const Users: React.FC = React.memo(() => {
         currentPage={currentPage}
         handlePageClick={handlePageClick}
         follow={handleFollow}
+        unfollow={handleUnFollow}
       />
     </>
   );
