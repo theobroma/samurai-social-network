@@ -13,7 +13,7 @@ export const Profile: React.FC<Props> = ({ profile, status }) => {
   const BlockTitle = (
     <div className="row mt-4 mb-3">
       <div className="col-12">
-        <h4>PROFILE</h4>
+        <div className="option-subheading">Account Information</div>
       </div>
     </div>
   );

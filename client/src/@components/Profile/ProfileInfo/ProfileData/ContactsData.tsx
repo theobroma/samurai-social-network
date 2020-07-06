@@ -10,15 +10,17 @@ import {
   FaVk,
   FaFacebook,
 } from 'react-icons/fa';
-import { ProfileType, ContactsType } from '../../../../@types';
+import { StyledSocialList } from './Styled';
+import { ContactsType } from '../../../../@types';
 
 type ContactProps = {
   title: string;
   value: string;
 };
-const Contact: React.FC<ContactProps> = ({ title, value = '' }) => (
+const Contact: React.FC<ContactProps> = ({ title, value = '', children }) => (
   <li>
-    <a href={value} target="_blank">
+    <a href="https://www.facebook.com/" target="_blank">
+      <span className="mr-2">{children}</span>
       {title}
     </a>
   </li>
@@ -30,65 +32,62 @@ type Props = {
 
 const ContactsData: React.FC<Props> = ({ contacts }) => {
   const BlockSocial = (
-    <>
-      <FaGithub />
-      <Contact
-        title="github"
-        value={contacts.github}
-        key={shortid.generate()}
-      />
-      <FaVk />
-      <Contact title="vk" value={contacts.vk} key={shortid.generate()} />
-      <FaFacebook />
+    <StyledSocialList>
+      <Contact title="github" value={contacts.github} key={shortid.generate()}>
+        <FaGithub />
+      </Contact>
+      <Contact title="vk" value={contacts.vk} key={shortid.generate()}>
+        <FaVk />
+      </Contact>
       <Contact
         title="facebook"
         value={contacts.facebook}
         key={shortid.generate()}
-      />
-      <FaInstagram />
+      >
+        <FaFacebook />
+      </Contact>
       <Contact
         title="instagram"
         value={contacts.instagram}
         key={shortid.generate()}
-      />
-      <FaTwitter />
+      >
+        <FaInstagram />
+      </Contact>
       <Contact
         title="twitter"
         value={contacts.twitter}
         key={shortid.generate()}
-      />
-      <FaGlobe />
+      >
+        <FaTwitter />
+      </Contact>
       <Contact
         title="website"
         value={contacts.website}
         key={shortid.generate()}
-      />
-      <FaYoutube />
+      >
+        <FaGlobe />
+      </Contact>
       <Contact
         title="youtube"
         value={contacts.youtube}
         key={shortid.generate()}
-      />
-      <FaLink />
+      >
+        <FaYoutube />
+      </Contact>
       <Contact
         title="mainLink"
         value={contacts.mainLink}
         key={shortid.generate()}
-      />
-    </>
+      >
+        <FaLink />
+      </Contact>
+    </StyledSocialList>
   );
   return (
-    <ul>
+    <>
+      <div className="option-subheading mb-3">Social links</div>
       {contacts && BlockSocial}
-      {/* {contacts &&
-        Object.keys(contacts).map((c) => (
-          <Contact
-            title={c}
-            value={contacts[c as keyof ContactsType]}
-            key={c}
-          />
-        ))} */}
-    </ul>
+    </>
   );
 };
 export default ContactsData;
