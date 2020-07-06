@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import './@assets/styles/index.scss';
 // Open Source typefaces
 require('typeface-roboto');
+require('typeface-gothic-a1');
 
 const rootEl = document.getElementById('root');
 render(<App />, rootEl);
