@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-export const StyledUser = styled.div`
+export const StyledGridUser = styled.div`
   .name {
     transition: color 0.15s ease-in-out;
   }
@@ -23,4 +23,4 @@ export const StyledUser = styled.div`
   }
 `;
 
-export default StyledUser;
+export default StyledGridUser;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { StyledUser } from './User.styled';
+import { StyledGridUser } from './GridUser.styled';
 import { UserType } from '../../../@types';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
   unfollow: any;
 };
 
-const User: React.FC<Props> = ({
+const GridUser: React.FC<Props> = ({
   user,
   isFetching,
   // followingInProgress,
@@ -20,7 +20,7 @@ const User: React.FC<Props> = ({
   unfollow,
 }) => {
   return (
-    <StyledUser className="col-6 col-md-4 text-center py-3">
+    <StyledGridUser className="col-6 col-md-4 text-center py-3">
       <NavLink to={`/profile/${user.id}`}>
         <div className="avatar-wrapper">
           {isFetching ? (
@@ -63,7 +63,7 @@ const User: React.FC<Props> = ({
           Follow
         </Button>
       )}
-    </StyledUser>
+    </StyledGridUser>
   );
 };
-export default User;
+export default GridUser;

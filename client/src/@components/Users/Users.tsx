@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
-import User from './User/User';
+import GridUser from './GridUser/GridUser';
 import { UserType } from '../../@types';
 // import Paginator from '../UI/Paginator/Paginator';
 import { PaginationFC } from '../UI/Pagination';
@@ -60,7 +60,7 @@ export const Users: FC<PropsType> = ({
           <Row>
             {users &&
               users.map((user: UserType) => (
-                <User
+                <GridUser
                   user={user}
                   key={user.id}
                   isFetching={props.isFetching}

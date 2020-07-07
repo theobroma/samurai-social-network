@@ -19,7 +19,7 @@ type ContactProps = {
 };
 const Contact: React.FC<ContactProps> = ({ title, value = '', children }) => (
   <li>
-    <a href="https://www.facebook.com/" target="_blank">
+    <a href={value} target="_blank">
       <span className="mr-2">{children}</span>
       {title}
     </a>
