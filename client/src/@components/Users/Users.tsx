@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import GridUser from './GridUser/GridUser';
+import ListUser from './ListUser/ListUser';
 import { UserType } from '../../@types';
 // import Paginator from '../UI/Paginator/Paginator';
 import { PaginationFC } from '../UI/Pagination';
@@ -58,9 +59,20 @@ export const Users: FC<PropsType> = ({
             </Col>
           </Row>
           <Row>
-            {users &&
+            {/* {users &&
               users.map((user: UserType) => (
                 <GridUser
+                  user={user}
+                  key={user.id}
+                  isFetching={props.isFetching}
+                  follow={follow}
+                  unfollow={unfollow}
+                  followingInProgress={props.followingInProgress}
+                />
+              ))} */}
+            {users &&
+              users.map((user: UserType) => (
+                <ListUser
                   user={user}
                   key={user.id}
                   isFetching={props.isFetching}
