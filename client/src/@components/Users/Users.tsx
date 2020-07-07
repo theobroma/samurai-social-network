@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import GridUser from './GridUser/GridUser';
 import ListUser from './ListUser/ListUser';
-import { UserType } from '../../@types';
-// import Paginator from '../UI/Paginator/Paginator';
+import { UserType, ItemsViewType } from '../../@types';
 import { PaginationFC } from '../UI/Pagination';
 import { ListGridSwitcher } from './ListGridSwitcher';
 
@@ -19,7 +18,7 @@ type PropsType = {
   followingInProgress?: Array<number>;
 };
 
-export const Users: FC<PropsType> = ({
+export const Users: React.FC<PropsType> = ({
   currentPage = 1,
   totalCount = 999,
   pageSize = 10,
@@ -29,6 +28,8 @@ export const Users: FC<PropsType> = ({
   users,
   ...props
 }) => {
+  const [viewType, setViewType] = useState<ItemsViewType>('GRID');
+
   const BlockTitle = (
     <div className="row mt-4 mb-3">
       <div className="col-12">
@@ -39,12 +40,6 @@ export const Users: FC<PropsType> = ({
 
   return (
     <>
-      {/* <Paginator
-        // onPageChanged={onPageChanged}
-        totalItemsCount={totalUsersCount}
-        pageSize={pageSize}
-        currentPage={currentPage}
-      /> */}
       <Card>
         <Card.Body>
           {BlockTitle}
@@ -55,32 +50,32 @@ export const Users: FC<PropsType> = ({
                 totalCount={totalCount}
                 pageSize={pageSize}
               />
-              <ListGridSwitcher />
+              <ListGridSwitcher setViewType={setViewType} viewType={viewType} />
             </Col>
           </Row>
           <Row>
-            {/* {users &&
-              users.map((user: UserType) => (
-                <GridUser
-                  user={user}
-                  key={user.id}
-                  isFetching={props.isFetching}
-                  follow={follow}
-                  unfollow={unfollow}
-                  followingInProgress={props.followingInProgress}
-                />
-              ))} */}
             {users &&
-              users.map((user: UserType) => (
-                <ListUser
-                  user={user}
-                  key={user.id}
-                  isFetching={props.isFetching}
-                  follow={follow}
-                  unfollow={unfollow}
-                  followingInProgress={props.followingInProgress}
-                />
-              ))}
+              users.map((user: UserType) =>
+                viewType === 'LIST' ? (
+                  <ListUser
+                    user={user}
+                    key={user.id}
+                    isFetching={props.isFetching}
+                    follow={follow}
+                    unfollow={unfollow}
+                    followingInProgress={props.followingInProgress}
+                  />
+                ) : (
+                  <GridUser
+                    user={user}
+                    key={user.id}
+                    isFetching={props.isFetching}
+                    follow={follow}
+                    unfollow={unfollow}
+                    followingInProgress={props.followingInProgress}
+                  />
+                ),
+              )}
           </Row>
         </Card.Body>
       </Card>

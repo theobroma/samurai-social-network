@@ -1,32 +1,37 @@
 import React from 'react';
-import { Col, Card, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 import { BsListUl, BsGrid3X3Gap } from 'react-icons/bs';
-import { ProfileType } from '../../../@types';
+import { ItemsViewType } from '../../../@types';
 
 type Props = {
-  profile?: ProfileType;
-  status?: string;
+  viewType: ItemsViewType;
+  setViewType: (viewType: ItemsViewType) => void;
 };
 
-export const ListGridSwitcher: React.FC<Props> = ({ profile, status }) => {
+export const ListGridSwitcher: React.FC<Props> = ({
+  setViewType,
+  viewType,
+}) => {
   return (
     <Row>
       <Col>
         <div className="btn-group">
-          <span
-            // onClick={props.handleList}
+          <Button
             id="list"
+            onClick={() => setViewType('LIST')}
             className="btn btn-primary btn-xs"
+            active={viewType === 'LIST'}
           >
             <BsListUl /> List
-          </span>
-          <span
-            // onClick={props.handleGrid}
+          </Button>
+          <Button
             id="grid"
+            onClick={() => setViewType('GRID')}
             className="btn btn-primary btn-xs"
+            active={viewType === 'GRID'}
           >
             <BsGrid3X3Gap /> Grid
-          </span>
+          </Button>
         </div>
       </Col>
     </Row>
