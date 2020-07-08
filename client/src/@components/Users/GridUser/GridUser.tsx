@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { StyledGridUser } from './GridUser.styled';
 import { UserType } from '../../../@types';
 
 type Props = {
   user: UserType;
   isFetching?: any;
-  followingInProgress?: any;
+  followingInProgress: Array<number>;
   follow: any;
   unfollow: any;
 };
@@ -15,10 +15,13 @@ type Props = {
 const GridUser: React.FC<Props> = ({
   user,
   isFetching,
-  // followingInProgress,
+  followingInProgress = [],
   follow,
   unfollow,
 }) => {
+  const followingInProgressBool = followingInProgress.some(
+    (id: number) => id === user.id,
+  );
   return (
     <StyledGridUser className="col-6 col-md-4 text-center py-3">
       <NavLink to={`/profile/${user.id}`}>
@@ -59,8 +62,22 @@ const GridUser: React.FC<Props> = ({
         // >
         //   Follow
         // </button>
-        <Button variant="outline-primary" onClick={() => follow(user.id)}>
-          Follow
+        <Button
+          variant="outline-primary"
+          onClick={() => follow(user.id)}
+          disabled={followingInProgressBool}
+        >
+          {followingInProgressBool ? (
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ) : (
+            'Follow'
+          )}
         </Button>
       )}
     </StyledGridUser>

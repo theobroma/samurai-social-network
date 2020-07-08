@@ -11,7 +11,13 @@ import { getUsers } from '../../@store/users/selectors';
 
 export const Users: React.FC = React.memo(() => {
   const dispatch = useDispatch();
-  const { items, pageSize, totalCount, currentPage } = useSelector(getUsers);
+  const {
+    items,
+    pageSize,
+    totalCount,
+    currentPage,
+    followingInProgress,
+  } = useSelector(getUsers);
 
   useEffect(() => {
     dispatch(fetchUsersAsync.request(currentPage));
@@ -39,6 +45,7 @@ export const Users: React.FC = React.memo(() => {
         handlePageClick={handlePageClick}
         follow={handleFollow}
         unfollow={handleUnFollow}
+        followingInProgress={followingInProgress}
       />
     </>
   );

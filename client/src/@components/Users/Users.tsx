@@ -15,7 +15,7 @@ type PropsType = {
   isFetching?: boolean;
   follow: (id: number) => void;
   unfollow: (id: number) => void;
-  followingInProgress?: Array<number>;
+  followingInProgress: Array<number>;
 };
 
 export const Users: React.FC<PropsType> = ({
@@ -26,6 +26,7 @@ export const Users: React.FC<PropsType> = ({
   follow,
   unfollow,
   users,
+  followingInProgress,
   ...props
 }) => {
   const [viewType, setViewType] = useState<ItemsViewType>('GRID');
@@ -63,7 +64,7 @@ export const Users: React.FC<PropsType> = ({
                     isFetching={props.isFetching}
                     follow={follow}
                     unfollow={unfollow}
-                    followingInProgress={props.followingInProgress}
+                    followingInProgress={followingInProgress}
                   />
                 ) : (
                   <GridUser
@@ -72,7 +73,7 @@ export const Users: React.FC<PropsType> = ({
                     isFetching={props.isFetching}
                     follow={follow}
                     unfollow={unfollow}
-                    followingInProgress={props.followingInProgress}
+                    followingInProgress={followingInProgress}
                   />
                 ),
               )}

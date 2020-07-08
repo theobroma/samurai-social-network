@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import { StyledListUser } from './ListUser.styled';
 import { UserType } from '../../../@types';
 
@@ -55,6 +55,13 @@ const ListUser: React.FC<Props> = ({
           {user.followed ? (
             <Button variant="primary" onClick={() => unfollow(user.id)}>
               Unfollow
+              {/* <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              /> */}
             </Button>
           ) : (
             <Button variant="outline-primary" onClick={() => follow(user.id)}>
