@@ -1,6 +1,11 @@
 import { createReducer } from 'typesafe-actions';
 import { UserType } from '../../@types';
-import { fetchUsersAsync, UsersAction, followUserAsync } from './actions';
+import {
+  fetchUsersAsync,
+  UsersAction,
+  followUserAsync,
+  unfollowUserAsync,
+} from './actions';
 import { SET_CURRENT_PAGE } from './constants';
 
 const userInitialState = {
@@ -39,6 +44,30 @@ export const usersReducer = createReducer(userInitialState, {
         items: state.items.map((item: UserType) => {
           if (item.id === state.followingInProgress[0])
             return { ...item, followed: true };
+          return item;
+        }),
+        followingInProgress: [],
+      };
+    },
+  )
+  .handleAction(
+    unfollowUserAsync.request,
+    (state: InitialStateType, action: UsersAction) => {
+      return {
+        ...state,
+        followingInProgress: [...state.followingInProgress, action.payload],
+      };
+    },
+  )
+  .handleAction(
+    unfollowUserAsync.success,
+    (state: InitialStateType, action: UsersAction) => {
+      return {
+        ...state,
+        // TODO: mb refactor
+        items: state.items.map((item: UserType) => {
+          if (item.id === state.followingInProgress[0])
+            return { ...item, followed: false };
           return item;
         }),
         followingInProgress: [],

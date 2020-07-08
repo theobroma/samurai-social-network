@@ -20,7 +20,6 @@ export function* followUserSaga(
 ): Generator {
   try {
     const response: any = yield call(UsersAPI.followUser, action.payload);
-    console.log(response);
     yield put(followUserAsync.success(response));
   } catch (err) {
     yield put(followUserAsync.failure(err));

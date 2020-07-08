@@ -7,7 +7,7 @@ import { UserType } from '../../../@types';
 type Props = {
   user: UserType;
   isFetching?: any;
-  followingInProgress?: any;
+  followingInProgress: any;
   follow: any;
   unfollow: any;
 };
@@ -15,10 +15,13 @@ type Props = {
 const ListUser: React.FC<Props> = ({
   user,
   isFetching,
-  // followingInProgress,
+  followingInProgress,
   follow,
   unfollow,
 }) => {
+  const followingInProgressBool = followingInProgress.some(
+    (id: number) => id === user.id,
+  );
   return (
     <StyledListUser className="col-12 py-3">
       <Row>
@@ -54,18 +57,35 @@ const ListUser: React.FC<Props> = ({
           {/* TODO:followingInProgress */}
           {user.followed ? (
             <Button variant="primary" onClick={() => unfollow(user.id)}>
-              Unfollow
-              {/* <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              /> */}
+              {followingInProgressBool ? (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                'Unfollow'
+              )}
             </Button>
           ) : (
-            <Button variant="outline-primary" onClick={() => follow(user.id)}>
-              Follow
+            <Button
+              variant="outline-primary"
+              onClick={() => follow(user.id)}
+              disabled={followingInProgressBool}
+            >
+              {followingInProgressBool ? (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                'Follow'
+              )}
             </Button>
           )}
         </Col>

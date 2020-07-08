@@ -44,24 +44,20 @@ const GridUser: React.FC<Props> = ({
       </NavLink>
       <div>{user.status}</div>
       {user.followed ? (
-        // <button
-        //   type="button"
-        //   // disabled={followingInProgress.some((id: any) => id === user.id)}
-        //   onClick={() => unfollow(user.id)}
-        // >
-        //   Unfollow
-        // </button>
         <Button variant="primary" onClick={() => unfollow(user.id)}>
-          Unfollow
+          {followingInProgressBool ? (
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ) : (
+            'Unfollow'
+          )}
         </Button>
       ) : (
-        // <button
-        //   type="button"
-        //   // disabled={followingInProgress.some((id: any) => id === user.id)}
-        //   onClick={() => follow(user.id)}
-        // >
-        //   Follow
-        // </button>
         <Button
           variant="outline-primary"
           onClick={() => follow(user.id)}
