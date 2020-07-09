@@ -1,0 +1,13 @@
+html {
+    min-height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+}
+
+#root {
+    flex-grow: 1;
+    min-height: 100vh;
+    background-color: $c-grey-light;
+}
