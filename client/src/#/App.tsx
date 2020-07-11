@@ -2,9 +2,10 @@ import React, { lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import configureStore from '../configureStore';
-import { IRoute, ROUTES } from '../@types';
+import { IRoute, ROUTES, ROLE, ROLES } from '../@types';
 import LoadingPage from '../@components/UI/LoadingPage';
 import { NestedRoute } from './@common/NestedRoute/NestedRoute';
+import { useAllowedRoutes } from '../@utils/useAllowedRoutes';
 
 const store = configureStore();
 
@@ -36,6 +37,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
     path: ROUTES.USERS,
   },
   {
+    access: [ROLES.GUESTS],
     component: lazy(() => import('./#login')),
     path: ROUTES.LOGIN,
   },
@@ -45,8 +47,12 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   },
 ];
 
-export default function App() {
-  const preparedRoutes = APP_MAIN_ROUTES;
+interface IAppProps {
+  userRole: ROLE;
+}
+
+export const App: React.FC<IAppProps> = ({ userRole }) => {
+  const preparedRoutes = useAllowedRoutes(APP_MAIN_ROUTES, userRole);
 
   return (
     <React.StrictMode>
@@ -65,4 +71,6 @@ export default function App() {
       </Provider>
     </React.StrictMode>
   );
-}
+};
+
+export default App;
