@@ -10,23 +10,29 @@ export const authInitialState = {
   errorMessage: null as string | null,
   isAuthorized: false,
   isFetching: false,
+  userRole: 'guest' as string,
 };
 
-export const authReducer = createReducer<any, any>(authInitialState, {
-  [SET_USER_ID]: (state, { payload: userId }) => {
-    return {
-      ...state,
-      id: userId,
-    };
+export type InitialStateType = typeof authInitialState;
+
+export const authReducer = createReducer<InitialStateType, any>(
+  authInitialState,
+  {
+    [SET_USER_ID]: (state, { payload: userId }) => {
+      return {
+        ...state,
+        id: userId,
+      };
+    },
+    [SET_AUTH_USER_DATA]: (state, { payload: user }) => {
+      return {
+        ...state,
+        id: user.id,
+        email: user.email,
+        login: user.login,
+      };
+    },
   },
-  [SET_AUTH_USER_DATA]: (state, { payload: user }) => {
-    return {
-      ...state,
-      id: user.id,
-      email: user.email,
-      login: user.login,
-    };
-  },
-});
+);
 
 export default authReducer;

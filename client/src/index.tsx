@@ -1,17 +1,30 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { App } from './#/App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { AppContainer } from './#';
+import configureStore from './configureStore';
+
 import * as serviceWorker from './serviceWorker';
 // All styles
 import './@assets/styles/index.scss';
-import { ROLE } from './@types';
 // Open Source typefaces
 require('typeface-roboto');
 require('typeface-gothic-a1');
 
+const store = configureStore();
+
 const rootEl = document.getElementById('root');
-// TODO: make role dynamic
-render(<App userRole={ROLE.USER} />, rootEl);
+render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppContainer />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  rootEl,
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
