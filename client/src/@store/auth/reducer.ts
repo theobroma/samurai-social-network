@@ -30,6 +30,7 @@ export const authReducer = createReducer<InitialStateType, any>(
         id: user.id,
         email: user.email,
         login: user.login,
+        userRole: 'user',
       };
     },
   },

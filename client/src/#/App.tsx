@@ -4,6 +4,7 @@ import { IRoute, ROUTES, ROLE, ROLES } from '../@types';
 import LoadingPage from '../@components/UI/LoadingPage';
 import { NestedRoute } from './@common/NestedRoute/NestedRoute';
 import { useAllowedRoutes } from '../@utils/useAllowedRoutes';
+import { UserLayout, GuestLayout } from './@common/NestedRoute/Layouts';
 
 const MUSIC = lazy(() => {
   return new Promise<any>((resolve) => {
@@ -16,35 +17,42 @@ export const APP_MAIN_ROUTES: IRoute[] = [
     access: [ROLES.USERS],
     component: MUSIC,
     path: ROUTES.MUSIC,
+    layout: UserLayout,
   },
   {
     access: [ROLES.USERS],
     component: lazy(() => import('./Dialogs')),
     path: ROUTES.DIALOGS,
+    layout: UserLayout,
   },
   {
     access: [ROLES.USERS],
     component: lazy(() => import('./Profile')),
     path: ROUTES.PROFILE,
+    layout: UserLayout,
   },
   {
     access: [ROLES.USERS],
     component: lazy(() => import('./Settings')),
     path: ROUTES.SETTINGS,
+    layout: UserLayout,
   },
   {
     access: [ROLES.USERS],
     component: lazy(() => import('./Users/')),
     path: ROUTES.USERS,
+    layout: UserLayout,
   },
   {
     access: [ROLES.GUESTS],
     component: lazy(() => import('./#login')),
     path: ROUTES.LOGIN,
+    layout: GuestLayout,
   },
   {
     component: lazy(() => import('./#/Main')),
     path: ROUTES.ROOT,
+    layout: UserLayout,
   },
 ];
 
