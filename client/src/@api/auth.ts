@@ -38,7 +38,12 @@ export const AuthAPI = {
       )
       .then((res) => res.data);
   },
-  logout() {
-    return instance.delete('auth/login');
+  logout: async (): Promise<any> => {
+    try {
+      const response = await instance.delete('auth/login');
+      return response;
+    } catch (e) {
+      return e.message;
+    }
   },
 };

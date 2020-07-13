@@ -25,6 +25,7 @@ export function* loginSaga() {
   yield takeEvery(getAuthUserData, authMe);
   // yield takeLatest(clearAuthUserData, logout);
   yield takeLatest(startLogin, login);
+  yield takeLatest(actions.logoutAsync.request, logoutSaga);
 }
 
 export function* login(action: any) {
@@ -54,15 +55,44 @@ export function* login(action: any) {
   }
 }
 
+export function* logoutSaga(
+  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
+  action: any,
+): Generator {
+  try {
+    const response: any = yield call(AuthAPI.logout);
+
+    if (response.data.resultCode === 0) {
+      yield all([
+        put(
+          actions.setAuthUserData({
+            id: null,
+            email: null,
+            login: null,
+            userRole: 'guest',
+          }),
+        ),
+        put(actions.logoutAsync.success(response)),
+      ]);
+    }
+  } catch (err) {
+    yield put(actions.logoutAsync.failure(err));
+  }
+}
+
 export function* authMe() {
   try {
     // yield put(actions.setFetchingStatus(true));
     const response = yield call(AuthAPI.me);
+    let userRole = 'guest';
+    if (response.data.id) {
+      userRole = 'user';
+    }
     if (typeof response === 'string') {
       // yield put(actions.setErrorMessage(response));
     } else {
       yield all([
-        put(actions.setAuthUserData(response.data)),
+        put(actions.setAuthUserData({ ...response.data, userRole })),
         // put(actions.loginSuccess()),
       ]);
     }

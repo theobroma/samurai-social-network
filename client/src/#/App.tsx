@@ -52,7 +52,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   {
     component: lazy(() => import('./#/Main')),
     path: ROUTES.ROOT,
-    layout: UserLayout,
+    layout: GuestLayout,
   },
 ];
 
