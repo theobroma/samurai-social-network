@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './Header.module.scss';
 import { logoutAsync } from '../../@store/auth/actions';
@@ -8,11 +8,15 @@ import { getUserId } from '../../@store/auth/selectors';
 
 const logo = require('../../@assets/images/logo.png'); // eslint-disable-line @typescript-eslint/no-var-requires
 
-export const Header: React.FC = () => {
+interface Props {
+  className?: string;
+}
+
+export const Header: React.FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
   const userId = useSelector(getUserId);
   return (
-    <Navbar expand="lg" className={classes.header}>
+    <Navbar expand="lg" className={`${classes.header} ${className}`}>
       <Container>
         <Navbar.Brand href="#home">
           <NavLink to="/" className={classes.logo}>
@@ -24,7 +28,7 @@ export const Header: React.FC = () => {
           <Nav className="ml-auto">
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               {!userId ? (
-                <NavDropdown.Item as={NavLink} to="/login">
+                <NavDropdown.Item as={Link} to="/login">
                   Login
                 </NavDropdown.Item>
               ) : (

@@ -11,7 +11,7 @@ interface ILayout {
 export const UserLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
-      <Header />
+      <Header className="mb-3" />
       <Container>
         <Row>
           <Col xs={12} md={4}>
@@ -30,16 +30,7 @@ export const GuestLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>
-        <Row>
-          <Col xs={12} md={4}>
-            Hello guest
-          </Col>
-          <Col xs={12} md={8}>
-            {children}
-          </Col>
-        </Row>
-      </Container>
+      {children}
     </>
   );
 };
