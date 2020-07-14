@@ -18,7 +18,7 @@ export const Header: React.FC<Props> = ({ className }) => {
   return (
     <Navbar expand="lg" className={`${classes.header} ${className}`}>
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <NavLink to="/" className={classes.logo}>
             <img src={logo} alt="samurai-logo" />
           </NavLink>

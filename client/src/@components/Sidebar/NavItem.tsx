@@ -1,10 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import * as H from 'history';
 import { StyledNavItem } from './Styled';
 
 interface Props {
-  path: H.LocationDescriptor;
+  path: string;
 }
 
 const NavItem: React.FC<Props> = React.memo(({ path, children }) => {

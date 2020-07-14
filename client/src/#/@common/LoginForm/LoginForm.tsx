@@ -63,6 +63,7 @@ const LoginForm: React.FC<LoginForm> = ({
         touched,
         errors,
       }) => (
+        // @ts-ignore
         <Form noValidate onSubmit={handleSubmit}>
           <Form.Group controlId="formEmail">
             <Form.Label>Email адрес</Form.Label>
