@@ -9,7 +9,6 @@ import { LoginPayload } from '../../../@store/auth/sagas';
 interface LoginForm {
   error?: string | null;
   captchaUrl?: string | null;
-  // submitCallback?: (payload: any) => void;
   submitCallback: (payload: LoginPayload) => void;
 }
 
@@ -34,7 +33,7 @@ const LoginForm: React.FC<LoginForm> = ({
       .email('Некорректный адрес почты')
       .required('Обязательное поле'),
     password: Yup.string()
-      .min(6, 'Минимальная длина пароля 6 символов')
+      .min(4, 'Минимальная длина пароля 6 символов')
       .required('Обязательное поле'),
     rememberMe: Yup.boolean().notRequired(),
     // НЕ ЗНАЮ КАК СДЕЛАТЬ ВАЛИДАЦИЮ, КОГДА ПОЯВЛЯЕТСЯ ОКОШКО

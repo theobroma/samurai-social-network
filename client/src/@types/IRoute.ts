@@ -17,5 +17,5 @@ export interface IRoute {
   redirect?: string;
   getReducers?: any;
   computedMatch?: any;
-  layout: any;
+  layout: ComponentType;
 }
