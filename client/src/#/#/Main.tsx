@@ -1,18 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Jumbotron, Container, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { getUserId } from '../../@store/auth/selectors';
 
 const MainApp: React.FC = () => {
+  const userId = useSelector(getUserId);
   return (
     <Jumbotron fluid>
       <Container>
-        <h1>Hello, world!</h1>
-        <p>
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
+        <h1>SamuraiJS social network</h1>
+        <p>React+typescript application.</p>
+        {!userId ? (
+          <p>
+            <Button as={Link} to="/login" variant="primary">
+              Login
+            </Button>
+          </p>
+        ) : null}
       </Container>
     </Jumbotron>
   );

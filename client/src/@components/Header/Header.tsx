@@ -27,21 +27,38 @@ export const Header: React.FC<Props> = ({ className }) => {
     }
   }, [dispatch, userId, profile.userId]);
 
-  const DropdownTitleBlock =
-    profile.userId && userId ? (
-      <Avatar
-        name="Wim Mostmans"
-        size="40"
-        round
-        src={
-          profile.photos.large ||
-          profile.photos.small ||
-          'https://cdn2.hubspot.net/hubfs/2221797/cumulus2.jpg'
-        }
-      />
-    ) : (
-      ''
-    );
+  const DropdownTitleBlock = profile.userId ? (
+    <Avatar
+      name="Wim Mostmans"
+      size="40"
+      round
+      src={
+        profile.photos.large ||
+        profile.photos.small ||
+        'https://cdn2.hubspot.net/hubfs/2221797/cumulus2.jpg'
+      }
+    />
+  ) : (
+    ''
+  );
+
+  const NavbarBlock = (
+    <>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <NavDropdown title={DropdownTitleBlock} id="basic-nav-dropdown">
+            <NavDropdown.Item
+              onClick={() => dispatch(logoutAsync.request('any'))}
+            >
+              Logout
+            </NavDropdown.Item>
+            {/* <NavDropdown.Divider /> */}
+          </NavDropdown>
+        </Nav>
+      </Navbar.Collapse>
+    </>
+  );
 
   return (
     <Navbar expand="lg" className={`${classes.header} ${className}`}>
@@ -51,25 +68,7 @@ export const Header: React.FC<Props> = ({ className }) => {
             <img src={logo} alt="samurai-logo" />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <NavDropdown title={DropdownTitleBlock} id="basic-nav-dropdown">
-              {!userId ? (
-                <NavDropdown.Item as={Link} to="/login">
-                  Login
-                </NavDropdown.Item>
-              ) : (
-                <NavDropdown.Item
-                  onClick={() => dispatch(logoutAsync.request('any'))}
-                >
-                  Logout
-                </NavDropdown.Item>
-              )}
-              {/* <NavDropdown.Divider /> */}
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
+        {userId && NavbarBlock}
       </Container>
     </Navbar>
   );
