@@ -49,11 +49,18 @@ export const Header: React.FC<Props> = ({ className }) => {
         <Nav className="ml-auto">
           <NavDropdown title={DropdownTitleBlock} id="basic-nav-dropdown">
             <NavDropdown.Item
+              as={Link}
+              to="/profile"
+              className={classes.dropdownName}
+            >
+              {`Hi, ${profile.fullName} !`}
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
               onClick={() => dispatch(logoutAsync.request('any'))}
             >
               Logout
             </NavDropdown.Item>
-            {/* <NavDropdown.Divider /> */}
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
