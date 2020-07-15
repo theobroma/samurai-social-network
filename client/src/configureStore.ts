@@ -5,12 +5,38 @@ import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { rootReducer } from './@store/index';
+import throttle from 'lodash/throttle';
+import { loadState, saveState } from './@utils/localStorage';
+import { rootReducer, RootState } from './@store/index';
 import { rootSaga } from './rootSaga';
 
 export const history = createBrowserHistory();
 
 const configureStore = () => {
+  const persistedState = loadState();
+
+  let totalInitialState: RootState = {
+    auth: {},
+    profile: {},
+    users: {},
+    router: {
+      location: {
+        state: '',
+        pathname: '/profile',
+        search: '',
+        hash: '',
+        key: 'uobrvf',
+        // query: {},
+      },
+      action: 'POP',
+    },
+  };
+
+  // if persistedState is not empty then assign parsed persistedState to initState
+  if (persistedState) {
+    totalInitialState = persistedState;
+  }
+
   const logger = createLogger({
     collapsed: true,
   });
@@ -30,10 +56,18 @@ const configureStore = () => {
 
   const store = createStore(
     rootReducer(history),
+    totalInitialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 
   sagaMiddleware.run(rootSaga);
+
+  store.subscribe(
+    throttle(() => {
+      console.log('saved to localStorage');
+      saveState(store.getState());
+    }, 1000),
+  );
 
   return store;
 };
