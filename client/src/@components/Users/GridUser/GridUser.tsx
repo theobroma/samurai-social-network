@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
+import { BsPlus, BsCheck } from 'react-icons/bs';
 import { StyledGridUser } from './GridUser.styled';
 import { UserType } from '../../../@types';
 
@@ -44,7 +45,7 @@ const GridUser: React.FC<Props> = ({
       </NavLink>
       <div>{user.status}</div>
       {user.followed ? (
-        <Button variant="primary" onClick={() => unfollow(user.id)}>
+        <Button variant="outline-primary" onClick={() => unfollow(user.id)}>
           {followingInProgressBool ? (
             <Spinner
               as="span"
@@ -54,12 +55,15 @@ const GridUser: React.FC<Props> = ({
               aria-hidden="true"
             />
           ) : (
-            'Unfollow'
+            <>
+              <BsCheck />
+              Following
+            </>
           )}
         </Button>
       ) : (
         <Button
-          variant="outline-primary"
+          variant="primary"
           onClick={() => follow(user.id)}
           disabled={followingInProgressBool}
         >
@@ -72,7 +76,10 @@ const GridUser: React.FC<Props> = ({
               aria-hidden="true"
             />
           ) : (
-            'Follow'
+            <>
+              <BsPlus />
+              Follow
+            </>
           )}
         </Button>
       )}

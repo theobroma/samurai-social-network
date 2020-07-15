@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Row, Col, Button, Spinner } from 'react-bootstrap';
+import { BsCheck, BsPlus } from 'react-icons/bs';
 import { StyledListUser } from './ListUser.styled';
 import { UserType } from '../../../@types';
 
@@ -56,7 +57,7 @@ const ListUser: React.FC<Props> = ({
         <Col md={3} className="text-center text-md-right">
           {/* TODO:followingInProgress */}
           {user.followed ? (
-            <Button variant="primary" onClick={() => unfollow(user.id)}>
+            <Button variant="outline-primary" onClick={() => unfollow(user.id)}>
               {followingInProgressBool ? (
                 <Spinner
                   as="span"
@@ -66,12 +67,15 @@ const ListUser: React.FC<Props> = ({
                   aria-hidden="true"
                 />
               ) : (
-                'Unfollow'
+                <>
+                  <BsCheck />
+                  Following
+                </>
               )}
             </Button>
           ) : (
             <Button
-              variant="outline-primary"
+              variant="primary"
               onClick={() => follow(user.id)}
               disabled={followingInProgressBool}
             >
@@ -84,7 +88,10 @@ const ListUser: React.FC<Props> = ({
                   aria-hidden="true"
                 />
               ) : (
-                'Follow'
+                <>
+                  <BsPlus />
+                  Follow
+                </>
               )}
             </Button>
           )}
