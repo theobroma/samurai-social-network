@@ -8,7 +8,7 @@ import { UserLayout, GuestLayout } from './@common/NestedRoute/Layouts';
 
 const MUSIC = lazy(() => {
   return new Promise<any>((resolve) => {
-    setTimeout(() => resolve(import('./Music')), 300);
+    setTimeout(() => resolve(import('./Music')), 1000);
   });
 });
 

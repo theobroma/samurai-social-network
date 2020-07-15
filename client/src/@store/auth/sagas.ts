@@ -1,4 +1,5 @@
 import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { AuthAPI } from '../../@api/auth';
 // import { AuthAPI } from '../../@api/socialNetworkAPIs';
 import { actions } from './actions';
@@ -38,6 +39,7 @@ export function* login(action: any) {
     );
     if (response.resultCode === 0) {
       yield put(actions.setUserId(response.data.userId));
+      yield put(push('/profile'));
     }
     // else if (response.resultCode === 10) {
     //   yield all([
@@ -73,6 +75,7 @@ export function* logoutSaga(
           }),
         ),
         put(actions.logoutAsync.success(response)),
+        put(push('/login')),
       ]);
     }
   } catch (err) {
