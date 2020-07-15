@@ -24,7 +24,9 @@ export const NestedRoute = ({
   const userId = useSelector(getUserId);
 
   useEffect(() => {
-    dispatch(startAuthenticationProcess());
+    if (userId) {
+      dispatch(startAuthenticationProcess());
+    }
   }, [dispatch, userId]);
 
   const renderRoute = useCallback(

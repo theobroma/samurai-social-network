@@ -3,9 +3,9 @@ import ReactPaginate from 'react-paginate';
 import { StyledBreakLabel } from './Pagination.styled';
 
 type Props = {
-  totalCount: any;
-  pageSize: any;
-  handlePageClick: any;
+  totalCount: number;
+  pageSize: number;
+  handlePageClick: (state: { selected: number }) => void;
 };
 
 export const PaginationFC: React.FC<Props> = ({
