@@ -1,7 +1,15 @@
 import { all, takeEvery } from 'redux-saga/effects';
 import { loginSaga } from './@store/auth/sagas';
-import { getProfileSaga, getStatusSaga } from './@store/profile/sagas';
-import { fetchProfileAsync, fetchStatusAsync } from './@store/profile/actions';
+import {
+  getProfileSaga,
+  getStatusSaga,
+  updateStatusSaga,
+} from './@store/profile/sagas';
+import {
+  fetchProfileAsync,
+  fetchStatusAsync,
+  updateStatusAsync,
+} from './@store/profile/actions';
 import {
   fetchUsersAsync,
   followUserAsync,
@@ -19,6 +27,7 @@ export function* rootSaga(): IterableIterator<any> {
     takeEvery(fetchProfileAsync.request, getProfileSaga),
     takeEvery(fetchUsersAsync.request, getUsersSaga),
     takeEvery(fetchStatusAsync.request, getStatusSaga),
+    takeEvery(updateStatusAsync.request, updateStatusSaga),
     takeEvery(followUserAsync.request, followUserSaga),
     takeEvery(unfollowUserAsync.request, unfollowUserSaga),
   ]);

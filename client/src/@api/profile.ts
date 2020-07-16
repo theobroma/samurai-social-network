@@ -49,6 +49,16 @@ export const ProfileAPI = {
   //     .put<ResponseAPI>(`profile/status`, { status })
   //     .then((res) => res.data);
   // },
+  updateStatus: async (status: string) => {
+    try {
+      const response = await instance.put<ResponseAPI>(`profile/status`, {
+        status,
+      });
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
   // saveAvatar(file: any) {
   //   const formData = new FormData();
   //   formData.append('image', file);

@@ -14,9 +14,16 @@ export const fetchStatusAsync = createAsyncAction(
   'FETCH_STATUS_FAILURE',
 )<any, string, Error>();
 
+export const updateStatusAsync = createAsyncAction(
+  'UPDATE_STATUS_REQUEST',
+  'UPDATE_STATUS_SUCCESS',
+  'UPDATE_STATUS_FAILURE',
+)<string, any, Error>();
+
 export const actions = {
   fetchProfileAsync,
   fetchStatusAsync,
+  updateStatusAsync,
 };
 
 export type ProfileAction = ActionType<typeof actions>;

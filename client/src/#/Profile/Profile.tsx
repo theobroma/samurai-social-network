@@ -4,6 +4,7 @@ import { getUserId } from '../../@store/auth/selectors';
 import {
   fetchProfileAsync,
   fetchStatusAsync,
+  updateStatusAsync,
 } from '../../@store/profile/actions';
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { getProfile, getStatus } from '../../@store/profile/selectors';
@@ -21,13 +22,17 @@ export const Profile: React.FC = React.memo(() => {
     }
   }, [dispatch, userId]);
 
-  // useEffect(() => {
-  //   dispatch(fetchStatusAsync.request(userId));
-  // }, [dispatch, userId]);
+  const handleUpdateStatus = (newStatus: string) => {
+    dispatch(updateStatusAsync.request(newStatus));
+  };
 
   return (
     <>
-      <ProfileComponent profile={profile} status={status} />
+      <ProfileComponent
+        profile={profile}
+        status={status}
+        updateStatus={handleUpdateStatus}
+      />
     </>
   );
 });
