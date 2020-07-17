@@ -37,3 +37,13 @@ export function* unfollowUserSaga(
     yield put(unfollowUserAsync.failure(err));
   }
 }
+
+function* rootSagas() {
+  yield all([
+    takeLatest(fetchUsersAsync.request, getUsersSaga),
+    takeLatest(followUserAsync.request, followUserSaga),
+    takeLatest(unfollowUserAsync.request, unfollowUserSaga),
+  ]);
+}
+
+export default rootSagas;

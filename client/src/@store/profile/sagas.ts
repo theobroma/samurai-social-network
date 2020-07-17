@@ -1,11 +1,4 @@
-import {
-  call,
-  put,
-  select,
-  // takeEvery,
-  // takeLatest,
-  // all,
-} from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { ProfileAPI } from '../../@api/profile';
 import {
   fetchProfileAsync,
@@ -53,3 +46,13 @@ export function* updateStatusSaga(
     yield put(updateStatusAsync.failure(err));
   }
 }
+
+function* rootSagas() {
+  yield all([
+    takeLatest(fetchProfileAsync.request, getProfileSaga),
+    takeLatest(fetchStatusAsync.request, getStatusSaga),
+    takeLatest(updateStatusAsync.request, updateStatusSaga),
+  ]);
+}
+
+export default rootSagas;

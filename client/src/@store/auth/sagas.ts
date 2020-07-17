@@ -22,13 +22,6 @@ export const startLoginProcess = (payload: LoginPayload) => ({
   payload,
 });
 
-export function* loginSaga() {
-  yield takeEvery(getAuthUserData, authMe);
-  // yield takeLatest(clearAuthUserData, logout);
-  yield takeLatest(startLogin, login);
-  yield takeLatest(actions.logoutAsync.request, logoutSaga);
-}
-
 export function* login(action: any) {
   try {
     const response = yield call(
@@ -105,3 +98,14 @@ export function* authMe() {
     // yield put(actions.setFetchingStatus(false));
   }
 }
+
+function* rootSagas() {
+  yield all([
+    yield takeLatest(getAuthUserData, authMe),
+    // yield takeLatest(clearAuthUserData, logout);
+    yield takeLatest(startLogin, login),
+    yield takeLatest(actions.logoutAsync.request, logoutSaga),
+  ]);
+}
+
+export default rootSagas;
