@@ -1,8 +1,8 @@
-import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { AuthAPI } from '../../@api/auth';
-// import { AuthAPI } from '../../@api/socialNetworkAPIs';
 import { actions } from './actions';
+import { ROLE } from '../../@types';
 
 export type LoginPayload = {
   email: string;
@@ -11,15 +11,8 @@ export type LoginPayload = {
   captcha?: string;
 };
 
-// const getAuthUserData = 'AUTH/getUserAuthData';
-// const clearAuthUserData = 'AUTH/clearAuthData';
-// const startLogin = 'AUTH/login';
-
 const getAuthUserData = 'AUTH/getUserAuthData';
 export const startAuthenticationProcess = () => ({ type: getAuthUserData });
-
-const clearAuthUserData = 'AUTH/clearAuthData';
-export const startLogoutProcess = () => ({ type: clearAuthUserData });
 
 const startLogin = 'AUTH/login';
 export const startLoginProcess = (payload: LoginPayload) => ({
@@ -64,15 +57,8 @@ export function* logoutSaga(
 
     if (response.data.resultCode === 0) {
       yield all([
-        put(
-          actions.setAuthUserData({
-            id: null,
-            email: null,
-            login: null,
-            userRole: 'guest',
-          }),
-        ),
-        put(actions.logoutAsync.success(response)),
+        put(actions.clearAuthUserData()),
+        // put(actions.logoutAsync.success(response)),
         put(push('/login')),
       ]);
     }
@@ -85,9 +71,9 @@ export function* authMeSaga() {
   try {
     // yield put(actions.setFetchingStatus(true));
     const response = yield call(AuthAPI.me);
-    let userRole = 'guest';
+    let userRole = ROLE.GUEST;
     if (response.data.id) {
-      userRole = 'user';
+      userRole = ROLE.USER;
     }
     if (typeof response === 'string') {
       // yield put(actions.setErrorMessage(response));
@@ -107,7 +93,6 @@ export function* authMeSaga() {
 function* rootSagas() {
   yield all([
     yield takeLatest(getAuthUserData, authMeSaga),
-    // yield takeLatest(clearAuthUserData, logout);
     yield takeLatest(startLogin, loginSaga),
     yield takeLatest(actions.logoutAsync.request, logoutSaga),
   ]);
