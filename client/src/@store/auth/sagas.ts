@@ -11,18 +11,23 @@ export type LoginPayload = {
   captcha?: string;
 };
 
-const getAuthUserData = 'AUTH/getUserAuthData';
-const clearAuthUserData = 'AUTH/clearAuthData';
-const startLogin = 'AUTH/login';
+// const getAuthUserData = 'AUTH/getUserAuthData';
+// const clearAuthUserData = 'AUTH/clearAuthData';
+// const startLogin = 'AUTH/login';
 
+const getAuthUserData = 'AUTH/getUserAuthData';
 export const startAuthenticationProcess = () => ({ type: getAuthUserData });
+
+const clearAuthUserData = 'AUTH/clearAuthData';
 export const startLogoutProcess = () => ({ type: clearAuthUserData });
+
+const startLogin = 'AUTH/login';
 export const startLoginProcess = (payload: LoginPayload) => ({
   type: startLogin,
   payload,
 });
 
-export function* login(action: any) {
+export function* loginSaga(action: any) {
   try {
     const response = yield call(
       AuthAPI.login,
@@ -76,7 +81,7 @@ export function* logoutSaga(
   }
 }
 
-export function* authMe() {
+export function* authMeSaga() {
   try {
     // yield put(actions.setFetchingStatus(true));
     const response = yield call(AuthAPI.me);
@@ -101,9 +106,9 @@ export function* authMe() {
 
 function* rootSagas() {
   yield all([
-    yield takeLatest(getAuthUserData, authMe),
+    yield takeLatest(getAuthUserData, authMeSaga),
     // yield takeLatest(clearAuthUserData, logout);
-    yield takeLatest(startLogin, login),
+    yield takeLatest(startLogin, loginSaga),
     yield takeLatest(actions.logoutAsync.request, logoutSaga),
   ]);
 }
