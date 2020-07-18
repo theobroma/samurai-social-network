@@ -2,13 +2,13 @@ import { createReducer } from 'typesafe-actions';
 import { UserType } from '../../@types';
 import {
   fetchUsersAsync,
-  UsersAction,
+  UsersActionType,
   followUserAsync,
   unfollowUserAsync,
 } from './actions';
 import { SET_CURRENT_PAGE } from './constants';
 
-const userInitialState = {
+export const usersInitialState = {
   items: [] as Array<UserType>,
   pageSize: 10,
   totalCount: 0,
@@ -16,19 +16,22 @@ const userInitialState = {
   isFetching: false,
   followingInProgress: [] as Array<number>,
 };
-export type InitialStateType = typeof userInitialState;
+export type usersStateType = typeof usersInitialState;
 
-export const usersReducer = createReducer(userInitialState, {
-  [SET_CURRENT_PAGE]: (state, { payload: page }) => {
-    return {
-      ...state,
-      currentPage: page,
-    };
+export const usersReducer = createReducer<usersStateType, UsersActionType>(
+  usersInitialState,
+  {
+    [SET_CURRENT_PAGE]: (state, { payload: page }) => {
+      return {
+        ...state,
+        currentPage: page,
+      };
+    },
   },
-})
+)
   .handleAction(
     followUserAsync.request,
-    (state: InitialStateType, action: UsersAction) => {
+    (state: usersStateType, action: UsersActionType) => {
       return {
         ...state,
         followingInProgress: [...state.followingInProgress, action.payload],
@@ -37,7 +40,7 @@ export const usersReducer = createReducer(userInitialState, {
   )
   .handleAction(
     followUserAsync.success,
-    (state: InitialStateType, action: UsersAction) => {
+    (state: usersStateType, action: UsersActionType) => {
       return {
         ...state,
         // TODO: mb refactor
@@ -52,7 +55,7 @@ export const usersReducer = createReducer(userInitialState, {
   )
   .handleAction(
     unfollowUserAsync.request,
-    (state: InitialStateType, action: UsersAction) => {
+    (state: usersStateType, action: UsersActionType) => {
       return {
         ...state,
         followingInProgress: [...state.followingInProgress, action.payload],
@@ -61,7 +64,7 @@ export const usersReducer = createReducer(userInitialState, {
   )
   .handleAction(
     unfollowUserAsync.success,
-    (state: InitialStateType, action: UsersAction) => {
+    (state: usersStateType, action: UsersActionType) => {
       return {
         ...state,
         // TODO: mb refactor
@@ -76,7 +79,7 @@ export const usersReducer = createReducer(userInitialState, {
   )
   .handleAction(
     fetchUsersAsync.success,
-    (state: InitialStateType, action: UsersAction) => ({
+    (state: usersStateType, action: UsersActionType) => ({
       ...state,
       ...action.payload,
     }),

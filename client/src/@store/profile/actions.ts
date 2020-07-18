@@ -26,4 +26,4 @@ export const actions = {
   updateStatusAsync,
 };
 
-export type ProfileAction = ActionType<typeof actions>;
+export type ProfileActionType = ActionType<typeof actions>;

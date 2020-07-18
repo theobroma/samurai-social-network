@@ -9,6 +9,9 @@ import throttle from 'lodash/throttle';
 import { loadState, saveState } from './@utils/localStorage';
 import { rootReducer, RootState } from './@store/index';
 import { rootSaga } from './rootSaga';
+import { authInitialState } from './@store/auth/reducer';
+import { profileInitialState } from './@store/profile/reducer';
+import { usersInitialState } from './@store/users/reducer';
 
 export const history = createBrowserHistory();
 
@@ -16,16 +19,16 @@ const configureStore = () => {
   const persistedState = loadState();
 
   let totalInitialState: RootState = {
-    auth: {},
-    profile: {},
-    users: {},
+    auth: authInitialState,
+    profile: profileInitialState,
+    users: usersInitialState,
     router: {
       location: {
         state: '',
         pathname: '/profile',
         search: '',
         hash: '',
-        key: 'uobrvf',
+        // key: 'uobrvf',
         // query: {},
       },
       action: 'POP',

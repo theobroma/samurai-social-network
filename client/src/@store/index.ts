@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { History } from 'history';
 import { RouterState, connectRouter } from 'connected-react-router';
-import { authReducer } from './auth/reducer';
-import { profileReducer } from './profile/reducer';
-import { usersReducer } from './users/reducer';
+import { authReducer, authStateType } from './auth/reducer';
+import { profileReducer, profileStateType } from './profile/reducer';
+import { usersReducer, usersStateType } from './users/reducer';
 
 export interface RootState {
-  auth: any;
-  profile: any;
-  users: any;
+  auth: authStateType;
+  profile: profileStateType;
+  users: usersStateType;
   router: RouterState;
 }
 

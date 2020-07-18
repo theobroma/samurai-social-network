@@ -29,4 +29,4 @@ export const actions = {
   unfollowUserAsync,
 };
 
-export type UsersAction = ActionType<typeof actions>;
+export type UsersActionType = ActionType<typeof actions>;
