@@ -8,3 +8,7 @@ export const getUserId = (state: RootState): number | null => {
 export const getUserRole = (state: RootState): ROLE => {
   return state.auth.userRole;
 };
+
+export const getCaptchaUrl = (state: RootState): string | null => {
+  return state.auth.captchaUrl;
+};

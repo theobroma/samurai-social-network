@@ -12,6 +12,7 @@ export interface RootState {
   router: RouterState;
 }
 
+// https://github.com/reduxjs/redux/issues/2709
 export const rootReducer = (history: History) =>
   combineReducers<RootState>({
     auth: authReducer,
@@ -19,14 +20,3 @@ export const rootReducer = (history: History) =>
     users: usersReducer,
     router: connectRouter(history),
   });
-
-// TODO: refactor type. https://github.com/reduxjs/redux/issues/2709
-// export const rootReducer = (history: History) =>
-//   combineReducers({
-//     auth: authReducer,
-//     profile: profileReducer,
-//     users: usersReducer,
-//     router: connectRouter(history),
-//   } as any);
-
-// export type RootState = ReturnType<typeof rootReducer>;

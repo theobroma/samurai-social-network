@@ -111,7 +111,7 @@ const LoginForm: React.FC<LoginForm> = ({
           {captchaUrl ? (
             <Form.Group controlId="formCaptcha">
               <Form.Label>Проверочка на робота</Form.Label>
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center mb-3">
                 <Image src={captchaUrl} fluid />
               </div>
               <Form.Control

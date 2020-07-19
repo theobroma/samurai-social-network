@@ -1,12 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import { LoginPayload, startLoginProcess } from '../../@store/auth/sagas';
 import LoginForm from '../@common/LoginForm/LoginForm';
 import { StyledPageTitle } from './LoginForm.styled';
+import { getCaptchaUrl } from '../../@store/auth/selectors';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
+  const captchaUrl = useSelector(getCaptchaUrl);
 
   const callback = (payload: LoginPayload) => {
     dispatch(startLoginProcess(payload));
@@ -23,7 +25,7 @@ export const Login: React.FC = () => {
             <p>Email: free@samuraijs.com</p>
             <p className="mb-0">Password: free</p>
           </Alert>
-          <LoginForm submitCallback={callback} />
+          <LoginForm submitCallback={callback} captchaUrl={captchaUrl} />
         </Col>
       </Row>
     </Container>

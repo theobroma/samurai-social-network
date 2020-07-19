@@ -3,6 +3,7 @@ import {
   SET_USER_ID,
   SET_AUTH_USER_DATA,
   CLEAR_AUTH_USER_DATA,
+  CLEAR_CAPTCHA,
 } from './constants';
 
 // create action functions
@@ -11,6 +12,7 @@ export const setAuthUserData = createAction(SET_AUTH_USER_DATA)<
   Record<string, any>
 >();
 export const clearAuthUserData = createAction(CLEAR_AUTH_USER_DATA)();
+export const clearCaptcha = createAction(CLEAR_CAPTCHA)();
 
 export const logoutAsync = createAsyncAction(
   '@@auth/LOGOUT_REQUEST',
@@ -30,6 +32,7 @@ export const actions = {
   clearAuthUserData,
   captchaAsync,
   logoutAsync,
+  clearCaptcha,
 };
 
 export type AuthActionType = ActionType<typeof actions>;

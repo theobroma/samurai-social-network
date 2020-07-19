@@ -6,6 +6,4 @@ export const SET_AUTH_USER_DATA = '@@auth/SET_AUTH_USER_DATA' as const;
 export const GET_AUTH_USER_DATA = '@@auth/GET_AUTH_USER_DATA' as const;
 export const CLEAR_AUTH_USER_DATA = '@@auth/CLEAR_AUTH_USER_DATA' as const;
 
-// const getAuthUserData = 'AUTH/getUserAuthData';
-// const clearAuthUserData = 'AUTH/clearAuthData';
-// const startLogin = 'AUTH/login';
+export const CLEAR_CAPTCHA = '@@auth/CLEAR_CAPTCHA' as const;

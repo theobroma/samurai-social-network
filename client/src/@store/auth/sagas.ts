@@ -28,10 +28,12 @@ export function* loginSaga(action: any) {
       action.payload.email,
       action.payload.password,
       action.payload.rememberMe,
+      action.payload.captcha,
     );
 
     if (response.resultCode === 0) {
       yield put(actions.setUserId(response.data.userId));
+      yield put(actions.clearCaptcha());
       yield put(push('/profile'));
     }
 

@@ -4,6 +4,7 @@ import {
   SET_USER_ID,
   SET_AUTH_USER_DATA,
   CLEAR_AUTH_USER_DATA,
+  CLEAR_CAPTCHA,
 } from './constants';
 import { ROLE } from '../../@types';
 import { AuthActionType, actions } from './actions';
@@ -44,6 +45,12 @@ export const authReducer = createReducer<authStateType, any>(authInitialState, {
       email: null,
       login: null,
       userRole: ROLE.GUEST,
+    };
+  },
+  [CLEAR_CAPTCHA]: (state) => {
+    return {
+      ...state,
+      captchaUrl: null,
     };
   },
 }).handleAction(
