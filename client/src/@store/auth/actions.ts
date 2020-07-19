@@ -18,10 +18,17 @@ export const logoutAsync = createAsyncAction(
   '@@auth/LOGOUT_FAILURE',
 )<any, any, Error>();
 
+export const captchaAsync = createAsyncAction(
+  '@@auth/CAPTCHA_REQUEST',
+  '@@auth/CAPTCHA_SUCCESS',
+  '@@auth/CAPTCHA_FAILURE',
+)<any, any, Error>();
+
 export const actions = {
   setUserId,
   setAuthUserData,
   clearAuthUserData,
+  captchaAsync,
   logoutAsync,
 };
 

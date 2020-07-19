@@ -20,23 +20,43 @@ export const AuthAPI = {
       .get<ResponseAPI<AuthMeData>>(`auth/me`)
       .then((res) => res.data);
   },
-  login(
+  // login(
+  //   email: string,
+  //   password: string,
+  //   rememberMe = false,
+  //   captcha: string | null = null,
+  // ) {
+  //   return instance
+  //     .post<ResponseAPI<AuthLogin, ResultCodes | ResultCodeWithCaptcha>>(
+  //       'auth/login',
+  //       {
+  //         email,
+  //         password,
+  //         rememberMe,
+  //         captcha,
+  //       },
+  //     )
+  //     .then((res) => res.data);
+  // },
+  login: async (
     email: string,
     password: string,
     rememberMe = false,
     captcha: string | null = null,
-  ) {
-    return instance
-      .post<ResponseAPI<AuthLogin, ResultCodes | ResultCodeWithCaptcha>>(
-        'auth/login',
-        {
-          email,
-          password,
-          rememberMe,
-          captcha,
-        },
-      )
-      .then((res) => res.data);
+  ): Promise<any> => {
+    try {
+      const response = await instance.post<
+        ResponseAPI<AuthLogin, ResultCodes | ResultCodeWithCaptcha>
+      >('auth/login', {
+        email,
+        password,
+        rememberMe,
+        captcha,
+      });
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
   },
   logout: async (): Promise<any> => {
     try {

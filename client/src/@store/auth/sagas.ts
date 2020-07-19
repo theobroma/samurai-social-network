@@ -1,5 +1,6 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
 import { actions } from './actions';
 import { ROLE } from '../../@types';
@@ -28,17 +29,18 @@ export function* loginSaga(action: any) {
       action.payload.password,
       action.payload.rememberMe,
     );
+
     if (response.resultCode === 0) {
       yield put(actions.setUserId(response.data.userId));
       yield put(push('/profile'));
     }
-    // else if (response.resultCode === 10) {
-    //   yield all([
-    //     call(captchaRequest),
-    //     put(actions.setErrorMessage(response.error)),
-    //   ]);
-    // }
-    else {
+
+    if (response.resultCode === 10) {
+      yield all([
+        put(actions.captchaAsync.request('any')),
+        // put(actions.setErrorMessage(response.error)),
+      ]);
+    } else {
       //   put(actions.setErrorMessage(response.error));
     }
   } catch (e) {
@@ -90,10 +92,20 @@ export function* authMeSaga() {
   }
 }
 
+export function* captchaSaga(): Generator {
+  try {
+    const response = yield call(SecurityAPI.getCaptchaUrl);
+    yield put(actions.captchaAsync.success(response));
+  } catch (err) {
+    yield put(actions.captchaAsync.failure(err));
+  }
+}
+
 function* rootSagas() {
   yield all([
     yield takeLatest(getAuthUserData, authMeSaga),
     yield takeLatest(startLogin, loginSaga),
+    yield takeLatest(actions.captchaAsync.request, captchaSaga),
     yield takeLatest(actions.logoutAsync.request, logoutSaga),
   ]);
 }

@@ -1,3 +1,4 @@
+import { call } from 'redux-saga/effects';
 import { createReducer } from 'typesafe-actions';
 import {
   SET_USER_ID,
@@ -5,7 +6,7 @@ import {
   CLEAR_AUTH_USER_DATA,
 } from './constants';
 import { ROLE } from '../../@types';
-import { AuthActionType } from './actions';
+import { AuthActionType, actions } from './actions';
 
 export const authInitialState = {
   id: null as number | null,
@@ -45,6 +46,12 @@ export const authReducer = createReducer<authStateType, any>(authInitialState, {
       userRole: ROLE.GUEST,
     };
   },
-});
+}).handleAction(
+  actions.captchaAsync.success,
+  (state: authStateType, action: any) => ({
+    ...state,
+    captchaUrl: action.payload,
+  }),
+);
 
 export default authReducer;
