@@ -4,22 +4,7 @@ import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
 import { actions } from './actions';
 import { ROLE } from '../../@types';
-
-export type LoginPayload = {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
-  captcha?: string;
-};
-
-const getAuthUserData = 'AUTH/getUserAuthData';
-export const startAuthenticationProcess = () => ({ type: getAuthUserData });
-
-const startLogin = 'AUTH/login';
-export const startLoginProcess = (payload: LoginPayload) => ({
-  type: startLogin,
-  payload,
-});
+import { GET_AUTH_USER_DATA, START_LOGIN } from './constants';
 
 export function* loginSaga(action: any) {
   try {
@@ -105,8 +90,8 @@ export function* captchaSaga(): Generator {
 
 function* rootSagas() {
   yield all([
-    yield takeLatest(getAuthUserData, authMeSaga),
-    yield takeLatest(startLogin, loginSaga),
+    yield takeLatest(START_LOGIN, loginSaga),
+    yield takeLatest(GET_AUTH_USER_DATA, authMeSaga),
     yield takeLatest(actions.captchaAsync.request, captchaSaga),
     yield takeLatest(actions.logoutAsync.request, logoutSaga),
   ]);

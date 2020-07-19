@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRoute } from '../../../@types';
 import NotFoundPage from '../NotFoundPage';
 import { getUserId } from '../../../@store/auth/selectors';
-import { startAuthenticationProcess } from '../../../@store/auth/sagas';
+import { startAuthenticationProcess } from '../../../@store/auth/actions';
 
 interface INestedRoute {
   location?: any;

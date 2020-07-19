@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
-import { LoginPayload, startLoginProcess } from '../../@store/auth/sagas';
 import LoginForm from '../@common/LoginForm/LoginForm';
 import { StyledPageTitle } from './LoginForm.styled';
 import { getCaptchaUrl } from '../../@store/auth/selectors';
+import { LoginPayload } from '../../@store/auth/types';
+import { startLoginProcess } from '../../@store/auth/actions';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();

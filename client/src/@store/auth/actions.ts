@@ -1,13 +1,18 @@
 import { createAction, createAsyncAction, ActionType } from 'typesafe-actions';
 import {
   SET_USER_ID,
+  GET_AUTH_USER_DATA,
   SET_AUTH_USER_DATA,
   CLEAR_AUTH_USER_DATA,
   CLEAR_CAPTCHA,
+  START_LOGIN,
 } from './constants';
+import { LoginPayload } from './types';
 
 // create action functions
+export const startLoginProcess = createAction(START_LOGIN)<LoginPayload>();
 export const setUserId = createAction(SET_USER_ID)<string>();
+export const startAuthenticationProcess = createAction(GET_AUTH_USER_DATA)();
 export const setAuthUserData = createAction(SET_AUTH_USER_DATA)<
   Record<string, any>
 >();

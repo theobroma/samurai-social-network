@@ -1,1 +1,6 @@
-export type keep = 'KEEP';
+export type LoginPayload = {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+  captcha?: string;
+};
