@@ -5,7 +5,7 @@ type PropsType = {
   updateStatus: (status: string) => void;
 };
 
-const ProfileStatus: FC<PropsType> = ({ status, updateStatus }) => {
+export const ProfileStatus: FC<PropsType> = ({ status, updateStatus }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [statusVal, setStatus] = useState<string>(status);
 
