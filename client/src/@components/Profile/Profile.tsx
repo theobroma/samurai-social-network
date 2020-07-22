@@ -32,16 +32,22 @@ export const Profile: React.FC<Props> = ({ profile, status, updateStatus }) => {
         </Row>
         <hr />
         <Row>
-          <Col md={10}>
-            {!edit ? <ProfileData profile={profile} /> : <ProfileDataForm />}
-          </Col>
-          <Col md={2}>
-            {!edit && (
-              <Button variant="outline-primary" onClick={() => setEdit(true)}>
-                <BsPencilSquare />
-              </Button>
-            )}
-          </Col>
+          {!edit ? (
+            <>
+              <Col md={10}>
+                <ProfileData profile={profile} />
+              </Col>
+              <Col md={2}>
+                <Button variant="outline-primary" onClick={() => setEdit(true)}>
+                  <BsPencilSquare />
+                </Button>
+              </Col>
+            </>
+          ) : (
+            <Col xs={12}>
+              <ProfileDataForm />
+            </Col>
+          )}
         </Row>
       </Card.Body>
     </Card>
