@@ -75,4 +75,12 @@ export const ProfileAPI = {
   //     .put<ProfileUpdateAPI>(`profile`, profile)
   //     .then((res) => res.data);
   // },
+  updateProfile: async (profile: any) => {
+    try {
+      const response = await instance.put<ResponseAPI>(`profile`, profile);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
 };

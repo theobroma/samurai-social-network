@@ -11,7 +11,7 @@ export const Login: React.FC = () => {
   const dispatch = useDispatch();
   const captchaUrl = useSelector(getCaptchaUrl);
 
-  const callback = (payload: LoginPayload) => {
+  const submitCallback = (payload: LoginPayload) => {
     dispatch(startLoginProcess(payload));
   };
 
@@ -26,7 +26,7 @@ export const Login: React.FC = () => {
             <p>Email: free@samuraijs.com</p>
             <p className="mb-0">Password: free</p>
           </Alert>
-          <LoginForm submitCallback={callback} captchaUrl={captchaUrl} />
+          <LoginForm submitCallback={submitCallback} captchaUrl={captchaUrl} />
         </Col>
       </Row>
     </Container>

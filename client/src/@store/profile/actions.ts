@@ -6,7 +6,13 @@ export const fetchProfileAsync = createAsyncAction(
   '@@profile/FETCH_PROFILE_REQUEST',
   '@@profile/FETCH_PROFILE_SUCCESS',
   '@@profile/FETCH_PROFILE_FAILURE',
-)<number | null, ProfileType, Error>();
+)<any, ProfileType, Error>();
+
+export const updateProfileAsync = createAsyncAction(
+  '@@profile/UPDATE_PROFILE_REQUEST',
+  '@@profile/UPDATE_PROFILE_SUCCESS',
+  '@@profile/UPDATE_PROFILE_FAILURE',
+)<string, any, Error>();
 
 export const fetchStatusAsync = createAsyncAction(
   '@@profile/FETCH_STATUS_REQUEST',
@@ -22,6 +28,7 @@ export const updateStatusAsync = createAsyncAction(
 
 export const actions = {
   fetchProfileAsync,
+  updateProfileAsync,
   fetchStatusAsync,
   updateStatusAsync,
 };

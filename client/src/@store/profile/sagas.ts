@@ -4,6 +4,7 @@ import {
   fetchProfileAsync,
   fetchStatusAsync,
   updateStatusAsync,
+  updateProfileAsync,
 } from './actions';
 import { getUserId } from '../auth/selectors';
 
@@ -47,11 +48,27 @@ export function* updateStatusSaga(
   }
 }
 
+export function* updateProfileSaga(
+  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
+  action: any,
+): Generator {
+  try {
+    const response: any = yield call(ProfileAPI.updateProfile, action.payload);
+    yield put(updateProfileAsync.success(response));
+    // refetch profile
+    const userId = yield select(getUserId);
+    yield put(fetchProfileAsync.request(userId));
+  } catch (err) {
+    yield put(updateProfileAsync.failure(err));
+  }
+}
+
 function* rootSagas() {
   yield all([
     takeLatest(fetchProfileAsync.request, getProfileSaga),
     takeLatest(fetchStatusAsync.request, getStatusSaga),
     takeLatest(updateStatusAsync.request, updateStatusSaga),
+    takeLatest(updateProfileAsync.request, updateProfileSaga),
   ]);
 }
 

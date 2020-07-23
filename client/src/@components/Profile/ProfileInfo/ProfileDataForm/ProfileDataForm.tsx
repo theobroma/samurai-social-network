@@ -3,10 +3,10 @@ import { Formik } from 'formik';
 import Form from 'react-bootstrap/Form';
 
 interface Props {
-  // any
+  submitCallback: (payload: any) => void;
 }
 
-export const ProfileDataForm: React.FC<Props> = (props) => (
+export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
   <div>
     <Formik
       initialValues={{
@@ -16,9 +16,9 @@ export const ProfileDataForm: React.FC<Props> = (props) => (
         lookingForAJobDescription: '',
       }}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
+        submitCallback(values);
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          // alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 400);
       }}
