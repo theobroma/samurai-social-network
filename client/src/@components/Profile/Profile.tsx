@@ -20,6 +20,7 @@ export const Profile: React.FC<Props> = ({ profile, status, updateStatus }) => {
 
   const submitCallback = (payload: any) => {
     dispatch(updateProfileAsync.request(payload));
+    setEdit(false);
   };
 
   const BlockTitle = (
@@ -53,7 +54,10 @@ export const Profile: React.FC<Props> = ({ profile, status, updateStatus }) => {
             </>
           ) : (
             <Col xs={12}>
-              <ProfileDataForm submitCallback={submitCallback} />
+              <ProfileDataForm
+                profile={profile}
+                submitCallback={submitCallback}
+              />
             </Col>
           )}
         </Row>

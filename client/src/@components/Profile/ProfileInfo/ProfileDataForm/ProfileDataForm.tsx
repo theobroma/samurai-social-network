@@ -1,20 +1,35 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
+import { ProfileType } from '../../../../@types';
 
-interface Props {
+interface OtherProps {
   submitCallback: (payload: any) => void;
+  profile: ProfileType;
 }
 
-export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
+interface FormValues {
+  fullName: any;
+  aboutMe: any;
+  lookingForAJob: any;
+  lookingForAJobDescription: any;
+  // profile: ProfileType;
+}
+
+export const ProfileDataForm: React.FC<OtherProps> = ({
+  submitCallback,
+  profile = {
+    fullName: '',
+    aboutMe: '',
+    lookingForAJob: false,
+    lookingForAJobDescription: '',
+  },
+}) => (
   <div>
     <Formik
-      initialValues={{
-        fullName: '',
-        aboutMe: '',
-        lookingForAJob: false,
-        lookingForAJobDescription: '',
-      }}
+      enableReinitialize
+      initialValues={profile}
       onSubmit={(values, { setSubmitting }) => {
         submitCallback(values);
         setTimeout(() => {
@@ -41,6 +56,7 @@ export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
             <Form.Control
               type="text"
               name="fullName"
+              // @ts-ignore
               value={values.fullName}
               placeholder="Введите full name"
               required
@@ -64,6 +80,7 @@ export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
               rows={3}
               // type="text"
               name="aboutMe"
+              // @ts-ignore
               value={values.aboutMe}
               placeholder="Введите aboutMe"
               required
@@ -81,6 +98,7 @@ export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
               type="checkbox"
               label="Looking for a job"
               name="lookingForAJob"
+              // @ts-ignore
               checked={values.lookingForAJob}
               onChange={handleChange}
             />
@@ -93,6 +111,7 @@ export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
               rows={3}
               // type="text"
               name="lookingForAJobDescription"
+              // @ts-ignore
               value={values.lookingForAJobDescription}
               placeholder="My professional skills"
               required
@@ -111,9 +130,18 @@ export const ProfileDataForm: React.FC<Props> = ({ submitCallback }) => (
           </Form.Group>
           <div className="option-subheading">Contacts</div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={isSubmitting}
+            className="mr-3"
+          >
             Submit
-          </button>
+          </Button>
+
+          {/* <Button type="submit" variant="secondary" disabled={isSubmitting}>
+            Cancel
+          </Button> */}
         </Form>
       )}
     </Formik>
