@@ -92,3 +92,8 @@ export type UserType = {
 export type GetStringKeys<T> = Extract<keyof T, string>;
 
 export type ItemsViewType = 'LIST' | 'GRID';
+
+export type UsersFilterType = {
+  term: string;
+  friend: boolean | null;
+};

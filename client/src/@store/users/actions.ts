@@ -1,14 +1,16 @@
 import { createAsyncAction, ActionType, createAction } from 'typesafe-actions';
 // import { UserType } from '../../@types';
-import { SET_CURRENT_PAGE } from './constants';
+import { SET_CURRENT_PAGE, SET_USERS_FILTER } from './constants';
+import { UsersFilterType } from '../../@types';
+
+export const setCurrentPage = createAction(SET_CURRENT_PAGE)<number>();
+export const setUsersFilter = createAction(SET_USERS_FILTER)<UsersFilterType>();
 
 export const fetchUsersAsync = createAsyncAction(
   '@@users/FETCH_USERS_REQUEST',
   '@@users/FETCH_USERS_SUCCESS',
   '@@users/FETCH_USERS_FAILURE',
 )<any, any, Error>();
-
-export const setCurrentPage = createAction(SET_CURRENT_PAGE)<number>();
 
 export const followUserAsync = createAsyncAction(
   '@@users/FOLLOW_USER_REQUEST',
@@ -23,8 +25,9 @@ export const unfollowUserAsync = createAsyncAction(
 )<number, any, Error>();
 
 export const actions = {
-  fetchUsersAsync,
   setCurrentPage,
+  setUsersFilter,
+  fetchUsersAsync,
   followUserAsync,
   unfollowUserAsync,
 };

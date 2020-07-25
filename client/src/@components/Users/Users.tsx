@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import GridUser from './GridUser/GridUser';
 import ListUser from './ListUser/ListUser';
-import { UserType, ItemsViewType } from '../../@types';
+import { UserType, ItemsViewType, UsersFilterType } from '../../@types';
 import { PaginationFC } from '../UI/Pagination';
 import { ListGridSwitcher } from './ListGridSwitcher';
+import { UserSearchForm } from './UserSearchForm';
 
 type PropsType = {
   currentPage?: number;
   totalCount?: number;
   pageSize?: number;
-  handlePageClick?: any;
+  handlePageClick: (state: { selected: number }) => void;
+  handleSetUsersFilter: (filter: UsersFilterType) => void;
   users: Array<UserType>;
   isFetching?: boolean;
   follow: (id: number) => void;
@@ -19,7 +21,7 @@ type PropsType = {
 };
 
 export const Users: React.FC<PropsType> = ({
-  currentPage = 1,
+  // currentPage = 1,
   totalCount = 999,
   pageSize = 10,
   handlePageClick,
@@ -27,7 +29,7 @@ export const Users: React.FC<PropsType> = ({
   unfollow,
   users,
   followingInProgress,
-  ...props
+  handleSetUsersFilter,
 }) => {
   const [viewType, setViewType] = useState<ItemsViewType>('GRID');
 
@@ -44,6 +46,13 @@ export const Users: React.FC<PropsType> = ({
       <Card>
         <Card.Body>
           {BlockTitle}
+          <Row>
+            <Col>
+              <div className="mb-3">
+                <UserSearchForm handleSetUsersFilter={handleSetUsersFilter} />
+              </div>
+            </Col>
+          </Row>
           <Row className="bg-dark py-3">
             <Col>
               <PaginationFC
@@ -61,7 +70,7 @@ export const Users: React.FC<PropsType> = ({
                   <ListUser
                     user={user}
                     key={user.id}
-                    isFetching={props.isFetching}
+                    // isFetching={props.isFetching}
                     follow={follow}
                     unfollow={unfollow}
                     followingInProgress={followingInProgress}
@@ -70,7 +79,7 @@ export const Users: React.FC<PropsType> = ({
                   <GridUser
                     user={user}
                     key={user.id}
-                    isFetching={props.isFetching}
+                    // isFetching={props.isFetching}
                     follow={follow}
                     unfollow={unfollow}
                     followingInProgress={followingInProgress}
