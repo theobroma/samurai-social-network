@@ -1,5 +1,5 @@
 import { instance, ResponseAPI } from './index';
-import { UserType } from '../@types';
+import { UsersFilterType } from '../@types';
 
 // type UsersGet = {
 //   items: Array<UserType>;
@@ -19,12 +19,11 @@ export const UsersAPI = {
   getUsers: async (
     currentPage: number,
     pageSize: number,
-    term: string,
-    friend: boolean,
+    filter: UsersFilterType,
   ): Promise<any> => {
     try {
       const response = await instance.get<any>(
-        `users?page=${currentPage}&count=${pageSize}&term=${term}`,
+        `users?page=${currentPage}&count=${pageSize}&term=${filter.term}`,
       );
       return response.data;
     } catch (e) {

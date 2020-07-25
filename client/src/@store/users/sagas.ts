@@ -1,19 +1,21 @@
 import { call, put, takeLatest, all, select } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
 import { fetchUsersAsync, followUserAsync, unfollowUserAsync } from './actions';
 import { UsersAPI } from '../../@api/users';
 import { getUsersFilter } from './selectors';
+import { UsersFilterType } from '../../@types';
 
 export function* getUsersSaga(
   action: ReturnType<typeof fetchUsersAsync.request>,
-): Generator {
+): SagaIterator<void> {
   try {
-    const usersFilter: any = yield select(getUsersFilter);
+    // github.com/redux-saga/redux-saga/issues/2015
+    const usersFilter: UsersFilterType = yield select(getUsersFilter);
     const response = yield call(
       UsersAPI.getUsers,
       action.payload.currentPage,
       action.payload.pageSize,
-      usersFilter.term,
-      usersFilter.friend,
+      usersFilter,
     );
     yield put(fetchUsersAsync.success(response));
   } catch (err) {
@@ -23,7 +25,7 @@ export function* getUsersSaga(
 
 export function* followUserSaga(
   action: ReturnType<typeof followUserAsync.request>,
-): Generator {
+): SagaIterator<void> {
   try {
     const response = yield call(UsersAPI.followUser, action.payload);
     yield put(followUserAsync.success(response));
@@ -34,7 +36,7 @@ export function* followUserSaga(
 
 export function* unfollowUserSaga(
   action: ReturnType<typeof unfollowUserAsync.request>,
-): Generator {
+): SagaIterator<void> {
   try {
     const response = yield call(UsersAPI.unfollowUser, action.payload);
     yield put(unfollowUserAsync.success(response));
