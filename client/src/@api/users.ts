@@ -23,7 +23,9 @@ export const UsersAPI = {
   ): Promise<any> => {
     try {
       const response = await instance.get<any>(
-        `users?page=${currentPage}&count=${pageSize}&term=${filter.term}`,
+        `users?page=${currentPage}&count=${pageSize}&term=${filter.term}${
+          filter.friend === null ? '' : `&friend=${filter.friend}`
+        }`,
       );
       return response.data;
     } catch (e) {
