@@ -1,8 +1,8 @@
 import {
   instance,
-  ResponseAPI,
-  ResultCodes,
-  ResultCodeWithCaptcha,
+  APIResponseType,
+  ResultCodesEnum,
+  ResultCodeForCapcthaEnum,
 } from './index';
 
 type AuthMeData = {
@@ -10,6 +10,7 @@ type AuthMeData = {
   email: string;
   login: string;
 };
+
 type AuthLogin = {
   userId: number;
 };
@@ -17,7 +18,7 @@ type AuthLogin = {
 export const AuthAPI = {
   me() {
     return instance
-      .get<ResponseAPI<AuthMeData>>(`auth/me`)
+      .get<APIResponseType<AuthMeData>>(`auth/me`)
       .then((res) => res.data);
   },
   login: async (
@@ -28,7 +29,7 @@ export const AuthAPI = {
   ): Promise<any> => {
     try {
       const response = await instance.post<
-        ResponseAPI<AuthLogin, ResultCodes | ResultCodeWithCaptcha>
+        APIResponseType<AuthLogin, ResultCodesEnum | ResultCodeForCapcthaEnum>
       >('auth/login', {
         email,
         password,

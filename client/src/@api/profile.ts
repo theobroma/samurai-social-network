@@ -1,4 +1,4 @@
-import { instance, ResponseAPI, ResultCodes } from './index';
+import { instance, APIResponseType, ResultCodesEnum } from './index';
 import { ContactsType, PhotosType, ProfileType } from '../@types';
 
 interface ProfileBaseAPI {
@@ -14,7 +14,7 @@ interface ProfileGetAPI extends ProfileBaseAPI {
 }
 
 interface ProfileUpdateAPI extends ProfileBaseAPI {
-  resultCode: ResultCodes;
+  resultCode: ResultCodesEnum;
   messages: Array<string>;
 }
 type ProfileSaveAvatar = {
@@ -51,7 +51,7 @@ export const ProfileAPI = {
   // },
   updateStatus: async (status: string) => {
     try {
-      const response = await instance.put<ResponseAPI>(`profile/status`, {
+      const response = await instance.put<APIResponseType>(`profile/status`, {
         status,
       });
       return response.data;
@@ -77,7 +77,7 @@ export const ProfileAPI = {
   // },
   updateProfile: async (profile: any) => {
     try {
-      const response = await instance.put<ResponseAPI>(`profile`, profile);
+      const response = await instance.put<APIResponseType>(`profile`, profile);
       return response.data;
     } catch (e) {
       return e.message;

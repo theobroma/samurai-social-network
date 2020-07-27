@@ -1,4 +1,4 @@
-import { instance, ResponseAPI } from './index';
+import { instance, APIResponseType, GetItemsType } from './index';
 import { UsersFilterType } from '../@types';
 
 // type UsersGet = {
@@ -22,7 +22,7 @@ export const UsersAPI = {
     filter: UsersFilterType,
   ): Promise<any> => {
     try {
-      const response = await instance.get<any>(
+      const response = await instance.get<GetItemsType>(
         `users?page=${currentPage}&count=${pageSize}&term=${filter.term}${
           filter.friend === null ? '' : `&friend=${filter.friend}`
         }`,
@@ -35,7 +35,7 @@ export const UsersAPI = {
 
   followUser: async (id: number): Promise<any> => {
     try {
-      const response = await instance.post<ResponseAPI>(`follow/${id}`);
+      const response = await instance.post<APIResponseType>(`follow/${id}`);
       return response.data;
     } catch (e) {
       return e.message;
@@ -44,7 +44,7 @@ export const UsersAPI = {
 
   unfollowUser: async (id: number): Promise<any> => {
     try {
-      const response = await instance.delete<ResponseAPI>(`follow/${id}`);
+      const response = await instance.delete<APIResponseType>(`follow/${id}`);
       return response.data;
     } catch (e) {
       return e.message;

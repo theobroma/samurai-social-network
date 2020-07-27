@@ -1,6 +1,7 @@
 // apiKey is https://social-network.samuraijs.com/ access string
 import axios, { AxiosInstance } from 'axios';
 import { apiKey } from './keys';
+import { UserType } from '../@types';
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -10,16 +11,22 @@ export const instance: AxiosInstance = axios.create({
   },
 });
 
-export enum ResultCodes {
+export enum ResultCodesEnum {
   Success = 0,
   Error = 1,
 }
-export enum ResultCodeWithCaptcha {
+export enum ResultCodeForCapcthaEnum {
   CaptchaIsRequired = 10,
 }
 
-export type ResponseAPI<D = {}, RC = ResultCodes> = {
+export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
   data: D;
-  resultCode: RC;
   messages: Array<string>;
+  resultCode: RC;
+};
+
+export type GetItemsType = {
+  items: Array<UserType>;
+  totalCount: number;
+  error: string | null;
 };
