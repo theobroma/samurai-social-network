@@ -5,6 +5,7 @@ import {
   fetchProfileAsync,
   fetchStatusAsync,
   updateStatusAsync,
+  updateAvatarAsync,
 } from '../../@store/profile/actions';
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { getProfile, getStatus } from '../../@store/profile/selectors';
@@ -25,6 +26,9 @@ export const Profile: React.FC = React.memo(() => {
   const handleUpdateStatus = (newStatus: string) => {
     dispatch(updateStatusAsync.request(newStatus));
   };
+  const saveAvatar = (file: File) => {
+    dispatch(updateAvatarAsync.request(file));
+  };
 
   return (
     <>
@@ -32,6 +36,7 @@ export const Profile: React.FC = React.memo(() => {
         profile={profile}
         status={status}
         updateStatus={handleUpdateStatus}
+        saveAvatar={saveAvatar}
       />
     </>
   );

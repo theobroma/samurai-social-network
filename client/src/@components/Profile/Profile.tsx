@@ -12,9 +12,15 @@ type Props = {
   profile: ProfileType;
   status: string;
   updateStatus: (status: string) => void;
+  saveAvatar: (file: File) => void;
 };
 
-export const Profile: React.FC<Props> = ({ profile, status, updateStatus }) => {
+export const Profile: React.FC<Props> = ({
+  profile,
+  status,
+  updateStatus,
+  saveAvatar,
+}) => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
 
@@ -44,7 +50,7 @@ export const Profile: React.FC<Props> = ({ profile, status, updateStatus }) => {
           {!edit ? (
             <>
               <Col md={10}>
-                <ProfileData profile={profile} />
+                <ProfileData profile={profile} saveAvatar={saveAvatar} />
               </Col>
               <Col md={2}>
                 <Button variant="outline-primary" onClick={() => setEdit(true)}>

@@ -5,6 +5,7 @@ import {
   fetchStatusAsync,
   updateStatusAsync,
   updateProfileAsync,
+  updateAvatarAsync,
 } from './actions';
 import { getUserId } from '../auth/selectors';
 
@@ -63,12 +64,27 @@ export function* updateProfileSaga(
   }
 }
 
+export function* updateAvatarSaga(
+  action: ReturnType<typeof updateAvatarAsync.request>,
+): Generator {
+  try {
+    const response: any = yield call(ProfileAPI.saveAvatar, action.payload);
+    yield put(updateAvatarAsync.success(response));
+    // refetch profile
+    const userId = yield select(getUserId);
+    yield put(fetchProfileAsync.request(userId));
+  } catch (err) {
+    yield put(updateAvatarAsync.failure(err));
+  }
+}
+
 function* rootSagas() {
   yield all([
     takeLatest(fetchProfileAsync.request, getProfileSaga),
     takeLatest(fetchStatusAsync.request, getStatusSaga),
     takeLatest(updateStatusAsync.request, updateStatusSaga),
     takeLatest(updateProfileAsync.request, updateProfileSaga),
+    takeLatest(updateAvatarAsync.request, updateAvatarSaga),
   ]);
 }
 

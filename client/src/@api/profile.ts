@@ -1,25 +1,25 @@
 import { instance, APIResponseType, ResultCodesEnum } from './index';
 import { ContactsType, PhotosType, ProfileType } from '../@types';
 
-interface ProfileBaseAPI {
-  userId: number;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  contacts: ContactsType;
-}
+// interface ProfileBaseAPI {
+//   userId: number;
+//   lookingForAJob: boolean;
+//   lookingForAJobDescription: string;
+//   fullName: string;
+//   contacts: ContactsType;
+// }
 
-interface ProfileGetAPI extends ProfileBaseAPI {
-  photos: PhotosType;
-}
+// interface ProfileGetAPI extends ProfileBaseAPI {
+//   photos: PhotosType;
+// }
 
-interface ProfileUpdateAPI extends ProfileBaseAPI {
-  resultCode: ResultCodesEnum;
-  messages: Array<string>;
-}
-type ProfileSaveAvatar = {
-  photos: PhotosType;
-};
+// interface ProfileUpdateAPI extends ProfileBaseAPI {
+//   resultCode: ResultCodesEnum;
+//   messages: Array<string>;
+// }
+// type ProfileSaveAvatar = {
+//   photos: PhotosType;
+// };
 
 export const ProfileAPI = {
   // getProfile(id: number | null) {
@@ -27,15 +27,7 @@ export const ProfileAPI = {
   // },
   getProfile: async (id: number | null): Promise<any> => {
     try {
-      const response = await instance.get<any>(`profile/${id}`);
-      return response.data;
-    } catch (e) {
-      return e.message;
-    }
-  },
-  getStatus: async (id: number | null) => {
-    try {
-      const response = await instance.get<string>(`profile/status/${id}`);
+      const response = await instance.get<ProfileType>(`profile/${id}`);
       return response.data;
     } catch (e) {
       return e.message;
@@ -44,6 +36,14 @@ export const ProfileAPI = {
   // getStatus(id: number) {
   //   return instance.get<string>(`profile/status/${id}`).then((res) => res.data);
   // },
+  getStatus: async (id: number | null) => {
+    try {
+      const response = await instance.get<string>(`profile/status/${id}`);
+      return response.data;
+    } catch (e) {
+      return e.message;
+    }
+  },
   // updateStatus(status: string) {
   //   return instance
   //     .put<ResponseAPI>(`profile/status`, { status })
@@ -58,6 +58,17 @@ export const ProfileAPI = {
     } catch (e) {
       return e.message;
     }
+  },
+  saveAvatar(file: any) {
+    const formData = new FormData();
+    formData.append('image', file);
+    return instance
+      .put<APIResponseType<any>>('profile/photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => res.data);
   },
   // saveAvatar(file: any) {
   //   const formData = new FormData();
@@ -75,7 +86,19 @@ export const ProfileAPI = {
   //     .put<ProfileUpdateAPI>(`profile`, profile)
   //     .then((res) => res.data);
   // },
-  updateProfile: async (profile: any) => {
+
+  // saveAvatar(file: any) {
+  //   const formData = new FormData();
+  //   formData.append('image', file);
+  //   return instance
+  //     .put<ResponseAPI<ProfileSaveAvatar>>('profile/photo', formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     })
+  //     .then((res) => res.data);
+  // },
+  updateProfile: async (profile: ProfileType) => {
     try {
       const response = await instance.put<APIResponseType>(`profile`, profile);
       return response.data;

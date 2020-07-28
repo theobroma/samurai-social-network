@@ -26,11 +26,18 @@ export const updateStatusAsync = createAsyncAction(
   '@@profile/UPDATE_STATUS_FAILURE',
 )<string, any, Error>();
 
+export const updateAvatarAsync = createAsyncAction(
+  '@@profile/UPDATE_AVATAR_REQUEST',
+  '@@profile/UPDATE_AVATAR_SUCCESS',
+  '@@profile/UPDATE_AVATAR_FAILURE',
+)<File, any, Error>();
+
 export const actions = {
   fetchProfileAsync,
   updateProfileAsync,
   fetchStatusAsync,
   updateStatusAsync,
+  updateAvatarAsync,
 };
 
 export type ProfileActionType = ActionType<typeof actions>;
