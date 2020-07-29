@@ -1,7 +1,8 @@
 import { ROLE } from '../../@types/ROLE';
 import { RootState } from '../index';
+import { IDType } from '../../@types';
 
-export const getUserId = (state: RootState): number | null => {
+export const getUserId = (state: RootState): IDType => {
   return state.auth.id;
 };
 

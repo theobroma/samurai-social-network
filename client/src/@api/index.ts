@@ -1,7 +1,7 @@
 // apiKey is https://social-network.samuraijs.com/ access string
 import axios, { AxiosInstance } from 'axios';
 import { apiKey } from './keys';
-import { UserType } from '../@types';
+import { UserType, PhotosType } from '../@types';
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -29,4 +29,8 @@ export type GetItemsType = {
   items: Array<UserType>;
   totalCount: number;
   error: string | null;
+};
+
+export type PhotosDataType = {
+  photos: PhotosType;
 };

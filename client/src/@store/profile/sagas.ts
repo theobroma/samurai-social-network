@@ -1,4 +1,5 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
 import { ProfileAPI } from '../../@api/profile';
 import {
   fetchProfileAsync,
@@ -8,13 +9,13 @@ import {
   updateAvatarAsync,
 } from './actions';
 import { getUserId } from '../auth/selectors';
+import { IDType } from '../../@types';
 
 export function* getProfileSaga(
-  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
-  action: any,
-): Generator {
+  action: ReturnType<typeof fetchProfileAsync.request>,
+): SagaIterator<void> {
   try {
-    const response: any = yield call(ProfileAPI.getProfile, action.payload);
+    const response = yield call(ProfileAPI.getProfile, action.payload);
     yield put(fetchProfileAsync.success(response));
   } catch (err) {
     yield put(fetchProfileAsync.failure(err));
@@ -22,12 +23,11 @@ export function* getProfileSaga(
 }
 
 export function* getStatusSaga(
-  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
-  action: any,
-): Generator {
+  action: ReturnType<typeof fetchStatusAsync.request>,
+): SagaIterator<void> {
   try {
-    const userId = yield select(getUserId);
-    const response: any = yield call(ProfileAPI.getStatus, action.payload);
+    // const userId: number | null = yield select(getUserId);
+    const response = yield call(ProfileAPI.getStatus, action.payload);
     yield put(fetchStatusAsync.success(response));
   } catch (err) {
     yield put(fetchStatusAsync.failure(err));
@@ -35,14 +35,13 @@ export function* getStatusSaga(
 }
 
 export function* updateStatusSaga(
-  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
-  action: any,
-): Generator {
+  action: ReturnType<typeof updateStatusAsync.request>,
+): SagaIterator<void> {
   try {
-    const response: any = yield call(ProfileAPI.updateStatus, action.payload);
+    const response = yield call(ProfileAPI.updateStatus, action.payload);
     yield put(updateStatusAsync.success(response));
     // refetch status
-    const userId = yield select(getUserId);
+    const userId: IDType = yield select(getUserId);
     yield put(fetchStatusAsync.request(userId));
   } catch (err) {
     yield put(updateStatusAsync.failure(err));
@@ -50,14 +49,13 @@ export function* updateStatusSaga(
 }
 
 export function* updateProfileSaga(
-  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
-  action: any,
-): Generator {
+  action: ReturnType<typeof updateProfileAsync.request>,
+): SagaIterator<void> {
   try {
-    const response: any = yield call(ProfileAPI.updateProfile, action.payload);
+    const response = yield call(ProfileAPI.updateProfile, action.payload);
     yield put(updateProfileAsync.success(response));
     // refetch profile
-    const userId = yield select(getUserId);
+    const userId: IDType = yield select(getUserId);
     yield put(fetchProfileAsync.request(userId));
   } catch (err) {
     yield put(updateProfileAsync.failure(err));
@@ -66,12 +64,12 @@ export function* updateProfileSaga(
 
 export function* updateAvatarSaga(
   action: ReturnType<typeof updateAvatarAsync.request>,
-): Generator {
+): SagaIterator<void> {
   try {
-    const response: any = yield call(ProfileAPI.saveAvatar, action.payload);
+    const response = yield call(ProfileAPI.saveAvatar, action.payload);
     yield put(updateAvatarAsync.success(response));
     // refetch profile
-    const userId = yield select(getUserId);
+    const userId: IDType = yield select(getUserId);
     yield put(fetchProfileAsync.request(userId));
   } catch (err) {
     yield put(updateAvatarAsync.failure(err));

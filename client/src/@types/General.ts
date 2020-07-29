@@ -1,17 +1,17 @@
-export type DialogType = {
-  id: number;
-  name: string;
-};
-export type MessageType = {
-  id: number;
-  text: string;
-};
+// export type DialogType = {
+//   id: number;
+//   name: string;
+// };
+// export type MessageType = {
+//   id: number;
+//   text: string;
+// };
+// export type PostType = {
+//   id: number;
+//   text: string;
+//   likesCount: number;
+// };
 
-export type PostType = {
-  id: number;
-  text: string;
-  likesCount: number;
-};
 export type ContactsType = {
   github: string;
   vk: string;
@@ -23,12 +23,11 @@ export type ContactsType = {
   mainLink: string;
 };
 
-// export type ContactsKeys = Extract<keyof ContactsType, string>;
-
 export type PhotosType = {
   small: string | null;
   large: string | null;
 };
+
 export type ProfileType = {
   userId: number | null;
   lookingForAJob: boolean | null;
@@ -47,6 +46,7 @@ export type UserType = {
   followed: boolean;
 };
 
+// export type ContactsKeys = Extract<keyof ContactsType, string>;
 // export type GetStringKeys<T> = Extract<keyof T, string>;
 
 export type ItemsViewType = 'LIST' | 'GRID';
@@ -55,3 +55,5 @@ export type UsersFilterType = {
   term: string;
   friend: boolean | null;
 };
+
+export type IDType = number | null;
