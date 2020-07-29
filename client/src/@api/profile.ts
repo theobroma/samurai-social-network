@@ -32,7 +32,6 @@ export const ProfileAPI = {
     try {
       const formData = new FormData();
       formData.append('image', file);
-      console.log('Четко');
       const response = await instance.put<APIResponseType<PhotosDataType>>(
         'profile/photo',
         formData,
