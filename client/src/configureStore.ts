@@ -12,6 +12,7 @@ import { rootSaga } from './rootSaga';
 import { authInitialState } from './@store/auth/reducer';
 import { profileInitialState } from './@store/profile/reducer';
 import { usersInitialState } from './@store/users/reducer';
+import { layoutInitialState } from './@store/layout/reducer';
 
 export const history = createBrowserHistory();
 
@@ -20,6 +21,7 @@ const configureStore = () => {
 
   let totalInitialState: RootState = {
     auth: authInitialState,
+    layout: layoutInitialState,
     profile: profileInitialState,
     users: usersInitialState,
     router: {
