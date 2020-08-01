@@ -15,8 +15,12 @@ export function* getProfileSaga(
   action: ReturnType<typeof fetchProfileAsync.request>,
 ): SagaIterator<void> {
   try {
-    const response = yield call(ProfileAPI.getProfile, action.payload);
-    yield put(fetchProfileAsync.success(response));
+    const res = yield call(ProfileAPI.getProfile, action.payload);
+    if (res.error) {
+      yield put(fetchProfileAsync.failure(res.error));
+    } else {
+      yield put(fetchProfileAsync.success(res));
+    }
   } catch (err) {
     yield put(fetchProfileAsync.failure(err));
   }

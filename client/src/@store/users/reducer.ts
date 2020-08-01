@@ -14,7 +14,7 @@ export const usersInitialState = {
   totalCount: 0,
   currentPage: 1,
   filter: {
-    term: 'abc',
+    term: '',
     friend: null,
   } as UsersFilterType,
   isFetching: false,

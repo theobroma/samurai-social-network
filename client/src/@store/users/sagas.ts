@@ -11,13 +11,17 @@ export function* getUsersSaga(
   try {
     // github.com/redux-saga/redux-saga/issues/2015
     const usersFilter: UsersFilterType = yield select(getUsersFilter);
-    const response = yield call(
+    const res = yield call(
       UsersAPI.getUsers,
       action.payload.currentPage,
       action.payload.pageSize,
       usersFilter,
     );
-    yield put(fetchUsersAsync.success(response));
+    if (res.error) {
+      yield put(fetchUsersAsync.failure(res.error));
+    } else {
+      yield put(fetchUsersAsync.success(res));
+    }
   } catch (err) {
     yield put(fetchUsersAsync.failure(err));
   }
