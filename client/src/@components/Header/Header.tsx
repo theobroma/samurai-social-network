@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { Form, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
@@ -8,6 +8,8 @@ import { logoutAsync } from '../../@store/auth/actions';
 import { getUserId } from '../../@store/auth/selectors';
 import { getProfile } from '../../@store/profile/selectors';
 import { fetchProfileAsync } from '../../@store/profile/actions';
+import { getTheme } from '../../@store/layout/selectors';
+import { setTheme } from '../../@store/layout/actions';
 
 const logo = require('../../@assets/images/logo.png'); // eslint-disable-line @typescript-eslint/no-var-requires
 
@@ -20,6 +22,7 @@ export const Header: React.FC<Props> = ({ className }) => {
   const userId = useSelector(getUserId);
   // No need to fetch profile cause of redirect to "profile" page after login where already "fetchProfileAsync.request"
   const profile = useSelector(getProfile);
+  const theme = useSelector(getTheme);
 
   useEffect(() => {
     if (userId && !profile.userId) {
@@ -54,6 +57,22 @@ export const Header: React.FC<Props> = ({ className }) => {
               className={classes.dropdownName}
             >
               {`Hi, ${profile.fullName} !`}
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item>
+              Night Mode
+              {/* <Form>
+                <Form.Group controlId="theme">
+                  <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    label=""
+                    onChange={() => dispatch(setTheme('dark'))}
+                  />
+                </Form.Group>
+              </Form> */}
+              <br />
+              Current theme: {theme}
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item
