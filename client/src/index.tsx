@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './@utils/theme';
+import { GlobalStyle } from './@utils/global';
 import { AppContainer } from './#';
 import configureStore, { history } from './configureStore';
 
@@ -18,9 +21,12 @@ const rootEl = document.getElementById('root');
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <AppContainer />
-      </ConnectedRouter>
+      <ThemeProvider theme={!true ? lightTheme : darkTheme}>
+        <ConnectedRouter history={history}>
+          <AppContainer />
+        </ConnectedRouter>
+        <GlobalStyle />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   rootEl,
