@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Header from '../../../@components/Header';
 import Sidebar from '../../../@components/Sidebar/Sidebar';
+import Footer from '../../../@components/Footer';
 
 interface ILayout {
   // All other props
@@ -31,6 +32,7 @@ export const GuestLayout: React.FC<ILayout> = ({ children }) => {
     <>
       <Header />
       {children}
+      <Footer />
     </>
   );
 };
