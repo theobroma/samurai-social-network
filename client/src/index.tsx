@@ -16,12 +16,13 @@ require('typeface-roboto');
 require('typeface-gothic-a1');
 
 const store = configureStore();
+const currentTheme = store.getState().layout.theme;
 
 const rootEl = document.getElementById('root');
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={!true ? lightTheme : darkTheme}>
+      <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
         <ConnectedRouter history={history}>
           <AppContainer />
         </ConnectedRouter>

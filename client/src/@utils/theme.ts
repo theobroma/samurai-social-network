@@ -1,6 +1,6 @@
 export const lightTheme = {
-  background: 'hsl(0, 0%, 97%)',
-  color: 'hsl(200, 15%, 8%)',
+  background: '#f3f3f3',
+  color: '#212529',
   elementBackground: 'hsl(0, 0%, 100%)',
 };
 
