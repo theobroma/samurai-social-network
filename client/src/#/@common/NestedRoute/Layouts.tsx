@@ -13,16 +13,21 @@ export const UserLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
       <Header className="mb-3" />
-      <Container>
-        <Row>
-          <Col xs={12} md={4}>
-            <Sidebar />
-          </Col>
-          <Col xs={12} md={8}>
-            {children}
-          </Col>
-        </Row>
-      </Container>
+      <div className="HolyGrail-body">
+        <Container>
+          <Row>
+            <Col xs={12} md={4}>
+              <nav>
+                <Sidebar />
+              </nav>
+            </Col>
+            <Col xs={12} md={8}>
+              <main>{children}</main>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </>
   );
 };
@@ -31,7 +36,9 @@ export const GuestLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="HolyGrail-body">
+        <main className="HolyGrail-content">{children}</main>
+      </div>
       <Footer />
     </>
   );

@@ -28,7 +28,7 @@ export const SubFooter: React.FC<Props> = () => {
             col1
           </Col>
           <Col md={4} className="mb-3">
-            col1
+            col2
           </Col>
         </Row>
       </Container>
