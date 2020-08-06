@@ -7,10 +7,10 @@ import { UserType } from '../../../@types';
 
 type Props = {
   user: UserType;
-  isFetching?: any;
-  followingInProgress: any;
-  follow: any;
-  unfollow: any;
+  isFetching?: boolean;
+  followingInProgress: Array<number>;
+  follow: (id: number) => void;
+  unfollow: (id: number) => void;
 };
 
 const ListUser: React.FC<Props> = ({

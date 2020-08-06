@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { StateType } from 'typesafe-actions';
 import { History } from 'history';
 import { RouterState, connectRouter } from 'connected-react-router';
 import { authReducer, authStateType } from './auth/reducer';
@@ -23,3 +24,5 @@ export const rootReducer = (history: History) =>
     users: usersReducer,
     router: connectRouter(history),
   });
+
+// export type RootState = StateType<typeof rootReducer>;
