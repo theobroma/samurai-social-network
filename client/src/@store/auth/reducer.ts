@@ -1,4 +1,3 @@
-import { call } from 'redux-saga/effects';
 import { createReducer } from 'typesafe-actions';
 import {
   SET_USER_ID,
@@ -22,6 +21,7 @@ export const authInitialState = {
 
 export type authStateType = typeof authInitialState;
 
+//  TODO:AuthActionType
 export const authReducer = createReducer<authStateType, any>(authInitialState, {
   [SET_USER_ID]: (state, { payload: userId }) => {
     return {
@@ -55,9 +55,9 @@ export const authReducer = createReducer<authStateType, any>(authInitialState, {
   },
 }).handleAction(
   actions.captchaAsync.success,
-  (state: authStateType, action: any) => ({
+  (state: authStateType, { payload: url }: any) => ({
     ...state,
-    captchaUrl: action.payload,
+    captchaUrl: url,
   }),
 );
 

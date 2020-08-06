@@ -34,3 +34,5 @@ export type GetItemsType = {
 export type PhotosDataType = {
   photos: PhotosType;
 };
+
+export type CaptchaType = string;

@@ -75,9 +75,7 @@ export const Header: React.FC<Props> = ({ className }) => {
               Current theme: {theme}
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item
-              onClick={() => dispatch(logoutAsync.request('any'))}
-            >
+            <NavDropdown.Item onClick={() => dispatch(logoutAsync.request())}>
               Logout
             </NavDropdown.Item>
           </NavDropdown>

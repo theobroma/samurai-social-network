@@ -1,12 +1,13 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { SagaIterator } from 'redux-saga';
 import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
 import { actions } from './actions';
 import { ROLE } from '../../@types';
 import { GET_AUTH_USER_DATA, START_LOGIN } from './constants';
 
-export function* loginSaga(action: any) {
+export function* loginSaga(action: any): SagaIterator<void> {
   try {
     const response = yield call(
       AuthAPI.login,
@@ -24,7 +25,7 @@ export function* loginSaga(action: any) {
 
     if (response.resultCode === 10) {
       yield all([
-        put(actions.captchaAsync.request('any')),
+        put(actions.captchaAsync.request()),
         // put(actions.setErrorMessage(response.error)),
       ]);
     } else {
@@ -37,12 +38,9 @@ export function* loginSaga(action: any) {
   }
 }
 
-export function* logoutSaga(
-  // action: ReturnType<typeof actions.fetchProfileAsync.request>,
-  action: any,
-): Generator {
+export function* logoutSaga(): SagaIterator<void> {
   try {
-    const response: any = yield call(AuthAPI.logout);
+    const response = yield call(AuthAPI.logout);
 
     if (response.data.resultCode === 0) {
       yield all([
@@ -56,7 +54,7 @@ export function* logoutSaga(
   }
 }
 
-export function* authMeSaga() {
+export function* authMeSaga(): SagaIterator<void> {
   try {
     // yield put(actions.setFetchingStatus(true));
     const response = yield call(AuthAPI.me);
@@ -79,7 +77,7 @@ export function* authMeSaga() {
   }
 }
 
-export function* captchaSaga(): Generator {
+export function* captchaSaga(): SagaIterator<void> {
   try {
     const response = yield call(SecurityAPI.getCaptchaUrl);
     yield put(actions.captchaAsync.success(response));
