@@ -3,11 +3,13 @@ import { push } from 'connected-react-router';
 import { SagaIterator } from 'redux-saga';
 import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
-import { actions } from './actions';
+import { actions, startLoginProcess } from './actions';
 import { ROLE } from '../../@types';
 import { GET_AUTH_USER_DATA, START_LOGIN } from './constants';
 
-export function* loginSaga(action: any): SagaIterator<void> {
+export function* loginSaga(
+  action: ReturnType<typeof startLoginProcess>,
+): SagaIterator<void> {
   try {
     const response = yield call(
       AuthAPI.login,

@@ -12,7 +12,7 @@ import { APIResponseType, CaptchaType } from '../../@api';
 
 // create action functions
 export const startLoginProcess = createAction(START_LOGIN)<LoginPayload>();
-export const setUserId = createAction(SET_USER_ID)<string>();
+export const setUserId = createAction(SET_USER_ID)<number>();
 export const startAuthenticationProcess = createAction(GET_AUTH_USER_DATA)();
 export const setAuthUserData = createAction(SET_AUTH_USER_DATA)<
   Record<string, any> // yes any
