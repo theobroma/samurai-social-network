@@ -2,45 +2,26 @@ import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import throttle from 'lodash/throttle';
-import { loadState, saveState } from './@utils/localStorage';
-import { rootReducer, RootState } from './@store/index';
+import { rootReducer } from './@store/index';
 import { rootSaga } from './rootSaga';
-import { authInitialState } from './@store/auth/reducer';
-import { profileInitialState } from './@store/profile/reducer';
-import { usersInitialState } from './@store/users/reducer';
-import { layoutInitialState } from './@store/layout/reducer';
 
 export const history = createBrowserHistory();
 
 const configureStore = () => {
-  const persistedState = loadState();
-
-  let totalInitialState: RootState = {
-    auth: authInitialState,
-    layout: layoutInitialState,
-    profile: profileInitialState,
-    users: usersInitialState,
-    router: {
-      location: {
-        state: '',
-        pathname: '/profile',
-        search: '',
-        hash: '',
-        // key: 'uobrvf',
-        // query: {},
-      },
-      action: 'POP',
-    },
+  const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: ['router'], // will not be persisted
+    // Persist just 'auth' reducer data
+    // whitelist: ['auth'],
   };
 
-  // if persistedState is not empty then assign parsed persistedState to initState
-  if (persistedState) {
-    totalInitialState = persistedState;
-  }
+  const pReducer = persistReducer(persistConfig, rootReducer(history));
 
   const logger = createLogger({
     collapsed: true,
@@ -60,21 +41,17 @@ const configureStore = () => {
   });
 
   const store = createStore(
-    rootReducer(history),
-    totalInitialState,
+    pReducer,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 
   sagaMiddleware.run(rootSaga);
 
-  store.subscribe(
-    throttle(() => {
-      console.log('saved to localStorage');
-      saveState(store.getState());
-    }, 1000),
-  );
-
   return store;
 };
 
-export default configureStore;
+export const store = configureStore();
+
+export const persistor = persistStore(store);
+
+export default { store, persistor };
