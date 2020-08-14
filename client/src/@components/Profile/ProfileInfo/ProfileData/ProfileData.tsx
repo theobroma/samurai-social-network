@@ -15,6 +15,29 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
     if (e.target.files?.length) saveAvatar(e.target.files[0]);
   };
 
+  const AvatarBlock = (
+    <>
+      <Avatar
+        name="Wim Mostmans"
+        size="150"
+        round
+        src={
+          profile.photos.large ||
+          'https://data.whicdn.com/images/331901362/original.jpg'
+        }
+      />
+      {/* <Avatar
+        name="Wim Mostmans"
+        size="150"
+        round
+        src={
+          profile.photos.small ||
+          'https://data.whicdn.com/images/331901362/original.jpg'
+        }
+      /> */}
+    </>
+  );
+
   return (
     <>
       <Row>
@@ -22,25 +45,7 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
           <div>
             <div>
               <div>
-                <Avatar
-                  name="Wim Mostmans"
-                  size="150"
-                  round
-                  src={
-                    profile.photos.large ||
-                    'https://data.whicdn.com/images/331901362/original.jpg'
-                  }
-                />
-
-                {/* <Avatar
-                  name="Wim Mostmans"
-                  size="150"
-                  round
-                  src={
-                    profile.photos.small ||
-                    'https://data.whicdn.com/images/331901362/original.jpg'
-                  }
-                /> */}
+                {profile.photos && AvatarBlock}
                 <div className="my-3">
                   <input type="file" onChange={onAvatarSelected} />
                 </div>

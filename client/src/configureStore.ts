@@ -16,9 +16,9 @@ const configureStore = () => {
   const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['router'], // will not be persisted
+    // blacklist: ['router'], // will not be persisted
     // Persist just 'auth' reducer data
-    // whitelist: ['auth'],
+    whitelist: ['auth', 'layout'],
   };
 
   const pReducer = persistReducer(persistConfig, rootReducer(history));
