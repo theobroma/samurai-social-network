@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Col, Card, Row, Button } from 'react-bootstrap';
+import {
+  Col,
+  Card,
+  Row,
+  Button,
+  Tooltip,
+  OverlayTrigger,
+} from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 
@@ -40,6 +47,13 @@ export const Profile: React.FC<Props> = ({
       </div>
     </div>
   );
+
+  const renderTooltip = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Edit
+    </Tooltip>
+  );
+
   return (
     <Card>
       <Card.Body>
@@ -57,9 +71,18 @@ export const Profile: React.FC<Props> = ({
                 <ProfileData profile={profile} saveAvatar={saveAvatar} />
               </Col>
               <Col md={2}>
-                <Button variant="outline-primary" onClick={() => setEdit(true)}>
-                  <BsPencilSquare />
-                </Button>
+                <OverlayTrigger
+                  placement="right"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => setEdit(true)}
+                  >
+                    <BsPencilSquare />
+                  </Button>
+                </OverlayTrigger>
               </Col>
             </Row>
             <hr />
