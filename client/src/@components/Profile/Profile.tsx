@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Col, Card, Row, Button } from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
-import ProfileData from './ProfileInfo/ProfileData/ProfileData';
-import ProfileStatus from './ProfileInfo/ProfileStatus';
-import ProfileDataForm from './ProfileInfo/ProfileDataForm';
-import ContactsData from './ProfileInfo/ProfileData/ContactsData';
+
 import { updateProfileAsync } from '../../@store/profile/actions';
 import { ProfileType } from '../../@types';
+import {
+  ProfileStatus,
+  ProfileData,
+  ContactsData,
+  ProfileDataForm,
+} from './ProfileInfo';
 
 type Props = {
   profile: ProfileType;

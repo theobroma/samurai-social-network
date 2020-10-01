@@ -30,7 +30,7 @@ type Props = {
   contacts: ContactsType;
 };
 
-const ContactsData: React.FC<Props> = ({ contacts }) => {
+export const ContactsData: React.FC<Props> = ({ contacts }) => {
   const BlockSocial = (
     <StyledSocialList>
       {contacts && (
@@ -98,4 +98,3 @@ const ContactsData: React.FC<Props> = ({ contacts }) => {
     </>
   );
 };
-export default ContactsData;

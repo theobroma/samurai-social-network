@@ -9,7 +9,10 @@ type ProfileDataProps = {
   saveAvatar: (file: File) => void;
 };
 
-const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
+export const ProfileData: React.FC<ProfileDataProps> = ({
+  profile,
+  saveAvatar,
+}) => {
   const onAvatarSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) saveAvatar(e.target.files[0]);
   };
@@ -75,4 +78,3 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
     </>
   );
 };
-export default ProfileData;
