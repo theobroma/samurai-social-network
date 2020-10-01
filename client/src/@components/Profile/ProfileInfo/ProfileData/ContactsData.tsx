@@ -94,7 +94,7 @@ const ContactsData: React.FC<Props> = ({ contacts }) => {
   return (
     <>
       <div className="option-subheading mb-3">Social links</div>
-      {contacts && BlockSocial}
+      {BlockSocial}
     </>
   );
 };

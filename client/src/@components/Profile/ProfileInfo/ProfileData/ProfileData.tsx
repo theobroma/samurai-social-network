@@ -2,7 +2,6 @@ import React, { ChangeEvent } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Avatar from 'react-avatar';
 import { ProfileType } from '../../../../@types';
-import ContactsData from './ContactsData';
 import { StyledName, StyledLabel, StyledValue } from './Styled';
 
 type ProfileDataProps = {
@@ -28,15 +27,6 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
           }
         />
       )}
-      {/* <Avatar
-        name="Wim Mostmans"
-        size="150"
-        round
-        src={
-          profile.photos.small ||
-          'https://data.whicdn.com/images/331901362/original.jpg'
-        }
-      /> */}
     </>
   );
 
@@ -80,12 +70,6 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
               </div>
             </div>
           </div>
-        </Col>
-      </Row>
-      <hr />
-      <Row>
-        <Col>
-          <ContactsData contacts={profile.contacts} />
         </Col>
       </Row>
     </>

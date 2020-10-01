@@ -3,10 +3,11 @@ import { Col, Card, Row, Button } from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import ProfileData from './ProfileInfo/ProfileData/ProfileData';
-import { ProfileType } from '../../@types';
 import ProfileStatus from './ProfileInfo/ProfileStatus';
 import ProfileDataForm from './ProfileInfo/ProfileDataForm';
+import ContactsData from './ProfileInfo/ProfileData/ContactsData';
 import { updateProfileAsync } from '../../@store/profile/actions';
+import { ProfileType } from '../../@types';
 
 type Props = {
   profile: ProfileType;
@@ -46,9 +47,9 @@ export const Profile: React.FC<Props> = ({
           </Col>
         </Row>
         <hr />
-        <Row>
-          {!edit ? (
-            <>
+        {!edit ? (
+          <>
+            <Row>
               <Col md={10}>
                 <ProfileData profile={profile} saveAvatar={saveAvatar} />
               </Col>
@@ -57,16 +58,24 @@ export const Profile: React.FC<Props> = ({
                   <BsPencilSquare />
                 </Button>
               </Col>
-            </>
-          ) : (
+            </Row>
+            <hr />
+            <Row>
+              <Col>
+                <ContactsData contacts={profile.contacts} />
+              </Col>
+            </Row>
+          </>
+        ) : (
+          <Row>
             <Col xs={12}>
               <ProfileDataForm
                 profile={profile}
                 submitCallback={submitCallback}
               />
             </Col>
-          )}
-        </Row>
+          </Row>
+        )}
       </Card.Body>
     </Card>
   );
