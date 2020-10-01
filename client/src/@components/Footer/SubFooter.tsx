@@ -7,6 +7,12 @@ export const StyledSubFooter = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
+export const StyledCopyRight = styled.p`
+  margin-bottom: 0;
+  font-size: 16px;
+  color: #909192;
+`;
+
 interface Props {
   className?: string;
 }
@@ -14,21 +20,15 @@ interface Props {
 export const SubFooter: React.FC<Props> = () => {
   return (
     <StyledSubFooter>
-      {/* <div className="container">
-        <div className="row py-3">
-          <div className="col-lg-8 mb-3">links</div>
-          <div className="col-lg-4 d-flex justify-content-start justify-content-lg-end mb-3">
-            app
-          </div>
-        </div>
-      </div> */}
       <Container>
         <Row>
           <Col md={8} className="mb-3">
-            col1
+            <StyledCopyRight>
+              © created by Aleksandr Siryi {new Date().getFullYear()}
+            </StyledCopyRight>
           </Col>
           <Col md={4} className="mb-3">
-            col2
+            <div className="d-none">col2</div>
           </Col>
         </Row>
       </Container>

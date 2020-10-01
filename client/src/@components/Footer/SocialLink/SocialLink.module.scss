@@ -1,0 +1,13 @@
+.socialLink {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0;
+    a {
+        font-size: 16px;
+        color: #909192;
+        text-decoration: none;
+        &:hover {
+            color: #201e2b;
+        }
+    }
+}
