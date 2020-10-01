@@ -19,7 +19,7 @@ type ContactProps = {
 };
 const Contact: React.FC<ContactProps> = ({ title, value = '', children }) => (
   <li>
-    <a href={value} target="_blank">
+    <a href={value} target="_blank" rel="noopener noreferrer">
       <span className="mr-2">{children}</span>
       {title}
     </a>
@@ -33,54 +33,62 @@ type Props = {
 const ContactsData: React.FC<Props> = ({ contacts }) => {
   const BlockSocial = (
     <StyledSocialList>
-      <Contact title="github" value={contacts.github} key={shortid.generate()}>
-        <FaGithub />
-      </Contact>
-      <Contact title="vk" value={contacts.vk} key={shortid.generate()}>
-        <FaVk />
-      </Contact>
-      <Contact
-        title="facebook"
-        value={contacts.facebook}
-        key={shortid.generate()}
-      >
-        <FaFacebook />
-      </Contact>
-      <Contact
-        title="instagram"
-        value={contacts.instagram}
-        key={shortid.generate()}
-      >
-        <FaInstagram />
-      </Contact>
-      <Contact
-        title="twitter"
-        value={contacts.twitter}
-        key={shortid.generate()}
-      >
-        <FaTwitter />
-      </Contact>
-      <Contact
-        title="website"
-        value={contacts.website}
-        key={shortid.generate()}
-      >
-        <FaGlobe />
-      </Contact>
-      <Contact
-        title="youtube"
-        value={contacts.youtube}
-        key={shortid.generate()}
-      >
-        <FaYoutube />
-      </Contact>
-      <Contact
-        title="mainLink"
-        value={contacts.mainLink}
-        key={shortid.generate()}
-      >
-        <FaLink />
-      </Contact>
+      {contacts && (
+        <>
+          <Contact
+            title="github"
+            value={contacts.github}
+            key={shortid.generate()}
+          >
+            <FaGithub />
+          </Contact>
+          <Contact title="vk" value={contacts.vk} key={shortid.generate()}>
+            <FaVk />
+          </Contact>
+          <Contact
+            title="facebook"
+            value={contacts.facebook}
+            key={shortid.generate()}
+          >
+            <FaFacebook />
+          </Contact>
+          <Contact
+            title="instagram"
+            value={contacts.instagram}
+            key={shortid.generate()}
+          >
+            <FaInstagram />
+          </Contact>
+          <Contact
+            title="twitter"
+            value={contacts.twitter}
+            key={shortid.generate()}
+          >
+            <FaTwitter />
+          </Contact>
+          <Contact
+            title="website"
+            value={contacts.website}
+            key={shortid.generate()}
+          >
+            <FaGlobe />
+          </Contact>
+          <Contact
+            title="youtube"
+            value={contacts.youtube}
+            key={shortid.generate()}
+          >
+            <FaYoutube />
+          </Contact>
+          <Contact
+            title="mainLink"
+            value={contacts.mainLink}
+            key={shortid.generate()}
+          >
+            <FaLink />
+          </Contact>
+        </>
+      )}
     </StyledSocialList>
   );
   return (

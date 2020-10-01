@@ -10,6 +10,7 @@ import { getProfile } from '../../@store/profile/selectors';
 import { fetchProfileAsync } from '../../@store/profile/actions';
 import { getTheme } from '../../@store/layout/selectors';
 import { setTheme } from '../../@store/layout/actions';
+import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 
 const logo = require('../../@assets/images/logo.png'); // eslint-disable-line @typescript-eslint/no-var-requires
 
@@ -42,7 +43,7 @@ export const Header: React.FC<Props> = ({ className }) => {
       }
     />
   ) : (
-    ''
+    <NoAvatarSVG width="40px" />
   );
 
   const NavbarBlock = (

@@ -17,15 +17,17 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
 
   const AvatarBlock = (
     <>
-      <Avatar
-        name="Wim Mostmans"
-        size="150"
-        round
-        src={
-          profile.photos.large ||
-          'https://data.whicdn.com/images/331901362/original.jpg'
-        }
-      />
+      {profile.photos && (
+        <Avatar
+          name="Wim Mostmans"
+          size="150"
+          round
+          src={
+            profile.photos.large ||
+            'https://data.whicdn.com/images/331901362/original.jpg'
+          }
+        />
+      )}
       {/* <Avatar
         name="Wim Mostmans"
         size="150"
@@ -45,7 +47,7 @@ const ProfileData: React.FC<ProfileDataProps> = ({ profile, saveAvatar }) => {
           <div>
             <div>
               <div>
-                {profile.photos && AvatarBlock}
+                {AvatarBlock}
                 <div className="my-3">
                   <input type="file" onChange={onAvatarSelected} />
                 </div>
