@@ -7,6 +7,7 @@ import { ProfileType } from '../../../../@types';
 interface OtherProps {
   submitCallback: (payload: any) => void;
   profile: ProfileType;
+  cancelCallback: () => void;
 }
 
 // TODO:
@@ -20,6 +21,7 @@ interface FormValues {
 
 export const ProfileDataForm: React.FC<OtherProps> = ({
   submitCallback,
+  cancelCallback,
   profile = {
     fullName: '',
     aboutMe: '',
@@ -130,7 +132,6 @@ export const ProfileDataForm: React.FC<OtherProps> = ({
             ) : null}
           </Form.Group>
           <div className="option-subheading">Contacts</div>
-
           <Button
             type="submit"
             variant="primary"
@@ -139,10 +140,9 @@ export const ProfileDataForm: React.FC<OtherProps> = ({
           >
             Submit
           </Button>
-
-          {/* <Button type="submit" variant="secondary" disabled={isSubmitting}>
+          <Button variant="outline-secondary" onClick={() => cancelCallback()}>
             Cancel
-          </Button> */}
+          </Button>
         </Form>
       )}
     </Formik>

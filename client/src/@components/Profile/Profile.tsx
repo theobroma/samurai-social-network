@@ -33,11 +33,15 @@ export const Profile: React.FC<Props> = ({
   saveAvatar,
 }) => {
   const dispatch = useDispatch();
-  const [edit, setEdit] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const submitCallback = (payload: any) => {
     dispatch(updateProfileAsync.request(payload));
-    setEdit(false);
+    setIsEditing(false);
+  };
+
+  const cancelCallback = () => {
+    setIsEditing(false);
   };
 
   const BlockTitle = (
@@ -64,7 +68,7 @@ export const Profile: React.FC<Props> = ({
           </Col>
         </Row>
         <hr />
-        {!edit ? (
+        {!isEditing ? (
           <>
             <Row>
               <Col md={10}>
@@ -78,7 +82,7 @@ export const Profile: React.FC<Props> = ({
                 >
                   <Button
                     variant="outline-primary"
-                    onClick={() => setEdit(true)}
+                    onClick={() => setIsEditing(true)}
                   >
                     <BsPencilSquare />
                   </Button>
@@ -98,6 +102,7 @@ export const Profile: React.FC<Props> = ({
               <ProfileDataForm
                 profile={profile}
                 submitCallback={submitCallback}
+                cancelCallback={cancelCallback}
               />
             </Col>
           </Row>
