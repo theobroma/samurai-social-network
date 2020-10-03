@@ -53,13 +53,15 @@ export const Users: React.FC<PropsType> = ({
               </div>
             </Col>
           </Row>
-          <Row className="bg-dark py-3">
-            <Col>
+          <Row className="py-3">
+            <Col lg={9}>
               <PaginationFC
                 handlePageClick={handlePageClick}
                 totalCount={totalCount}
                 pageSize={pageSize}
               />
+            </Col>
+            <Col lg={3}>
               <ListGridSwitcher setViewType={setViewType} viewType={viewType} />
             </Col>
           </Row>

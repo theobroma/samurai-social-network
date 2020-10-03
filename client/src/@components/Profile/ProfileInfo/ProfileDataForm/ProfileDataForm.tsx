@@ -4,22 +4,20 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { ProfileType } from '../../../../@types';
 
-interface OtherProps {
+interface FormValues {
+  lookingForAJob: boolean | null;
+  lookingForAJobDescription: string | null;
+  aboutMe?: string | null;
+  fullName: string | null;
+}
+
+interface FormProps {
   submitCallback: (payload: any) => void;
   profile: ProfileType;
   cancelCallback: () => void;
 }
 
-// TODO:
-interface FormValues {
-  fullName: any;
-  aboutMe: any;
-  lookingForAJob: any;
-  lookingForAJobDescription: any;
-  // profile: ProfileType;
-}
-
-export const ProfileDataForm: React.FC<OtherProps> = ({
+export const ProfileDataForm: React.FC<FormProps> = ({
   submitCallback,
   cancelCallback,
   profile = {

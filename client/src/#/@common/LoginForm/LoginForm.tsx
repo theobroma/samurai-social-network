@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { LoginPayload } from '../../../@store/auth/types';
+import { validationSchema } from './yup';
 
 interface LoginForm {
   error?: string | null;
@@ -19,27 +19,6 @@ const LoginForm: React.FC<LoginForm> = ({
 }) => {
   const [wait, setWait] = useState(false);
 
-  const trySubmit = useCallback((err) => {
-    if (typeof err === 'string') {
-      setWait(true);
-      setTimeout(() => {
-        setWait(false);
-      }, 1500);
-    }
-  }, []);
-
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email('Некорректный адрес почты')
-      .required('Обязательное поле'),
-    password: Yup.string()
-      .min(4, 'Минимальная длина пароля 6 символов')
-      .required('Обязательное поле'),
-    rememberMe: Yup.boolean().notRequired(),
-    // НЕ ЗНАЮ КАК СДЕЛАТЬ ВАЛИДАЦИЮ, КОГДА ПОЯВЛЯЕТСЯ ОКОШКО
-    captcha: Yup.string(),
-  });
-
   return (
     <Formik
       initialValues={{
@@ -48,9 +27,8 @@ const LoginForm: React.FC<LoginForm> = ({
         rememberMe: false,
         captcha: undefined,
       }}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         submitCallback(values);
-        console.log(values);
       }}
       validationSchema={validationSchema}
     >
