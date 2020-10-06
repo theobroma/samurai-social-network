@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+# PhpStorm
+.idea/*
+
+# VSCode
+.vscode/*
+
 # testing
 /coverage
 
