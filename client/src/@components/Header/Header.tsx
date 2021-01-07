@@ -11,8 +11,7 @@ import { fetchProfileAsync } from '../../@store/profile/actions';
 import { getTheme } from '../../@store/layout/selectors';
 import { setTheme } from '../../@store/layout/actions';
 import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
-
-const logo = require('../../@assets/images/logo.png'); // eslint-disable-line @typescript-eslint/no-var-requires
+import logo from '../../@assets/images/logo.png';
 
 interface Props {
   className?: string;

@@ -6,9 +6,10 @@ import NotFoundPage from '../NotFoundPage';
 import { getUserId } from '../../../@store/auth/selectors';
 import { startAuthenticationProcess } from '../../../@store/auth/actions';
 
-interface INestedRoute {
-  location?: any;
-}
+// IRoute & INestedRoute
+// interface INestedRoute {
+//   // location?: any;
+// }
 
 export const NestedRoute = ({
   component: RouteComponent,
@@ -16,9 +17,9 @@ export const NestedRoute = ({
   path,
   redirect,
   routes,
-  location,
+  // location,
   layout: Layout,
-}: IRoute & INestedRoute) => {
+}: IRoute) => {
   const dispatch = useDispatch();
 
   const userId = useSelector(getUserId);
@@ -52,7 +53,7 @@ export const NestedRoute = ({
         exact={exact}
         path={path}
         render={renderRoute}
-        location={location}
+        // location={location}
       />
     </Layout>
   );

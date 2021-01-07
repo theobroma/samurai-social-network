@@ -30,7 +30,7 @@ export const ProfileStatus: FC<PropsType> = ({ status, updateStatus }) => {
       ) : (
         <input
           onChange={onStatusChange}
-          autoFocus
+          // autoFocus
           onBlur={deactivateEditMode}
           value={statusVal}
         />

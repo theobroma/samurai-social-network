@@ -19,7 +19,9 @@ export enum ResultCodeForCapcthaEnum {
   CaptchaIsRequired = 10,
 }
 
-export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
+export type DataType = Record<string, unknown>;
+
+export type APIResponseType<D = DataType, RC = ResultCodesEnum> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;

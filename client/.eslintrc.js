@@ -3,6 +3,7 @@ module.exports = {
   extends: ['airbnb-typescript-prettier', 'plugin:jest/recommended'],
   plugins: ['react-hooks'],
   rules: {
+    '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-unused-vars': 1,
