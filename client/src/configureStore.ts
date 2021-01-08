@@ -1,57 +1,64 @@
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import { persistStore, persistReducer } from 'redux-persist';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './@store/index';
 import { rootSaga } from './rootSaga';
 
 export const history = createBrowserHistory();
 
-const configureStore = () => {
-  const persistConfig = {
-    key: 'root',
-    storage,
-    // blacklist: ['router'], // will not be persisted
-    // Persist just 'auth' reducer data
-    whitelist: ['auth', 'layout'],
-  };
-
-  const pReducer = persistReducer(persistConfig, rootReducer(history));
-
-  const logger = createLogger({
-    collapsed: true,
-  });
-
-  const sagaMiddleware = createSagaMiddleware();
-
-  const middlewares = [
-    thunk,
-    logger,
-    sagaMiddleware,
-    routerMiddleware(history),
-  ];
-
-  const composeEnhancers = composeWithDevTools({
-    // Specify here name, actionsBlacklist, actionsCreators and other options
-  });
-
-  const store = createStore(
-    pReducer,
-    composeEnhancers(applyMiddleware(...middlewares)),
-  );
-
-  sagaMiddleware.run(rootSaga);
-
-  return store;
+const persistConfig = {
+  key: 'root',
+  storage,
+  // blacklist: ['router'], // will not be persisted
+  // Persist just 'auth' reducer data
+  whitelist: ['auth', 'layout'],
 };
 
-export const store = configureStore();
+const logger = createLogger({
+  collapsed: true,
+});
+
+const sagaMiddleware = createSagaMiddleware();
+
+// Middleware: Redux Persist Persisted Reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer(history));
+
+// https://github.com/rt2zz/redux-persist/issues/988#issuecomment-552242978
+const middleware = [
+  ...getDefaultMiddleware({
+    // immutableCheck: true,
+    thunk: true,
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  logger,
+  sagaMiddleware,
+  routerMiddleware(history),
+];
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware,
+  // devTools: process.env.NODE_ENV === 'development',
+  devTools: true,
+});
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
-
 export default { store, persistor };
