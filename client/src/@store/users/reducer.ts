@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { UserType, UsersFilterType } from '../../@types';
+import { UserType, UsersFilterType, LoadingStateType } from '../../@types';
 import {
   fetchUsersAsync,
   UsersActionType,
@@ -17,7 +17,8 @@ export const usersInitialState = {
     term: '',
     friend: null,
   } as UsersFilterType,
-  isFetching: false,
+  // isFetching: false,
+  loading: 'idle' as LoadingStateType,
   followingInProgress: [] as Array<number>,
 };
 export type usersStateType = typeof usersInitialState;

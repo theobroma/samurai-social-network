@@ -57,3 +57,5 @@ export type UsersFilterType = {
 };
 
 export type IDType = number | null;
+
+export type LoadingStateType = 'idle' | 'pending';

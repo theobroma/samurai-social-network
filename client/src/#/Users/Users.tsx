@@ -4,11 +4,12 @@ import { Users as UsersComponent } from '../../@components/Users/Users';
 import {
   setCurrentPage,
   setUsersFilter,
-  fetchUsersAsync,
+  // fetchUsersAsync,
   followUserAsync,
   unfollowUserAsync,
 } from '../../@store/users/actions';
 import { getUsers } from '../../@store/users/selectors';
+import { fetchUsersTC } from '../../@store/users/slice';
 import { UsersFilterType } from '../../@types';
 
 export const Users: React.FC = React.memo(() => {
@@ -22,7 +23,8 @@ export const Users: React.FC = React.memo(() => {
   } = useSelector(getUsers);
 
   useEffect(() => {
-    dispatch(fetchUsersAsync.request({ currentPage, pageSize: 10 }));
+    // dispatch(fetchUsersAsync.request({ currentPage, pageSize: 10 }));
+    dispatch(fetchUsersTC());
   }, [dispatch, currentPage]);
 
   const handlePageClick = (state: { selected: number }) => {
@@ -32,7 +34,8 @@ export const Users: React.FC = React.memo(() => {
   const handleSetUsersFilter = (filter: UsersFilterType) => {
     dispatch(setUsersFilter(filter));
     // refetch users
-    dispatch(fetchUsersAsync.request({ currentPage, pageSize: 10 }));
+    // dispatch(fetchUsersAsync.request({ currentPage, pageSize: 10 }));
+    dispatch(fetchUsersTC());
     dispatch(setCurrentPage(1));
   };
 
