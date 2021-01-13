@@ -30,6 +30,11 @@ export const fetchUsersTC = createAsyncThunk(
     // param: { currentPage: number; pageSize: number; filter: UsersFilterType },
     thunkAPI,
   ) => {
+    //   TODO:
+    // const s = thunkAPI.getState();
+    // console.log(s);
+    // const { currentRequestId, loading } = thunkAPI.getState().users;
+    // console.log(currentRequestId);
     try {
       const res = await UsersAPI.getUsers(1, 10, {
         term: '',
@@ -44,10 +49,33 @@ export const fetchUsersTC = createAsyncThunk(
   },
 );
 
+// const fetchUsersTC = createAsyncThunk(
+//   'users/fetchUsers',
+//   async (param, { getState, requestId }) => {
+//     const { currentRequestId, loading } = getState().users;
+//     if (loading !== 'pending' || requestId !== currentRequestId) {
+//       return;
+//     }
+//     const res = await UsersAPI.getUsers(1, 10, {
+//       term: '',
+//       friend: null,
+//     });
+//     return res;
+//   },
+// );
+
 export const slice = createSlice({
   name: 'users',
   initialState: usersInitialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    setUsersFilter(state, action) {
+      state.filter = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchUsersTC.pending, (state, action) => {
       if (state.loading === 'idle') {
@@ -77,3 +105,4 @@ export const slice = createSlice({
 });
 
 export const usersReducer = slice.reducer;
+export const { setCurrentPage, setUsersFilter } = slice.actions;
