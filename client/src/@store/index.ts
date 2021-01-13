@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { StateType } from 'typesafe-actions';
 import { History } from 'history';
 import { RouterState, connectRouter } from 'connected-react-router';
 import { authReducer, authStateType } from './auth/reducer';
 import { profileReducer, profileStateType } from './profile/reducer';
 import { usersReducer, usersStateType } from './users/reducer';
-import { layoutReducer, layoutStateType } from './layout/reducer';
+import { layoutStateType } from './layout/reducer';
+import { layoutReducer } from './layout/slice';
 
 export interface RootState {
   auth: authStateType;

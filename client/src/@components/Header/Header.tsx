@@ -9,7 +9,8 @@ import { getUserId } from '../../@store/auth/selectors';
 import { getProfile } from '../../@store/profile/selectors';
 import { fetchProfileAsync } from '../../@store/profile/actions';
 import { getTheme } from '../../@store/layout/selectors';
-import { setTheme } from '../../@store/layout/actions';
+// import { setTheme } from '../../@store/layout/actions';
+import { setTheme } from '../../@store/layout/slice';
 import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 import logo from '../../@assets/images/logo.png';
 
@@ -29,6 +30,11 @@ export const Header: React.FC<Props> = ({ className }) => {
       dispatch(fetchProfileAsync.request(userId));
     }
   }, [dispatch, userId, profile.userId]);
+
+  // just for test
+  // useEffect(() => {
+  //   dispatch(setTheme('dark'));
+  // }, [dispatch]);
 
   const DropdownTitleBlock = profile.userId ? (
     <Avatar
