@@ -1,7 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  SerializedError,
+} from '@reduxjs/toolkit';
 import { UsersAPI } from '../../@api/users';
 import { LoadingStateType, UserType, UsersFilterType } from '../../@types';
-// import { fetchUsersAsync } from './actions';
 
 const usersInitialState = {
   items: [] as Array<UserType>,
@@ -14,6 +17,9 @@ const usersInitialState = {
   } as UsersFilterType,
   //   isFetching: false,
   loading: 'idle' as LoadingStateType,
+  currentRequestId: undefined as any,
+  error: null as SerializedError | null,
+  // following
   followingInProgress: [] as Array<number>,
 };
 
@@ -29,7 +35,7 @@ export const fetchUsersTC = createAsyncThunk(
         term: '',
         friend: null,
       });
-      return { items: res.data };
+      return res;
     } catch (err) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
@@ -42,40 +48,32 @@ export const slice = createSlice({
   name: 'users',
   initialState: usersInitialState,
   reducers: {},
-  //   extraReducers: (builder) => {
-  //     builder.addCase(getForecastTC.fulfilled, (state, action) => {
-  //       if (action.payload) {
-  //         state.forecastday = action.payload.forecastday;
-  //       }
-  //     });
-  //   },
-
   extraReducers: (builder) => {
     builder.addCase(fetchUsersTC.pending, (state, action) => {
-      state.loading = 'pending';
+      if (state.loading === 'idle') {
+        state.loading = 'pending';
+        state.currentRequestId = action.meta.requestId;
+      }
+    });
+    builder.addCase(fetchUsersTC.fulfilled, (state, action) => {
+      const { requestId } = action.meta;
+      const { items, totalCount } = action.payload;
+      if (state.loading === 'pending' && state.currentRequestId === requestId) {
+        state.loading = 'idle';
+        state.items = items;
+        state.totalCount = totalCount;
+        state.currentRequestId = undefined;
+      }
+    });
+    builder.addCase(fetchUsersTC.rejected, (state, action) => {
+      const { requestId } = action.meta;
+      if (state.loading === 'pending' && state.currentRequestId === requestId) {
+        state.loading = 'idle';
+        state.error = action.error;
+        state.currentRequestId = undefined;
+      }
     });
   },
-  //   extraReducers: {
-  //     [fetchUsersTC.pending]: (state, action) => {
-  //       state.loading = 'pending';
-  //     },
-  //     // [fetchUsersTC.fulfilled]: (state, action) => {
-  //     //   const { requestId } = action.meta;
-  //     //   if (state.loading === 'pending' && state.currentRequestId === requestId) {
-  //     //     state.loading = 'idle';
-  //     //     state.entities.push(action.payload);
-  //     //     state.currentRequestId = undefined;
-  //     //   }
-  //     // },
-  //     // [fetchUsersTC.rejected]: (state, action) => {
-  //     //   const { requestId } = action.meta;
-  //     //   if (state.loading === 'pending' && state.currentRequestId === requestId) {
-  //     //     state.loading = 'idle';
-  //     //     state.error = action.error;
-  //     //     state.currentRequestId = undefined;
-  //     //   }
-  //     // },
-  //   },
 });
 
 export const usersReducer = slice.reducer;
