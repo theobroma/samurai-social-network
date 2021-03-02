@@ -1,9 +1,9 @@
 ## React+typescript SamuraiJS Social Network application.
 
-### API
+### API documentation
 
 <br/>
-[API documentation](https://social-network.samuraijs.com/docs).
+https://social-network.samuraijs.com/docs
 <br/>
 
 ### Installation
@@ -12,11 +12,11 @@
 
 ##### 1. For local work, you need to install [package manager npm](https://www.npmjs.com/get-npm) and [node.js server](https://nodejs.org/en/) (usually installed together)
 
-##### 2. Create file /src/@api/keys.ts
+##### 2. Create file /client/.env.local using /client/.env.example.
 
 ##### 3. Register on [this page](https://social-network.samuraijs.com/signUp) and get apiKey.
 
-##### 4. Paste it into /src/@api/keys.ts as constant "apiKey".
+##### 4. Paste it into /client/.env.local as constant "REACT_APP_API_KEY".
 
 ##### 5. Install local dependencies with npm package manager
 

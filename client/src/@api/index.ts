@@ -10,9 +10,6 @@ export const instance: AxiosInstance = axios.create({
   },
 });
 
-console.log(process.env)
-
-
 export enum ResultCodesEnum {
   Success = 0,
   Error = 1,
