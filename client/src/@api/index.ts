@@ -1,13 +1,12 @@
-// apiKey is https://social-network.samuraijs.com/ access string
+// REACT_APP_API_KEY is https://social-network.samuraijs.com/ access string
 import axios, { AxiosInstance } from 'axios';
-import { apiKey } from './keys';
 import { UserType, PhotosType } from '../@types';
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: {
-    'API-KEY': apiKey,
+    'API-KEY': process.env.REACT_APP_API_KEY || process.env.HEROKU_API_KEY,
   },
 });
 
