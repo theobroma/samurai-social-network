@@ -1,0 +1,2 @@
+(this["webpackJsonpsamurai-social-network"]=this["webpackJsonpsamurai-social-network"]||[]).push([[10],{346:function(n,i,s){"use strict";s.r(i),s.d(i,"default",(function(){return e}));var t=s(1),a=s.n(t),r=s(2),e=a.a.memo((function(){return Object(r.jsx)("div",{children:"Dialogs"})}))}}]);
+//# sourceMappingURL=10.0f789d09.chunk.js.map
