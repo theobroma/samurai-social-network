@@ -23,23 +23,17 @@ const usersInitialState = {
   followingInProgress: [] as Array<number>,
 };
 
-export const fetchUsersTC = createAsyncThunk(
+export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
   'users/fetchUsers',
-  async (
-    param,
-    // param: { currentPage: number; pageSize: number; filter: UsersFilterType },
-    thunkAPI,
-  ) => {
-    //   TODO:
-    // const s = thunkAPI.getState();
-    // console.log(s);
-    // const { currentRequestId, loading } = thunkAPI.getState().users;
-    // console.log(currentRequestId);
+  async (_, thunkAPI) => {
+    const { currentPage, pageSize, filter, currentRequestId, loading } =
+      thunkAPI.getState().users;
     try {
-      const res = await UsersAPI.getUsers(1, 10, {
-        term: '',
-        friend: null,
-      });
+      // TODO:
+      // if (loading !== 'pending' || thunkAPI.requestId !== currentRequestId) {
+      //   return null;
+      // }
+      const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
       return res;
     } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
@@ -48,21 +42,6 @@ export const fetchUsersTC = createAsyncThunk(
     }
   },
 );
-
-// const fetchUsersTC = createAsyncThunk(
-//   'users/fetchUsers',
-//   async (param, { getState, requestId }) => {
-//     const { currentRequestId, loading } = getState().users;
-//     if (loading !== 'pending' || requestId !== currentRequestId) {
-//       return;
-//     }
-//     const res = await UsersAPI.getUsers(1, 10, {
-//       term: '',
-//       friend: null,
-//     });
-//     return res;
-//   },
-// );
 
 export const slice = createSlice({
   name: 'users',

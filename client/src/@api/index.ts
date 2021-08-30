@@ -10,8 +10,6 @@ export const instance: AxiosInstance = axios.create({
   },
 });
 
-console.log(process.env.REACT_APP_API_KEY);
-
 export enum ResultCodesEnum {
   Success = 0,
   Error = 1,

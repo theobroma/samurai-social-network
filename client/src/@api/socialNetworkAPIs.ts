@@ -1,4 +1,4 @@
-// apiKey is https://social-network.samuraijs.com/ access string
+// just example file.NOT USED
 import axios, { AxiosInstance } from 'axios';
 
 export type AuthData = {
