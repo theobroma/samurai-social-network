@@ -1,136 +1,144 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { Formik } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
 import { LoginPayload } from '../../../@store/auth/types';
 import { validationSchema } from './yup';
 
-interface LoginForm {
-  error?: string | null;
+interface LoginFormProps {
   captchaUrl?: string | null;
   submitCallback: (payload: LoginPayload) => void;
 }
 
-const LoginForm: React.FC<LoginForm> = ({
+interface IValues {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+  captcha: string | undefined;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({
   captchaUrl = null,
   submitCallback,
-  error = null,
 }) => {
-  const [wait, setWait] = useState(false);
-
+  const initialValues: IValues = {
+    email: '',
+    password: '',
+    rememberMe: false,
+    captcha: undefined,
+  };
+  const onSubmit = (values: IValues, props: FormikHelpers<IValues>) => {
+    console.log(values);
+    setTimeout(() => {
+      submitCallback(values);
+      props.resetForm();
+      props.setSubmitting(false);
+    }, 2000);
+  };
   return (
     <Formik
-      initialValues={{
-        email: '',
-        password: '',
-        rememberMe: false,
-        captcha: undefined,
-      }}
-      onSubmit={(values) => {
-        submitCallback(values);
-      }}
+      initialValues={initialValues}
+      onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        // handleBlur,
-        values,
-        touched,
-        errors,
-      }) => (
-        // @ts-ignore
-        <Form noValidate onSubmit={handleSubmit}>
-          <Form.Group controlId="formEmail">
-            <Form.Label>Email адрес</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={values.email}
-              placeholder="Введите email"
-              required
-              onChange={handleChange}
-              isValid={touched.email && !errors.email}
-            />
-            {touched.email && errors.email ? (
-              <Form.Text className="text-danger">{errors.email}</Form.Text>
-            ) : null}
-            {!touched.email ? (
-              <Form.Text className="text-muted">
-                Не беспокойся за корректность! Мы верифицируем входные данные!
-              </Form.Text>
-            ) : null}
-          </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>Пароль</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={values.password}
-              placeholder="Пароль"
-              required
-              onChange={handleChange}
-              isValid={touched.password && !errors.password}
-            />
-            {touched.password && errors.password ? (
-              <Form.Text className="text-danger">{errors.password}</Form.Text>
-            ) : null}
-          </Form.Group>
-          <Form.Group controlId="formCheckbox">
-            <Form.Check
-              type="checkbox"
-              label="Запомнить меня"
-              name="rememberMe"
-              checked={values.rememberMe}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          {captchaUrl ? (
-            <Form.Group controlId="formCaptcha">
-              <Form.Label>Проверочка на робота</Form.Label>
-              <div className="d-flex justify-content-center mb-3">
-                <Image src={captchaUrl} fluid />
-              </div>
+      {(props) => {
+        const {
+          errors,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          values,
+        } = props;
+        return (
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email адрес</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Введи символы с картинки"
-                name="captcha"
-                value={values.captcha}
+                type="email"
+                name="email"
+                value={values.email}
+                placeholder="Введите email"
                 required
+                onBlur={handleBlur}
                 onChange={handleChange}
-                isValid={touched.captcha && !errors.captcha}
+                isValid={Boolean(touched.email && !errors.email)}
+                isInvalid={Boolean(touched.email && errors.email)}
               />
-              {touched.captcha && errors.captcha ? (
-                <Form.Text className="text-danger">{errors.captcha}</Form.Text>
+              {touched.email && errors.email ? (
+                <Form.Text className="text-danger">{errors.email}</Form.Text>
+              ) : null}
+              {!touched.email ? (
+                <Form.Text className="text-muted">
+                  Не беспокойся за корректность! Мы верифицируем входные данные!
+                </Form.Text>
               ) : null}
             </Form.Group>
-          ) : null}
-          <Form.Group>
-            <div className="d-flex justify-content-center">
-              {error && wait ? (
-                <Button
-                  className="w-100"
-                  variant="danger"
-                  disabled
-                  type="submit"
-                >
-                  {error}
-                </Button>
-              ) : (
+            <Form.Group controlId="formPassword">
+              <Form.Label>Пароль</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={values.password}
+                placeholder="Пароль"
+                required
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isValid={Boolean(touched.password && !errors.password)}
+                isInvalid={Boolean(touched.password && errors.password)}
+              />
+              {touched.password && errors.password ? (
+                <Form.Text className="text-danger">{errors.password}</Form.Text>
+              ) : null}
+            </Form.Group>
+            <Form.Group controlId="formCheckbox">
+              <Form.Check
+                type="checkbox"
+                label="Запомнить меня"
+                name="rememberMe"
+                checked={values.rememberMe}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {captchaUrl ? (
+              <Form.Group controlId="formCaptcha">
+                <Form.Label>Проверочка на робота</Form.Label>
+                <div className="d-flex justify-content-center mb-3">
+                  <Image src={captchaUrl} fluid />
+                </div>
+                <Form.Control
+                  type="text"
+                  placeholder="Введи символы с картинки"
+                  name="captcha"
+                  value={values.captcha}
+                  required
+                  onChange={handleChange}
+                  isValid={touched.captcha && !errors.captcha}
+                />
+                {touched.captcha && errors.captcha ? (
+                  <Form.Text className="text-danger">
+                    {errors.captcha}
+                  </Form.Text>
+                ) : null}
+              </Form.Group>
+            ) : null}
+            <Form.Group>
+              <div className="d-flex justify-content-center">
                 <Button
                   className="w-100"
                   variant="primary"
-                  disabled={false}
+                  disabled={isSubmitting}
                   type="submit"
                 >
-                  Войти
+                  {isSubmitting ? 'Loading' : 'Sign in'}
                 </Button>
-              )}
-            </div>
-          </Form.Group>
-        </Form>
-      )}
+              </div>
+            </Form.Group>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
