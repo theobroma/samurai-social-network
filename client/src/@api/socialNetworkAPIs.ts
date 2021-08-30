@@ -1,7 +1,5 @@
 // apiKey is https://social-network.samuraijs.com/ access string
 import axios, { AxiosInstance } from 'axios';
-import { apiKey } from './keys';
-// import { AuthData, Photos, Profile, User } from '../@types/index';
 
 export type AuthData = {
   id: number | null;
@@ -80,7 +78,7 @@ type Url = string;
 const instance: AxiosInstance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   headers: {
-    'API-KEY': apiKey,
+    'API-KEY': 'xxxxxxxx-xxxx-xxx-xxxx-xxxxxxxxxxxx',
   },
   withCredentials: true,
 });
