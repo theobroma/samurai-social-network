@@ -22,7 +22,7 @@ export function* getUsersSaga(
     } else {
       yield put(fetchUsersAsync.success(res));
     }
-  } catch (err) {
+  } catch (err: any) {
     yield put(fetchUsersAsync.failure(err));
   }
 }
@@ -33,7 +33,7 @@ export function* followUserSaga(
   try {
     const response = yield call(UsersAPI.followUser, action.payload);
     yield put(followUserAsync.success(response));
-  } catch (err) {
+  } catch (err: any) {
     yield put(followUserAsync.failure(err));
   }
 }
@@ -44,12 +44,12 @@ export function* unfollowUserSaga(
   try {
     const response = yield call(UsersAPI.unfollowUser, action.payload);
     yield put(unfollowUserAsync.success(response));
-  } catch (err) {
+  } catch (err: any) {
     yield put(unfollowUserAsync.failure(err));
   }
 }
 
-function* rootSagas() {
+function* rootSagas(): any {
   yield all([
     takeLatest(fetchUsersAsync.request, getUsersSaga),
     takeLatest(followUserAsync.request, followUserSaga),

@@ -41,7 +41,7 @@ export const fetchUsersTC = createAsyncThunk(
         friend: null,
       });
       return res;
-    } catch (err) {
+    } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
       return thunkAPI.rejectWithValue(err.response.data);

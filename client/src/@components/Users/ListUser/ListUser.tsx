@@ -15,7 +15,7 @@ type Props = {
 
 const ListUser: React.FC<Props> = ({
   user,
-  isFetching,
+  isFetching = false,
   followingInProgress,
   follow,
   unfollow,

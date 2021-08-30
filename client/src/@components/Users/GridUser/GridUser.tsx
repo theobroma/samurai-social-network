@@ -15,7 +15,7 @@ type Props = {
 
 const GridUser: React.FC<Props> = ({
   user,
-  isFetching,
+  isFetching = false,
   followingInProgress = [],
   follow,
   unfollow,

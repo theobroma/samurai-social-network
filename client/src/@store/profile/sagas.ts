@@ -21,7 +21,7 @@ export function* getProfileSaga(
     } else {
       yield put(fetchProfileAsync.success(res));
     }
-  } catch (err) {
+  } catch (err: any) {
     yield put(fetchProfileAsync.failure(err));
   }
 }
@@ -33,7 +33,7 @@ export function* getStatusSaga(
     // const userId: number | null = yield select(getUserId);
     const response = yield call(ProfileAPI.getStatus, action.payload);
     yield put(fetchStatusAsync.success(response));
-  } catch (err) {
+  } catch (err: any) {
     yield put(fetchStatusAsync.failure(err));
   }
 }
@@ -47,7 +47,7 @@ export function* updateStatusSaga(
     // refetch status
     const userId: IDType = yield select(getUserId);
     yield put(fetchStatusAsync.request(userId));
-  } catch (err) {
+  } catch (err: any) {
     yield put(updateStatusAsync.failure(err));
   }
 }
@@ -61,7 +61,7 @@ export function* updateProfileSaga(
     // refetch profile
     const userId: IDType = yield select(getUserId);
     yield put(fetchProfileAsync.request(userId));
-  } catch (err) {
+  } catch (err: any) {
     yield put(updateProfileAsync.failure(err));
   }
 }
@@ -75,12 +75,12 @@ export function* updateAvatarSaga(
     // refetch profile
     const userId: IDType = yield select(getUserId);
     yield put(fetchProfileAsync.request(userId));
-  } catch (err) {
+  } catch (err: any) {
     yield put(updateAvatarAsync.failure(err));
   }
 }
 
-function* rootSagas() {
+function* rootSagas(): any {
   yield all([
     takeLatest(fetchProfileAsync.request, getProfileSaga),
     takeLatest(fetchStatusAsync.request, getStatusSaga),

@@ -8,7 +8,7 @@ export const SecurityAPI = {
     try {
       const response = await instance.get('security/get-captcha-url');
       return response.status === 200 ? response.data.url : response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },

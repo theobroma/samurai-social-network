@@ -6,7 +6,7 @@ export const ProfileAPI = {
     try {
       const response = await instance.get<ProfileType>(`profile/${id}`);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -14,7 +14,7 @@ export const ProfileAPI = {
     try {
       const response = await instance.get<string>(`profile/status/${id}`);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -24,7 +24,7 @@ export const ProfileAPI = {
         status,
       });
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -42,7 +42,7 @@ export const ProfileAPI = {
         },
       );
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -50,7 +50,7 @@ export const ProfileAPI = {
     try {
       const response = await instance.put<APIResponseType>(`profile`, profile);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },

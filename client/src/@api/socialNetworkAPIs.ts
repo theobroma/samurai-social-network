@@ -95,7 +95,7 @@ export const AuthAPI = {
         return serverResponse.data;
       }
       throw new Error(serverResponse.messages[0]);
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -133,7 +133,7 @@ export const AuthAPI = {
         resultCode: serverResponse.resultCode,
         error: serverResponse.messages[0],
       };
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -146,7 +146,7 @@ export const AuthAPI = {
         return true;
       }
       throw new Error(serverResponse.messages[0]);
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -155,7 +155,7 @@ export const AuthAPI = {
     try {
       const response = await instance.get('security/get-captcha-url');
       return response.status === 200 ? response.data.url : response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -182,7 +182,7 @@ export const UsersAPI = {
         return serverResponse;
       }
       throw new Error(serverResponse.error);
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -190,7 +190,7 @@ export const UsersAPI = {
     try {
       const response = await instance.get(`follow/${userId}`);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -201,7 +201,7 @@ export const UsersAPI = {
       return serverResponse.resultCode === 0
         ? true
         : serverResponse.messages[0];
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -212,7 +212,7 @@ export const UsersAPI = {
       return serverResponse.resultCode === 0
         ? true
         : serverResponse.messages[0];
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -226,7 +226,7 @@ export const ProfileAPI = {
         return response.data;
       }
       return `Can't access to server with status code: ${response.status}`;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -237,7 +237,7 @@ export const ProfileAPI = {
         return response.data;
       }
       return `Can't access to server with status code: ${response.status}`;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -248,7 +248,7 @@ export const ProfileAPI = {
       return serverResponse.resultCode === 0
         ? true
         : serverResponse.messages[0];
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -266,7 +266,7 @@ export const ProfileAPI = {
       return serverResponse.resultCode === 0
         ? true
         : serverResponse.messages[0];
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -287,7 +287,7 @@ export const ProfileAPI = {
       return serverResponse.resultCode === 0
         ? serverResponse.data
         : serverResponse.messages[0];
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },

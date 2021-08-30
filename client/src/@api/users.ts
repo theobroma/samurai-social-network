@@ -15,7 +15,7 @@ export const UsersAPI = {
         }`,
       );
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -24,7 +24,7 @@ export const UsersAPI = {
     try {
       const response = await instance.post<APIResponseType>(`follow/${id}`);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -33,7 +33,7 @@ export const UsersAPI = {
     try {
       const response = await instance.delete<APIResponseType>(`follow/${id}`);
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },

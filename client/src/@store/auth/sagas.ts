@@ -33,7 +33,7 @@ export function* loginSaga(
     } else {
       //   put(actions.setErrorMessage(response.error));
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
   } finally {
     // yield put(actions.setFetchingStatus(false));
@@ -51,7 +51,7 @@ export function* logoutSaga(): SagaIterator<void> {
         put(push('/login')),
       ]);
     }
-  } catch (err) {
+  } catch (err: any) {
     yield put(actions.logoutAsync.failure(err));
   }
 }
@@ -72,7 +72,7 @@ export function* authMeSaga(): SagaIterator<void> {
         // put(actions.loginSuccess()),
       ]);
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
   } finally {
     // yield put(actions.setFetchingStatus(false));
@@ -83,12 +83,12 @@ export function* captchaSaga(): SagaIterator<void> {
   try {
     const response = yield call(SecurityAPI.getCaptchaUrl);
     yield put(actions.captchaAsync.success(response));
-  } catch (err) {
+  } catch (err: any) {
     yield put(actions.captchaAsync.failure(err));
   }
 }
 
-function* rootSagas() {
+function* rootSagas(): any {
   yield all([
     yield takeLatest(START_LOGIN, loginSaga),
     yield takeLatest(GET_AUTH_USER_DATA, authMeSaga),

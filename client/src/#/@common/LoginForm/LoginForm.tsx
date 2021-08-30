@@ -13,9 +13,9 @@ interface LoginForm {
 }
 
 const LoginForm: React.FC<LoginForm> = ({
-  captchaUrl,
+  captchaUrl = null,
   submitCallback,
-  error,
+  error = null,
 }) => {
   const [wait, setWait] = useState(false);
 

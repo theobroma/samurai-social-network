@@ -37,7 +37,7 @@ export const AuthAPI = {
         captcha,
       });
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },
@@ -45,7 +45,7 @@ export const AuthAPI = {
     try {
       const response = await instance.delete('auth/login');
       return response;
-    } catch (e) {
+    } catch (e: any) {
       return e.message;
     }
   },

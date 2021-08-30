@@ -39,7 +39,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   },
   {
     access: [ROLES.USERS],
-    component: lazy(() => import('./Users/')),
+    component: lazy(() => import('./Users')),
     path: ROUTES.USERS,
     layout: UserLayout,
   },

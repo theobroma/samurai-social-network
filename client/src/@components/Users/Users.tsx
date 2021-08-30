@@ -14,14 +14,14 @@ type PropsType = {
   handlePageClick: (state: { selected: number }) => void;
   handleSetUsersFilter: (filter: UsersFilterType) => void;
   users: Array<UserType>;
-  isFetching?: boolean;
+  // isFetching?: boolean;
   follow: (id: number) => void;
   unfollow: (id: number) => void;
   followingInProgress: Array<number>;
 };
 
 export const Users: React.FC<PropsType> = ({
-  // currentPage = 1,
+  currentPage = null,
   totalCount = 999,
   pageSize = 10,
   handlePageClick,

@@ -18,7 +18,7 @@ interface Props {
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ className }) => {
+export const Header: React.FC<Props> = ({ className = null }) => {
   const dispatch = useDispatch();
   const userId = useSelector(getUserId);
   // No need to fetch profile cause of redirect to "profile" page after login where already "fetchProfileAsync.request"
