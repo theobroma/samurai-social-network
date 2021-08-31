@@ -18,6 +18,8 @@ module.exports = {
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react/jsx-props-no-spreading": 0,
+        "react/prop-types": 0, // Since we do not use prop-types
+        "react/require-default-props": 0, // Since we do not use prop-types
         "react/state-in-constructor": 0,
     },
 };

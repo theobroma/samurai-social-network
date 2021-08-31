@@ -46,7 +46,6 @@ export const UserSearchForm: React.FC<Props> = ({ handleSetUsersFilter }) => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          // @ts-ignore
           <Form noValidate onSubmit={handleSubmit}>
             {/* 1 */}
             <Form.Group controlId="fullName">
