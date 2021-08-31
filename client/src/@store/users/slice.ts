@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import { UsersAPI } from '../../@api/users';
 import { LoadingStateType, UserType, UsersFilterType } from '../../@types';
+import { waitForMe } from '../../@utils/waitforme';
 
 const usersInitialState = {
   items: [] as Array<UserType>,
@@ -35,6 +36,7 @@ export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
       // if (loading !== 'pending' || thunkAPI.requestId !== currentRequestId) {
       //   return null;
       // }
+      await waitForMe(1000);
       const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
       return res;
     } catch (err: any) {
