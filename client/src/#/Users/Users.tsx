@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Users as UsersComponent } from '../../@components/Users/Users';
-import {
-  // setCurrentPage,
-  // setUsersFilter,
-  // fetchUsersAsync,
-  followUserAsync,
-  unfollowUserAsync,
-} from '../../@store/users/actions';
 import { getUsers } from '../../@store/users/selectors';
 import {
   fetchUsersTC,
   followUserTC,
   setCurrentPage,
   setUsersFilter,
+  unfollowUserTC,
 } from '../../@store/users/slice';
 import { UsersFilterType } from '../../@types';
 
@@ -53,7 +47,8 @@ export const Users: React.FC = React.memo(() => {
   };
 
   const handleUnFollow = (id: number) => {
-    dispatch(unfollowUserAsync.request(id));
+    // dispatch(unfollowUserAsync.request(id));
+    dispatch(unfollowUserTC(id));
   };
 
   return (
