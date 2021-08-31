@@ -11,6 +11,7 @@ import {
 import { getUsers } from '../../@store/users/selectors';
 import {
   fetchUsersTC,
+  followUserTC,
   setCurrentPage,
   setUsersFilter,
 } from '../../@store/users/slice';
@@ -47,7 +48,8 @@ export const Users: React.FC = React.memo(() => {
   };
 
   const handleFollow = (id: number) => {
-    dispatch(followUserAsync.request(id));
+    // dispatch(followUserAsync.request(id));
+    dispatch(followUserTC(id));
   };
 
   const handleUnFollow = (id: number) => {
