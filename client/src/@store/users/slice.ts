@@ -23,6 +23,8 @@ const usersInitialState = {
   followingInProgress: [] as Array<number>,
 };
 
+export type UsersInitialStateType = typeof usersInitialState;
+
 export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
   'users/fetchUsers',
   async (_, thunkAPI) => {

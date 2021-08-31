@@ -5,6 +5,8 @@ const layoutInitialState = {
   theme: 'light' as ThemeColors,
 };
 
+export type LayoutInitialStateType = typeof layoutInitialState;
+
 export const slice = createSlice({
   name: 'layout',
   initialState: layoutInitialState,

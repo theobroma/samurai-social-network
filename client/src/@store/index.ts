@@ -1,20 +1,17 @@
-import { combineReducers } from 'redux';
+import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
-import { RouterState, connectRouter } from 'connected-react-router';
+import { combineReducers } from 'redux';
 import { authReducer, authStateType } from './auth/reducer';
+import { LayoutInitialStateType, layoutReducer } from './layout/slice';
 import { profileReducer, profileStateType } from './profile/reducer';
-import { usersStateType } from './users/reducer';
-import { usersReducer } from './users/slice';
-import { layoutStateType } from './layout/reducer';
-import { layoutReducer } from './layout/slice';
+import { UsersInitialStateType, usersReducer } from './users/slice';
 
 export interface RootState {
   auth: authStateType;
-  layout: layoutStateType;
+  layout: LayoutInitialStateType;
   profile: profileStateType;
-  // users: usersStateType;
-  users: any;
   router: RouterState;
+  users: UsersInitialStateType;
 }
 
 // https://github.com/reduxjs/redux/issues/2709
@@ -23,8 +20,8 @@ export const rootReducer = (history: History) =>
     auth: authReducer,
     layout: layoutReducer,
     profile: profileReducer,
-    users: usersReducer,
     router: connectRouter(history),
+    users: usersReducer,
   });
 
 // export type RootState = StateType<typeof rootReducer>;
