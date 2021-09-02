@@ -10,5 +10,7 @@ declare module 'styled-components' {
   //     elementBackground: string;
   //   }
   type Theme = typeof lightTheme;
+  /* eslint-disable @typescript-eslint/no-empty-interface */
   export interface DefaultTheme extends Theme {}
+  /* eslint-enable @typescript-eslint/no-empty-interface */
 }

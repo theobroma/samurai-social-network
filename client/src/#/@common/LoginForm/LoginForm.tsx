@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { Formik, FormikHelpers } from 'formik';
+import { Spinner } from 'react-bootstrap';
 import { LoginPayload } from '../../../@store/auth/types';
 import { validationSchema } from './yup';
 
@@ -132,7 +133,20 @@ const LoginForm: React.FC<LoginFormProps> = ({
                   disabled={isSubmitting}
                   type="submit"
                 >
-                  {isSubmitting ? 'Loading' : 'Sign in'}
+                  {isSubmitting ? (
+                    <>
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      <span className="visually-hidden ml-1">Loading...</span>
+                    </>
+                  ) : (
+                    'Sign in'
+                  )}
                 </Button>
               </div>
             </Form.Group>
