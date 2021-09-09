@@ -52,6 +52,14 @@ export const slice = createSlice({
       state.isLoading = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(loginTC.fulfilled, (state, action) => {
+      state.isAuth = true;
+      //  TODO tmp
+      state.userId = action.payload.data.userId;
+      state.userRole = ROLE.USER;
+    });
+  },
 });
 
 export const authReducer = slice.reducer;
