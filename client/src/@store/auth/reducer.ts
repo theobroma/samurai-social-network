@@ -13,9 +13,9 @@ export const authInitialState = {
   email: null as string | null,
   login: null as string | null,
   captchaUrl: null as string | null,
-  errorMessage: null as string | null,
-  isAuthorized: false,
-  isFetching: false,
+  // errorMessage: null as string | null,
+  // isAuthorized: false,
+  // isFetching: false,
   userRole: ROLE.GUEST,
 };
 
