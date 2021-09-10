@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { Redirect, Route, RouteComponentProps } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { IRoute } from '../../../@types';
 import NotFoundPage from '../NotFoundPage';
-import { getUserId } from '../../../@store/auth/selectors';
-import { startAuthenticationProcess } from '../../../@store/auth/actions';
+// import { getUserId } from '../../../@store/auth/selectors';
+// import { startAuthenticationProcess } from '../../../@store/auth/actions';
 
 // IRoute & INestedRoute
 // interface INestedRoute {
@@ -20,15 +20,15 @@ export const NestedRoute = ({
   // location,
   layout: Layout,
 }: IRoute) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const userId = useSelector(getUserId);
+  // const userId = useSelector(getUserId);
 
-  useEffect(() => {
-    if (userId) {
-      dispatch(startAuthenticationProcess());
-    }
-  }, [dispatch, userId]);
+  // useEffect(() => {
+  //   if (userId) {
+  //     dispatch(startAuthenticationProcess());
+  //   }
+  // }, [dispatch, userId]);
 
   const renderRoute = useCallback(
     (props: RouteComponentProps<any>) => {

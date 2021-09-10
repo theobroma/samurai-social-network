@@ -28,7 +28,7 @@ export const AuthAPI = {
     captcha: string | null = null,
   ): Promise<any> => {
     try {
-      const response = await instance.post<
+      const res = await instance.post<
         APIResponseType<AuthLogin, ResultCodesEnum | ResultCodeForCapcthaEnum>
       >('auth/login', {
         email,
@@ -36,15 +36,15 @@ export const AuthAPI = {
         rememberMe,
         captcha,
       });
-      return response.data;
+      return res.data;
     } catch (e: any) {
       return e.message;
     }
   },
   logout: async (): Promise<any> => {
     try {
-      const response = await instance.delete('auth/login');
-      return response;
+      const res = await instance.delete('auth/login');
+      return res.data;
     } catch (e: any) {
       return e.message;
     }

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { ResultCodesEnum, ResultCodeForCapcthaEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
 import { ROLE } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
@@ -30,6 +31,14 @@ export const loginTC = createAsyncThunk(
       thunkAPI.dispatch(setLoadingAC(true));
       await waitForMe(500);
       const res = await AuthAPI.login(param.email, param.password);
+      if (res.resultCode === ResultCodesEnum.Success) {
+        // success, get auth data
+        thunkAPI.dispatch(authMeTC());
+      } else if (
+        res.data.resultCode === ResultCodeForCapcthaEnum.CaptchaIsRequired
+      ) {
+        // thunkAPI.dispatch(getCaptchaUrl());
+      }
       return { data: res.data };
     } catch (err: any) {
       if (!err.response) {
@@ -44,15 +53,47 @@ export const loginTC = createAsyncThunk(
   },
 );
 
+export const authMeTC = createAsyncThunk('auth/authMe', async (_, thunkAPI) => {
+  try {
+    // thunkAPI.dispatch(setLoadingAC(true));
+    await waitForMe(500);
+    const res = await AuthAPI.me();
+    if (res.resultCode === ResultCodesEnum.Success) {
+      const { id, email, login } = res.data;
+      thunkAPI.dispatch(
+        setAuthUserDataAC({
+          userId: id,
+          email,
+          login,
+          isAuth: true, // duplication  as loginTC.fulfilled
+          // additional custom
+          userRole: ROLE.USER, // duplication  as loginTC.fulfilled
+        }),
+      );
+    }
+
+    return { data: res.data };
+  } catch (err: any) {
+    if (!err.response) {
+      throw err;
+    }
+    // Use `err.response.data` as `action.payload` for a `rejected` action,
+    // by explicitly returning it using the `rejectWithValue()` utility
+    return thunkAPI.rejectWithValue(err.response.data);
+  } finally {
+    // thunkAPI.dispatch(setLoadingAC(false));
+  }
+});
+
 export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     // thunkAPI.dispatch(setLoadingAC(true));
     await waitForMe(500);
     const res = await AuthAPI.logout();
-    if (res.data.resultCode === 0) {
+    if (res.resultCode === ResultCodesEnum.Success) {
       thunkAPI.dispatch(
         setAuthUserDataAC({
-          id: null,
+          userId: null,
           email: null,
           login: null,
           isAuth: false,
@@ -61,7 +102,7 @@ export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
         }),
       );
     }
-    return res.data;
+    return true; // return doesn't matter
   } catch (err: any) {
     if (!err.response) {
       throw err;
@@ -82,7 +123,7 @@ export const slice = createSlice({
       state.isLoading = action.payload;
     },
     setAuthUserDataAC(state, action) {
-      state.userId = action.payload.id;
+      state.userId = action.payload.userId;
       state.email = action.payload.email;
       state.login = action.payload.login;
       state.isAuth = action.payload.isAuth;
