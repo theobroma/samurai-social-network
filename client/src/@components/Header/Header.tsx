@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import classes from './Header.module.scss';
-import { logoutAsync } from '../../@store/auth/actions';
+// import { logoutAsync } from '../../@store/auth/actions';
 import { getUserId } from '../../@store/auth/selectors';
 import { getProfile } from '../../@store/profile/selectors';
 import { fetchProfileAsync } from '../../@store/profile/actions';
@@ -13,6 +13,7 @@ import { getTheme } from '../../@store/layout/selectors';
 import { setTheme } from '../../@store/layout/slice';
 import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 import logo from '../../@assets/images/logo.png';
+import { logoutTC } from '../../@store/auth/slice';
 
 interface Props {
   className?: string;
@@ -81,7 +82,10 @@ export const Header: React.FC<Props> = ({ className = null }) => {
               Current theme: {theme}
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={() => dispatch(logoutAsync.request())}>
+            {/* <NavDropdown.Item onClick={() => dispatch(logoutAsync.request())}>
+              Logout
+            </NavDropdown.Item> */}
+            <NavDropdown.Item onClick={() => dispatch(logoutTC())}>
               Logout
             </NavDropdown.Item>
           </NavDropdown>
