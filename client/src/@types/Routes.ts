@@ -1,9 +1,10 @@
 export enum ROUTES {
-  ROOT = '/',
-  LOGIN = '/login',
-  PROFILE = '/profile',
+  CHAT = '/chat',
   DIALOGS = '/dialogs',
-  USERS = '/users',
+  LOGIN = '/login',
   MUSIC = '/music',
+  PROFILE = '/profile',
+  ROOT = '/',
   SETTINGS = '/settings',
+  USERS = '/users',
 }

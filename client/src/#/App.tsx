@@ -54,6 +54,12 @@ export const APP_MAIN_ROUTES: IRoute[] = [
     path: ROUTES.ROOT,
     layout: GuestLayout,
   },
+  {
+    access: [ROLES.USERS],
+    component: lazy(() => import('../@views/ChatView')),
+    path: ROUTES.CHAT,
+    layout: UserLayout,
+  },
 ];
 
 interface IAppProps {

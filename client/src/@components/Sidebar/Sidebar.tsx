@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
 import {
   FaHome,
   FaRegComments,
@@ -7,6 +6,7 @@ import {
   FaMusic,
   FaRegSun,
   FaUserCircle,
+  FaRocketchat,
 } from 'react-icons/fa';
 import { FiLogIn } from 'react-icons/fi';
 
@@ -39,6 +39,10 @@ const Sidebar: React.FC = React.memo(() => {
       <NavItem path="/settings">
         <FaRegSun className="mr-3" />
         Settings
+      </NavItem>
+      <NavItem path="/chat">
+        <FaRocketchat className="mr-3" />
+        Chat
       </NavItem>
       <NavItem path="/login">
         <FiLogIn className="mr-3" />
