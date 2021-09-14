@@ -2,11 +2,11 @@
 @import 'variables';
 @import 'colors';
 @import 'base';
-
+@import 'chat';
 .option-subheading {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: left;
-  color: #4a4a4a;
-  font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    color: #4a4a4a;
+    font-family: Roboto, Arial, sans-serif;
 }
