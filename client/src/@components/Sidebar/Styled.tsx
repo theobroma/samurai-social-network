@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSideNav = styled.div`
   /* minus navigation height */
-  /* height: calc(100vh - 66px);  */
+  /* height: calc(100vh - 66px); */
   background-color: #fff;
   padding-top: 10px;
   margin-bottom: 16px;

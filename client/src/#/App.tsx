@@ -6,57 +6,117 @@ import { NestedRoute } from './@common/NestedRoute/NestedRoute';
 import { useAllowedRoutes } from '../@utils/useAllowedRoutes';
 import { UserLayout, GuestLayout } from './@common/NestedRoute/Layouts';
 
-const MUSIC = lazy(() => {
-  return new Promise<any>((resolve) => {
-    setTimeout(() => resolve(import('./Music')), 1000);
-  });
+const MIN_LAZY_DELAY = 1000;
+
+const MainView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "MainView" */ './#/Main'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const LoginView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "LoginView" */ './#login'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const MusicView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "MusicView" */ './Music'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const DialogsView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "DialogsView" */ './Dialogs'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const ProfileView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "ProfileView" */ './Profile'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const SettingsView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "SettingsView" */ './Settings'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const UsersView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "UsersView" */ './Users'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const ChatView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "ChatView" */ '../@views/ChatView'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
 });
 
 export const APP_MAIN_ROUTES: IRoute[] = [
   {
-    access: [ROLES.USERS],
-    component: MUSIC,
-    path: ROUTES.MUSIC,
-    layout: UserLayout,
-  },
-  {
-    access: [ROLES.USERS],
-    component: lazy(() => import('./Dialogs')),
-    path: ROUTES.DIALOGS,
-    layout: UserLayout,
-  },
-  {
-    access: [ROLES.USERS],
-    component: lazy(() => import('./Profile')),
-    path: ROUTES.PROFILE,
-    layout: UserLayout,
-  },
-  {
-    access: [ROLES.USERS],
-    component: lazy(() => import('./Settings')),
-    path: ROUTES.SETTINGS,
-    layout: UserLayout,
-  },
-  {
-    access: [ROLES.USERS],
-    component: lazy(() => import('./Users')),
-    path: ROUTES.USERS,
-    layout: UserLayout,
+    component: MainView,
+    exact: true,
+    layout: GuestLayout,
+    path: ROUTES.ROOT,
   },
   {
     access: [ROLES.GUESTS],
-    component: lazy(() => import('./#login')),
+    component: LoginView,
+    exact: true,
     path: ROUTES.LOGIN,
     layout: GuestLayout,
   },
   {
-    component: lazy(() => import('./#/Main')),
-    path: ROUTES.ROOT,
-    layout: GuestLayout,
+    access: [ROLES.USERS],
+    component: MusicView,
+    exact: true,
+    layout: UserLayout,
+    path: ROUTES.MUSIC,
   },
   {
     access: [ROLES.USERS],
-    component: lazy(() => import('../@views/ChatView')),
+    component: DialogsView,
+    exact: true,
+    layout: UserLayout,
+    path: ROUTES.DIALOGS,
+  },
+  {
+    access: [ROLES.USERS],
+    component: ProfileView,
+    exact: true,
+    layout: UserLayout,
+    path: ROUTES.PROFILE,
+  },
+  {
+    access: [ROLES.USERS],
+    component: SettingsView,
+    exact: true,
+    layout: UserLayout,
+    path: ROUTES.SETTINGS,
+  },
+  {
+    access: [ROLES.USERS],
+    component: UsersView,
+    exact: true,
+    layout: UserLayout,
+    path: ROUTES.USERS,
+  },
+  {
+    access: [ROLES.USERS],
+    component: ChatView,
+    exact: true,
     path: ROUTES.CHAT,
     layout: UserLayout,
   },
