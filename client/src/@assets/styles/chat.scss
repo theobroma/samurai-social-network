@@ -1,3 +1,4 @@
+// https://www.bootdey.com/snippets/view/bs4-simple-chat-app
 // ==================================================
 .chat-search-box {
     -webkit-border-radius: 3px 0 0 0;
@@ -244,6 +245,9 @@
 }
 
 .chat-container li .chat-text {
+    // my custom
+    flex: 1 1;
+    // ====================
     padding: 0.4rem 1rem;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
