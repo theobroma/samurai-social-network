@@ -30,7 +30,6 @@ const ChatView: React.FC = () => {
       <Card.Body>
         {BlockTitle}
         <Messages data={messages} />
-        <hr />
         <AddMessagesForm />
       </Card.Body>
     </Card>

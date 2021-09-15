@@ -182,9 +182,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
             </Form.Group>
             <Form.Group>
               <div className="text-center">
-                <Link to="https://social-network.samuraijs.com/signUp">
+                <a href="https://social-network.samuraijs.com/signUp">
                   Регистрация
-                </Link>
+                </a>
               </div>
             </Form.Group>
           </Form>
