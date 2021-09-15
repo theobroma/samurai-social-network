@@ -1,9 +1,10 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
 import { Formik, FormikHelpers } from 'formik';
-import { Spinner } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { InputGroup, Spinner } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import { FaEye, FaEyeSlash, FaLock, FaRegEnvelope } from 'react-icons/fa';
 import { LoginPayload } from '../../../@store/auth/types';
 import { validationSchema } from './yup';
 
@@ -23,6 +24,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
   captchaUrl = null,
   submitCallback,
 }) => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
   const initialValues: IValues = {
     email: '',
     password: '',
@@ -57,17 +60,25 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group controlId="formEmail">
               <Form.Label>Email адрес</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={values.email}
-                placeholder="Введите email"
-                required
-                onBlur={handleBlur}
-                onChange={handleChange}
-                isValid={Boolean(touched.email && !errors.email)}
-                isInvalid={Boolean(touched.email && errors.email)}
-              />
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>
+                    <FaRegEnvelope />
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  placeholder="Введите email"
+                  required
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  isValid={Boolean(touched.email && !errors.email)}
+                  isInvalid={Boolean(touched.email && errors.email)}
+                />
+              </InputGroup>
+
               {touched.email && errors.email ? (
                 <Form.Text className="text-danger">{errors.email}</Form.Text>
               ) : null}
@@ -77,19 +88,37 @@ const LoginForm: React.FC<LoginFormProps> = ({
                 </Form.Text>
               ) : null}
             </Form.Group>
+            {/* =================================--Password--================================= */}
             <Form.Group controlId="formPassword">
               <Form.Label>Пароль</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={values.password}
-                placeholder="Пароль"
-                required
-                onBlur={handleBlur}
-                onChange={handleChange}
-                isValid={Boolean(touched.password && !errors.password)}
-                isInvalid={Boolean(touched.password && errors.password)}
-              />
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>
+                    <FaLock />
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={values.password}
+                  placeholder="Пароль"
+                  required
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  isValid={Boolean(touched.password && !errors.password)}
+                  isInvalid={Boolean(touched.password && errors.password)}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text
+                    style={{ cursor: 'pointer' }}
+                    onClick={() =>
+                      setShowPassword((prevShowPassword) => !prevShowPassword)
+                    }
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
               {touched.password && errors.password ? (
                 <Form.Text className="text-danger">{errors.password}</Form.Text>
               ) : null}
