@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 interface Props {
-  wsChanel: any;
+  wsChanel: WebSocket | null;
 }
 
 const AddMessagesForm: React.FC<Props> = ({ wsChanel }) => {
@@ -11,7 +11,7 @@ const AddMessagesForm: React.FC<Props> = ({ wsChanel }) => {
   );
 
   useEffect(() => {
-    wsChanel.addEventListener('open', () => {
+    wsChanel?.addEventListener('open', () => {
       setReadyStatus('ready');
     });
   }, [wsChanel]);
@@ -21,7 +21,7 @@ const AddMessagesForm: React.FC<Props> = ({ wsChanel }) => {
       return;
     }
     // dispatch(sendMessage(message));
-    wsChanel.send(message);
+    wsChanel?.send(message);
     setMessage('');
   };
   return (

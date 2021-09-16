@@ -3,18 +3,18 @@ import { Card } from 'react-bootstrap';
 import AddMessagesForm from './AddMessagesForm';
 import Messages from './Messages';
 
-const wsChanel = new WebSocket(
-  'wss://social-network.samuraijs.com/handlers/ChatHandler.ashx',
-);
+// const wsChanel = new WebSocket(
+//   'wss://social-network.samuraijs.com/handlers/ChatHandler.ashx',
+// );
 
 const ChatView: React.FC = () => {
-  const [messages, setMessages] = useState<any>([]);
+  const [wsChanel, setWsChanel] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    wsChanel.addEventListener('message', (e) => {
-      const newMessages = JSON.parse(e.data);
-      setMessages((prevMessages: any) => [...prevMessages, ...newMessages]);
-    });
+    const ws = new WebSocket(
+      'wss://social-network.samuraijs.com/handlers/ChatHandler.ashx',
+    );
+    setWsChanel(ws);
   }, []);
 
   const BlockTitle = (
@@ -29,7 +29,7 @@ const ChatView: React.FC = () => {
     <Card>
       <Card.Body>
         {BlockTitle}
-        <Messages data={messages} />
+        <Messages wsChanel={wsChanel} />
         <AddMessagesForm wsChanel={wsChanel} />
       </Card.Body>
     </Card>

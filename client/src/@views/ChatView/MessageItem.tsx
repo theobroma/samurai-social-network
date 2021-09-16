@@ -16,7 +16,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({
   return (
     <li className="chat-left">
       <div className="chat-avatar">
-        <img src={photo} alt="Retail Admin" />
+        <img src={photo} alt={`${userName}-${userId}`} />
         <div className="chat-name">{userName}</div>
       </div>
       <div className="chat-text">{message}</div>
