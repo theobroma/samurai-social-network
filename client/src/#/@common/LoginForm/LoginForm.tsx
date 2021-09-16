@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import { FaEye, FaEyeSlash, FaLock, FaRegEnvelope } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { LoginPayload } from '../../../@store/auth/types';
 import { validationSchema } from './yup';
 

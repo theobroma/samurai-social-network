@@ -59,7 +59,7 @@ export const Profile: React.FC<Props> = ({
   );
 
   return (
-    <Card>
+    <Card className="bg-white" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
       <Card.Body>
         {BlockTitle}
         <Row>

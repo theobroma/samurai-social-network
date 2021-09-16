@@ -1,8 +1,9 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Avatar from 'react-avatar';
 import { ProfileType } from '../../../../@types';
 import { StyledName, StyledLabel, StyledValue } from './Styled';
+import UploadButton from './UploadButton';
 
 type ProfileDataProps = {
   profile: ProfileType;
@@ -13,15 +14,15 @@ export const ProfileData: React.FC<ProfileDataProps> = ({
   profile,
   saveAvatar,
 }) => {
-  const onAvatarSelected = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length) saveAvatar(e.target.files[0]);
-  };
+  // const onAvatarSelected = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files?.length) saveAvatar(e.target.files[0]);
+  // };
 
   const AvatarBlock = (
     <>
       {profile.photos && (
         <Avatar
-          name="Wim Mostmans"
+          name={profile.fullName || 'fullName'}
           size="150"
           round
           src={
@@ -39,37 +40,39 @@ export const ProfileData: React.FC<ProfileDataProps> = ({
         <Col>
           <div>
             <div>
-              <div>
-                {AvatarBlock}
-                <div className="my-3">
+              {AvatarBlock}
+              <UploadButton handleUpload={saveAvatar} />
+              {/* <div className="my-3">
                   <input type="file" onChange={onAvatarSelected} />
-                </div>
-                <div />
+                </div> */}
+              <div />
+            </div>
+            {/*  */}
+            <div>
+              <div>
+                <StyledName>{profile.fullName}</StyledName>
               </div>
               <div>
-                <div>
-                  <StyledName>{profile.fullName}</StyledName>
-                </div>
-                <div>
-                  <StyledLabel>About me: </StyledLabel>
-                  <StyledValue>{profile.aboutMe || '-'}</StyledValue>
-                </div>
+                <StyledLabel>About me: </StyledLabel>
+                <StyledValue>{profile.aboutMe || '-'}</StyledValue>
               </div>
+            </div>
+            {/*  */}
+            <div>
               <div>
-                <div>
-                  <StyledLabel>Looking for a job: </StyledLabel>
-                  <StyledValue>
-                    {profile.lookingForAJob ? 'yes' : 'no'}
-                  </StyledValue>
-                </div>
+                <StyledLabel>Looking for a job: </StyledLabel>
+                <StyledValue>
+                  {profile.lookingForAJob ? 'yes' : 'no'}
+                </StyledValue>
               </div>
+            </div>
+            {/*  */}
+            <div>
               <div>
-                <div>
-                  <StyledLabel> My professional skills: </StyledLabel>
-                  <StyledValue>
-                    {profile.lookingForAJobDescription || '-'}
-                  </StyledValue>
-                </div>
+                <StyledLabel> My professional skills: </StyledLabel>
+                <StyledValue>
+                  {profile.lookingForAJobDescription || '-'}
+                </StyledValue>
               </div>
             </div>
           </div>
