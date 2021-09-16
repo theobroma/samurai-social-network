@@ -11,17 +11,29 @@ import {
   FaFacebook,
 } from 'react-icons/fa';
 import { StyledSocialList } from './Styled';
-import { ContactsType } from '../../../../@types';
+import {
+  ContactsColorsEnum,
+  ContactsKeys,
+  ContactsType,
+} from '../../../../@types';
 
 type ContactProps = {
-  title: string;
+  title: ContactsKeys;
   value: string;
 };
+
 const Contact: React.FC<ContactProps> = ({ title, value = '', children }) => (
   <li>
-    <a href={value} target="_blank" rel="noopener noreferrer">
-      <span className="mr-2">{children}</span>
-      {title}
+    <a
+      href={value}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ cursor: 'pointer' }}
+    >
+      <span className="mr-2" style={{ color: ContactsColorsEnum[title] }}>
+        {children}
+      </span>
+      <span className="text-secondary">{title}</span>
     </a>
   </li>
 );

@@ -4,3 +4,4 @@ export * from './Routes';
 export * from './IRoute';
 export * from './ROLE';
 export * from './ThemeColors';
+export * from './Profile';
