@@ -4,7 +4,6 @@ import { SagaIterator } from 'redux-saga';
 import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
 import { actions, startLoginProcess } from './actions';
-import { ROLE } from '../../@types';
 import { GET_AUTH_USER_DATA, START_LOGIN } from './constants';
 
 export function* loginSaga(
@@ -60,15 +59,11 @@ export function* authMeSaga(): SagaIterator<void> {
   try {
     // yield put(actions.setFetchingStatus(true));
     const response = yield call(AuthAPI.me);
-    let userRole = ROLE.GUEST;
-    if (response.data.id) {
-      userRole = ROLE.USER;
-    }
     if (typeof response === 'string') {
       // yield put(actions.setErrorMessage(response));
     } else {
       yield all([
-        put(actions.setAuthUserData({ ...response.data, userRole })),
+        put(actions.setAuthUserData({ ...response.data })),
         // put(actions.loginSuccess()),
       ]);
     }

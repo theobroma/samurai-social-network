@@ -1,21 +1,13 @@
 import { ComponentType } from 'react';
+import { RouteProps } from 'react-router-dom';
 
-import { ACCESS_LEVEL } from './ACCESS_LEVEL';
-import { ROLE } from './ROLE';
-
-export interface IRoute {
-  access?:
-    | [ROLE | ROLE[], ACCESS_LEVEL, boolean]
-    | [ROLE | ROLE[], ACCESS_LEVEL]
-    | [ROLE | ROLE[]];
-  component?: ComponentType | any;
-  exact?: boolean;
-  icon?: ComponentType | any;
-  path: string;
-  routes?: IRoute[];
-  title?: string;
-  redirect?: string;
-  getReducers?: any;
-  computedMatch?: any;
+export interface IRoute extends RouteProps {
+  // rename component-> comp cause this porblem
+  // https://stackoverflow.com/a/57408531/3988363
+  // TODO: fix error
+  // comp?: RouteProps['component'];
+  comp?: ComponentType | any;
+  onlyPublic?: boolean;
   layout: ComponentType;
+  routes?: IRoute[];
 }

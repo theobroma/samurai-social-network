@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ResultCodesEnum, ResultCodeForCapcthaEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
-import { ROLE } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const authInitialState = {
@@ -10,7 +9,6 @@ const authInitialState = {
   login: null as string | null,
   isAuth: false,
   captchaUrl: null as string | null, // if null, then captcha is not required
-  userRole: ROLE.GUEST,
   isLoading: false,
 };
 
@@ -66,8 +64,6 @@ export const authMeTC = createAsyncThunk('auth/authMe', async (_, thunkAPI) => {
           email,
           login,
           isAuth: true, // duplication  as loginTC.fulfilled
-          // additional custom
-          userRole: ROLE.USER, // duplication  as loginTC.fulfilled
         }),
       );
     }
@@ -97,8 +93,6 @@ export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
           email: null,
           login: null,
           isAuth: false,
-          // additional custom
-          userRole: ROLE.GUEST,
         }),
       );
     }
@@ -127,8 +121,6 @@ export const slice = createSlice({
       state.email = action.payload.email;
       state.login = action.payload.login;
       state.isAuth = action.payload.isAuth;
-      // additional custom
-      state.userRole = action.payload.userRole;
     },
   },
   extraReducers: (builder) => {
@@ -136,7 +128,6 @@ export const slice = createSlice({
       state.isAuth = true;
       //  TODO tmp
       state.userId = action.payload.data.userId;
-      state.userRole = ROLE.USER;
     });
   },
 });

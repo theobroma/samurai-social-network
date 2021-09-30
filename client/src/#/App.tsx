@@ -1,10 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import { IRoute, ROUTES, ROLE, ROLES } from '../@types';
+import { IRoute, ROUTES } from '../@types';
 import LoadingPage from '../@components/UI/LoadingPage';
-import { NestedRoute } from './@common/NestedRoute/NestedRoute';
-import { useAllowedRoutes } from '../@utils/useAllowedRoutes';
-import { UserLayout, GuestLayout } from './@common/NestedRoute/Layouts';
+import { UserLayout, GuestLayout } from './@common/PrivateRoute/Layouts';
+import AuthenticatedRoute from './@common/PrivateRoute/AuthenticatedRoute';
 
 const MIN_LAZY_DELAY = 1000;
 
@@ -73,77 +72,70 @@ const NotFoundPageView = lazy(() => {
 
 export const APP_MAIN_ROUTES: IRoute[] = [
   {
-    component: MainView,
+    comp: MainView,
     exact: true,
     layout: GuestLayout,
+    onlyPublic: true,
     path: ROUTES.ROOT,
   },
   {
-    access: [ROLES.GUESTS],
-    component: LoginView,
+    comp: LoginView,
     exact: true,
-    path: ROUTES.LOGIN,
     layout: GuestLayout,
+    onlyPublic: true,
+    path: ROUTES.LOGIN,
   },
   {
-    access: [ROLES.USERS],
-    component: MusicView,
+    comp: MusicView,
     exact: true,
     layout: UserLayout,
     path: ROUTES.MUSIC,
   },
   {
-    access: [ROLES.USERS],
-    component: DialogsView,
+    comp: DialogsView,
     exact: true,
     layout: UserLayout,
     path: ROUTES.DIALOGS,
   },
   {
-    access: [ROLES.USERS],
-    component: ProfileView,
+    comp: ProfileView,
     exact: true,
     layout: UserLayout,
     path: ROUTES.PROFILE,
   },
   {
-    access: [ROLES.USERS],
-    component: SettingsView,
+    comp: SettingsView,
     exact: true,
     layout: UserLayout,
     path: ROUTES.SETTINGS,
   },
   {
-    access: [ROLES.USERS],
-    component: UsersView,
+    comp: UsersView,
     exact: true,
     layout: UserLayout,
     path: ROUTES.USERS,
   },
   {
-    access: [ROLES.USERS],
-    component: ChatView,
+    comp: ChatView,
     exact: true,
-    path: ROUTES.CHAT,
     layout: UserLayout,
+    path: ROUTES.CHAT,
   },
 ];
 
-interface IAppProps {
-  userRole: ROLE;
-}
-
-export const App: React.FC<IAppProps> = ({ userRole }) => {
-  const preparedRoutes = useAllowedRoutes(APP_MAIN_ROUTES, userRole);
-  // https://stackoverflow.com/a/37491381/3988363
+export const App: React.FC = () => {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>
         <Redirect from="/index.html" to="/" exact />
-        {preparedRoutes.map((route: IRoute) => (
-          <NestedRoute key={route.path} {...route} />
+        {APP_MAIN_ROUTES.map((route: IRoute) => (
+          <AuthenticatedRoute {...route}>
+            <route.layout>
+              <route.comp />
+            </route.layout>
+          </AuthenticatedRoute>
         ))}
-        {/* <Redirect to="/login" /> */}
+        {/* https://stackoverflow.com/a/37491381/3988363 */}
         <Route path="/404" component={NotFoundPageView} />
         <Redirect to="/404" />
       </Switch>

@@ -5,7 +5,6 @@ import {
   CLEAR_AUTH_USER_DATA,
   CLEAR_CAPTCHA,
 } from './constants';
-import { ROLE } from '../../@types';
 import { AuthActionType, actions } from './actions';
 
 export const authInitialState = {
@@ -16,7 +15,6 @@ export const authInitialState = {
   // errorMessage: null as string | null,
   // isAuthorized: false,
   // isFetching: false,
-  userRole: ROLE.GUEST,
 };
 
 export type authStateType = typeof authInitialState;
@@ -37,7 +35,6 @@ export const authReducer = createReducer<authStateType, AuthActionType>(
         id: user.id,
         email: user.email,
         login: user.login,
-        userRole: user.userRole || ROLE.GUEST,
       };
     },
     [CLEAR_AUTH_USER_DATA]: (state) => {
@@ -46,7 +43,6 @@ export const authReducer = createReducer<authStateType, AuthActionType>(
         id: null,
         email: null,
         login: null,
-        userRole: ROLE.GUEST,
       };
     },
     [CLEAR_CAPTCHA]: (state) => {

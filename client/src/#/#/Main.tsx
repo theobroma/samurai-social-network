@@ -17,7 +17,9 @@ const MainApp: React.FC = () => {
               Login
             </Button>
           </p>
-        ) : null}
+        ) : (
+          'Welcome!'
+        )}
       </Container>
     </Jumbotron>
   );
