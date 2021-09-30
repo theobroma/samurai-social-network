@@ -27,7 +27,7 @@ export const UserLayout: React.FC<ILayout> = ({ children }) => {
           </Row>
         </Container>
       </div>
-      <Footer />
+      <Footer className="mt-3" />
     </>
   );
 };
@@ -35,11 +35,11 @@ export const UserLayout: React.FC<ILayout> = ({ children }) => {
 export const GuestLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
-      <Header />
+      <Header className="mb-3" />
       <div className="HolyGrail-body">
         <main className="HolyGrail-content">{children}</main>
       </div>
-      <Footer />
+      <Footer className="mt-3" />
     </>
   );
 };

@@ -5,7 +5,6 @@ import { SubFooter } from './SubFooter';
 import { SocialLink } from './SocialLink';
 
 export const StyledFooter = styled.footer`
-  margin-top: 16px;
   background: #303b59;
 `;
 

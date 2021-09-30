@@ -135,8 +135,16 @@ export const App: React.FC = () => {
             </route.layout>
           </AuthenticatedRoute>
         ))}
+        {/* 404 */}
         {/* https://stackoverflow.com/a/37491381/3988363 */}
-        <Route path="/404" component={NotFoundPageView} />
+        <Route
+          path="/404"
+          render={() => (
+            <GuestLayout>
+              <NotFoundPageView />
+            </GuestLayout>
+          )}
+        />
         <Redirect to="/404" />
       </Switch>
     </Suspense>
