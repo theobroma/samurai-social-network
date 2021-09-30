@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import { IRoute, ROUTES, ROLE, ROLES } from '../@types';
 import LoadingPage from '../@components/UI/LoadingPage';
 import { NestedRoute } from './@common/NestedRoute/NestedRoute';
@@ -60,6 +60,13 @@ const UsersView = lazy(() => {
 const ChatView = lazy(() => {
   return Promise.all([
     import(/* webpackChunkName: "ChatView" */ '../@views/ChatView'),
+    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
+  ]).then(([moduleExports]) => moduleExports);
+});
+
+const NotFoundPageView = lazy(() => {
+  return Promise.all([
+    import(/* webpackChunkName: "NotFoundPageView */ './@common/NotFoundPage'),
     new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
   ]).then(([moduleExports]) => moduleExports);
 });
@@ -128,7 +135,7 @@ interface IAppProps {
 
 export const App: React.FC<IAppProps> = ({ userRole }) => {
   const preparedRoutes = useAllowedRoutes(APP_MAIN_ROUTES, userRole);
-
+  // https://stackoverflow.com/a/37491381/3988363
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>
@@ -136,7 +143,9 @@ export const App: React.FC<IAppProps> = ({ userRole }) => {
         {preparedRoutes.map((route: IRoute) => (
           <NestedRoute key={route.path} {...route} />
         ))}
-        <Redirect to="/login" />
+        {/* <Redirect to="/login" /> */}
+        <Route path="/404" component={NotFoundPageView} />
+        <Redirect to="/404" />
       </Switch>
     </Suspense>
   );
