@@ -58,7 +58,8 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll=false --verbose --runInBand",
+        "coverage": "yarn test --coverage",
         "eject": "react-scripts eject",
         "format": "prettier --write src/**/*.{js,jsx,ts,tsx,yml,json,css,scss,md}",
         "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",

@@ -25,10 +25,20 @@ export const Footer: React.FC<Props> = () => {
       <Row>
         <Col md={8}>
           <StyledSocialLinks>
-            <SocialLink link="https://www.linkedin.com/in/123123/">
+            <SocialLink
+              link="https://www.linkedin.com/in/123123/"
+              data-testid="linkedin-link"
+              aria-label="Linkedin Link"
+            >
               Linkedin
             </SocialLink>
-            <SocialLink link="https://github.com/theobroma">Github</SocialLink>
+            <SocialLink
+              link="https://github.com/theobroma"
+              data-testid="github-link"
+              aria-label="Github Link"
+            >
+              Github
+            </SocialLink>
           </StyledSocialLinks>
         </Col>
         <Col md={4}>
