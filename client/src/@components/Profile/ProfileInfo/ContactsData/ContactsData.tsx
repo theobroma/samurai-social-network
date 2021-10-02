@@ -1,5 +1,5 @@
 import React from 'react';
-import shortid from 'shortid';
+import { nanoid } from '@reduxjs/toolkit';
 import {
   FaInstagram,
   FaGlobe,
@@ -47,56 +47,28 @@ export const ContactsData: React.FC<Props> = ({ contacts }) => {
     <StyledSocialList>
       {contacts && (
         <>
-          <Contact
-            title="github"
-            value={contacts.github}
-            key={shortid.generate()}
-          >
+          <Contact title="github" value={contacts.github} key={nanoid()}>
             <FaGithub />
           </Contact>
-          <Contact title="vk" value={contacts.vk} key={shortid.generate()}>
+          <Contact title="vk" value={contacts.vk} key={nanoid()}>
             <FaVk />
           </Contact>
-          <Contact
-            title="facebook"
-            value={contacts.facebook}
-            key={shortid.generate()}
-          >
+          <Contact title="facebook" value={contacts.facebook} key={nanoid()}>
             <FaFacebook />
           </Contact>
-          <Contact
-            title="instagram"
-            value={contacts.instagram}
-            key={shortid.generate()}
-          >
+          <Contact title="instagram" value={contacts.instagram} key={nanoid()}>
             <FaInstagram />
           </Contact>
-          <Contact
-            title="twitter"
-            value={contacts.twitter}
-            key={shortid.generate()}
-          >
+          <Contact title="twitter" value={contacts.twitter} key={nanoid()}>
             <FaTwitter />
           </Contact>
-          <Contact
-            title="website"
-            value={contacts.website}
-            key={shortid.generate()}
-          >
+          <Contact title="website" value={contacts.website} key={nanoid()}>
             <FaGlobe />
           </Contact>
-          <Contact
-            title="youtube"
-            value={contacts.youtube}
-            key={shortid.generate()}
-          >
+          <Contact title="youtube" value={contacts.youtube} key={nanoid()}>
             <FaYoutube />
           </Contact>
-          <Contact
-            title="mainLink"
-            value={contacts.mainLink}
-            key={shortid.generate()}
-          >
+          <Contact title="mainLink" value={contacts.mainLink} key={nanoid()}>
             <FaLink />
           </Contact>
         </>
