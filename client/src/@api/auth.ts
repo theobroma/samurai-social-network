@@ -28,14 +28,14 @@ export const AuthAPI = {
     captcha: string | null = null,
   ): Promise<any> => {
     try {
-      const res = await instance.post<
-        APIResponseType<AuthLogin, ResultCodesEnum | ResultCodeForCapcthaEnum>
-      >('auth/login', {
-        email,
-        password,
-        rememberMe,
-        captcha,
-      });
+      const res =
+        await instance.post<// APIResponseType<AuthLogin, ResultCodesEnum | ResultCodeForCapcthaEnum>
+        any>('auth/login', {
+          email,
+          password,
+          rememberMe,
+          captcha,
+        });
       return res.data;
     } catch (e: any) {
       return e.message;

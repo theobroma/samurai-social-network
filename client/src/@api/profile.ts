@@ -20,9 +20,12 @@ export const ProfileAPI = {
   },
   updateStatus: async (status: string) => {
     try {
-      const response = await instance.put<APIResponseType>(`profile/status`, {
-        status,
-      });
+      const response = await instance.put<{ status: string }>(
+        `profile/status`,
+        {
+          status,
+        },
+      );
       return response.data;
     } catch (e: any) {
       return e.message;
@@ -32,15 +35,11 @@ export const ProfileAPI = {
     try {
       const formData = new FormData();
       formData.append('image', file);
-      const response = await instance.put<APIResponseType<PhotosDataType>>(
-        'profile/photo',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      const response = await instance.put<any>('profile/photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      );
+      });
       return response.data;
     } catch (e: any) {
       return e.message;
@@ -48,7 +47,7 @@ export const ProfileAPI = {
   },
   updateProfile: async (profile: ProfileType) => {
     try {
-      const response = await instance.put<APIResponseType>(`profile`, profile);
+      const response = await instance.put<any>(`profile`, profile);
       return response.data;
     } catch (e: any) {
       return e.message;

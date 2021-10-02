@@ -1,4 +1,5 @@
 // just example file.NOT USED
+// @ts-nocheck
 import axios, { AxiosInstance } from 'axios';
 
 export type AuthData = {

@@ -1,12 +1,12 @@
 // REACT_APP_API_KEY is https://social-network.samuraijs.com/ access string
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import { UserType, PhotosType } from '../@types';
 
-export const instance: AxiosInstance = axios.create({
+export const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: {
-    'API-KEY': process.env.REACT_APP_API_KEY,
+    'API-KEY': `${process.env.REACT_APP_API_KEY}`,
   },
 });
 
