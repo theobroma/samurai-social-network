@@ -13,9 +13,9 @@ import reportWebVitals from './reportWebVitals';
 // All styles
 import './@assets/styles/index.scss';
 import LoadingPage from './@components/UI/LoadingPage';
-// Open Source typefaces
-require('typeface-roboto');
-require('typeface-gothic-a1');
+// Open Source fonts
+import '@fontsource/roboto'; // Defaults to weight 400.
+import '@fontsource/gothic-a1'; // Defaults to weight 400.
 
 const currentTheme = store.getState().layout.theme;
 const rootEl = document.getElementById('root');
