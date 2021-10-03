@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
+import { ImGithub } from 'react-icons/im';
+import { FaLinkedin } from 'react-icons/fa';
 import { SubFooter } from './SubFooter';
 import { SocialLink } from './SocialLink';
 
@@ -23,13 +25,14 @@ export const Footer: React.FC<Props> = () => {
   const MainFooterBlock = (
     <Container>
       <Row>
-        <Col md={8}>
+        <Col xs={12} className="my-3">
           <StyledSocialLinks>
             <SocialLink
-              link="https://www.linkedin.com/in/123123/"
+              link="https://www.linkedin.com/in/olexandr-siryj-39852a99"
               data-testid="linkedin-link"
               aria-label="Linkedin Link"
             >
+              <FaLinkedin />
               Linkedin
             </SocialLink>
             <SocialLink
@@ -37,12 +40,10 @@ export const Footer: React.FC<Props> = () => {
               data-testid="github-link"
               aria-label="Github Link"
             >
+              <ImGithub />
               Github
             </SocialLink>
           </StyledSocialLinks>
-        </Col>
-        <Col md={4}>
-          <div className="d-none">col2</div>
         </Col>
       </Row>
     </Container>

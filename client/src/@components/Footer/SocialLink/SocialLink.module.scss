@@ -3,11 +3,18 @@
   padding-right: 10px;
   margin-bottom: 0;
   a {
+    display: flex;
+    align-items: center;
     font-size: 16px;
     color: #909192;
     text-decoration: none;
+    transition: color 0.3s ease-out;
     &:hover {
-      color: #201e2b;
+      color: #68c174;
+      text-decoration: none;
+    }
+    svg {
+      margin-right: 4px;
     }
   }
 }
