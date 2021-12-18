@@ -123,7 +123,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   },
 ];
 
-export var App: React.FC = function () {
+export const App = () => {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>

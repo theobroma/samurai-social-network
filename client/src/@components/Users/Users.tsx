@@ -42,56 +42,54 @@ export const Users: React.FC<PropsType> = ({
   );
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-          {BlockTitle}
-          <Row>
-            <Col>
-              <div className="mb-3">
-                <UserSearchForm handleSetUsersFilter={handleSetUsersFilter} />
-              </div>
-            </Col>
-          </Row>
-          <Row className="py-3">
-            <Col lg={9}>
-              <PaginationFC
-                handlePageClick={handlePageClick}
-                totalCount={totalCount}
-                pageSize={pageSize}
-              />
-            </Col>
-            <Col lg={3}>
-              <ListGridSwitcher setViewType={setViewType} viewType={viewType} />
-            </Col>
-          </Row>
-          <Row>
-            {users &&
-              users.map((user: UserType) =>
-                viewType === 'LIST' ? (
-                  <ListUser
-                    user={user}
-                    key={user.id}
-                    // isFetching={props.isFetching}
-                    follow={follow}
-                    unfollow={unfollow}
-                    followingInProgress={followingInProgress}
-                  />
-                ) : (
-                  <GridUser
-                    user={user}
-                    key={user.id}
-                    // isFetching={props.isFetching}
-                    follow={follow}
-                    unfollow={unfollow}
-                    followingInProgress={followingInProgress}
-                  />
-                ),
-              )}
-          </Row>
-        </Card.Body>
-      </Card>
-    </>
+    <Card>
+      <Card.Body>
+        {BlockTitle}
+        <Row>
+          <Col>
+            <div className="mb-3">
+              <UserSearchForm handleSetUsersFilter={handleSetUsersFilter} />
+            </div>
+          </Col>
+        </Row>
+        <Row className="py-3">
+          <Col lg={9}>
+            <PaginationFC
+              handlePageClick={handlePageClick}
+              totalCount={totalCount}
+              pageSize={pageSize}
+            />
+          </Col>
+          <Col lg={3}>
+            <ListGridSwitcher setViewType={setViewType} viewType={viewType} />
+          </Col>
+        </Row>
+        <Row>
+          {users &&
+            users.map((user: UserType) =>
+              viewType === 'LIST' ? (
+                <ListUser
+                  user={user}
+                  key={user.id}
+                  // isFetching={props.isFetching}
+                  follow={follow}
+                  unfollow={unfollow}
+                  followingInProgress={followingInProgress}
+                />
+              ) : (
+                <GridUser
+                  user={user}
+                  key={user.id}
+                  // isFetching={props.isFetching}
+                  follow={follow}
+                  unfollow={unfollow}
+                  followingInProgress={followingInProgress}
+                />
+              ),
+            )}
+        </Row>
+      </Card.Body>
+    </Card>
   );
 };
 export default Users;

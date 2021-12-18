@@ -31,14 +31,12 @@ export const Profile: React.FC = React.memo(() => {
   };
 
   return (
-    <>
-      <ProfileComponent
-        profile={profile}
-        status={status}
-        updateStatus={handleUpdateStatus}
-        saveAvatar={saveAvatar}
-      />
-    </>
+    <ProfileComponent
+      profile={profile}
+      status={status}
+      updateStatus={handleUpdateStatus}
+      saveAvatar={saveAvatar}
+    />
   );
 });
 

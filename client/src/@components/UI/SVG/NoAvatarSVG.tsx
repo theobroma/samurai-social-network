@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function NoAvatarSVG(props: any) {
+export const NoAvatarSVG = (props: any) => {
   return (
     <svg
       id="prefix__Layer_1"
@@ -20,4 +20,4 @@ export function NoAvatarSVG(props: any) {
       </g>
     </svg>
   );
-}
+};

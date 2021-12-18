@@ -18,66 +18,56 @@ export const ProfileData: React.FC<ProfileDataProps> = ({
   //   if (e.target.files?.length) saveAvatar(e.target.files[0]);
   // };
 
-  const AvatarBlock = (
-    <>
-      {profile.photos && (
-        <Avatar
-          name={profile.fullName || 'fullName'}
-          size="150"
-          round
-          src={
-            profile.photos.large ||
-            'https://data.whicdn.com/images/331901362/original.jpg'
-          }
-        />
-      )}
-    </>
-  );
-
   return (
-    <>
-      <Row>
-        <Col>
+    <Row>
+      <Col>
+        <div>
           <div>
-            <div>
-              {AvatarBlock}
-              <UploadButton handleUpload={saveAvatar} />
-              {/* <div className="my-3">
+            {profile.photos && (
+              <Avatar
+                name={profile.fullName || 'fullName'}
+                size="150"
+                round
+                src={
+                  profile.photos.large ||
+                  'https://data.whicdn.com/images/331901362/original.jpg'
+                }
+              />
+            )}
+            <UploadButton handleUpload={saveAvatar} />
+            {/* <div className="my-3">
                   <input type="file" onChange={onAvatarSelected} />
                 </div> */}
-              <div />
-            </div>
-            {/*  */}
+            <div />
+          </div>
+          {/*  */}
+          <div>
             <div>
-              <div>
-                <StyledName>{profile.fullName}</StyledName>
-              </div>
-              <div>
-                <StyledLabel>About me: </StyledLabel>
-                <StyledValue>{profile.aboutMe || '-'}</StyledValue>
-              </div>
+              <StyledName>{profile.fullName}</StyledName>
             </div>
-            {/*  */}
             <div>
-              <div>
-                <StyledLabel>Looking for a job: </StyledLabel>
-                <StyledValue>
-                  {profile.lookingForAJob ? 'yes' : 'no'}
-                </StyledValue>
-              </div>
-            </div>
-            {/*  */}
-            <div>
-              <div>
-                <StyledLabel> My professional skills: </StyledLabel>
-                <StyledValue>
-                  {profile.lookingForAJobDescription || '-'}
-                </StyledValue>
-              </div>
+              <StyledLabel>About me: </StyledLabel>
+              <StyledValue>{profile.aboutMe || '-'}</StyledValue>
             </div>
           </div>
-        </Col>
-      </Row>
-    </>
+          {/*  */}
+          <div>
+            <div>
+              <StyledLabel>Looking for a job: </StyledLabel>
+              <StyledValue>{profile.lookingForAJob ? 'yes' : 'no'}</StyledValue>
+            </div>
+          </div>
+          {/*  */}
+          <div>
+            <div>
+              <StyledLabel> My professional skills: </StyledLabel>
+              <StyledValue>
+                {profile.lookingForAJobDescription || '-'}
+              </StyledValue>
+            </div>
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 };

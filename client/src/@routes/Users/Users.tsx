@@ -52,19 +52,17 @@ export const Users: React.FC = React.memo(() => {
   };
 
   return (
-    <>
-      <UsersComponent
-        users={items}
-        pageSize={pageSize}
-        totalCount={totalCount}
-        currentPage={currentPage}
-        handlePageClick={handlePageClick}
-        handleSetUsersFilter={handleSetUsersFilter}
-        follow={handleFollow}
-        unfollow={handleUnFollow}
-        followingInProgress={followingInProgress}
-      />
-    </>
+    <UsersComponent
+      users={items}
+      pageSize={pageSize}
+      totalCount={totalCount}
+      currentPage={currentPage}
+      handlePageClick={handlePageClick}
+      handleSetUsersFilter={handleSetUsersFilter}
+      follow={handleFollow}
+      unfollow={handleUnFollow}
+      followingInProgress={followingInProgress}
+    />
   );
 });
 
