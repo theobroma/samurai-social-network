@@ -9,14 +9,14 @@ const MIN_LAZY_DELAY = 1000;
 
 const MainView = lazy(() => {
   return Promise.all([
-    import(/* webpackChunkName: "MainView" */ './#/Main'),
+    import(/* webpackChunkName: "MainView" */ './Main/Main'),
     new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
   ]).then(([moduleExports]) => moduleExports);
 });
 
 const LoginView = lazy(() => {
   return Promise.all([
-    import(/* webpackChunkName: "LoginView" */ './#login'),
+    import(/* webpackChunkName: "LoginView" */ './Login'),
     new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
   ]).then(([moduleExports]) => moduleExports);
 });
@@ -123,7 +123,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   },
 ];
 
-export const App: React.FC = () => {
+export var App: React.FC = function () {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>

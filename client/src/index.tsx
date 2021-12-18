@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './@utils/theme';
 import { GlobalStyle } from './@utils/global';
-import { AppContainer } from './#';
+import { AppContainer } from './@routes';
 import { history, store, persistor } from './configureStore';
 
 import reportWebVitals from './reportWebVitals';
