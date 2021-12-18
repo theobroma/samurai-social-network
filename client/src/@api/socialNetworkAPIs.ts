@@ -102,8 +102,8 @@ export const AuthAPI = {
   login: async (
     email: string,
     password: string,
-    rememberMe = false,
     captcha?: string,
+    rememberMe = false,
   ): Promise<
     | { resultCode: number; userId: number }
     | { resultCode: number; error: ErrorMessage }
@@ -162,10 +162,10 @@ export const AuthAPI = {
 
 export const UsersAPI = {
   getUsers: async (
-    count = 10,
-    page = 1,
     term?: string,
     friend?: boolean,
+    count = 10,
+    page = 1,
   ): Promise<IUsersResponse | ErrorMessage> => {
     try {
       const response = await instance.get('/users', {

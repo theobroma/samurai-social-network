@@ -1,74 +1,29 @@
+// https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay
+import pMinDelay from 'p-min-delay';
 import React, { lazy, Suspense } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
-import { IRoute, ROUTES } from '../@types';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import LoadingPage from '../@components/UI/LoadingPage';
-import { UserLayout, GuestLayout } from './@common/PrivateRoute/Layouts';
+import { IRoute, ROUTES } from '../@types';
 import AuthenticatedRoute from './@common/PrivateRoute/AuthenticatedRoute';
+import { GuestLayout, UserLayout } from './@common/PrivateRoute/Layouts';
 
 const MIN_LAZY_DELAY = 1000;
 
-const MainView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "MainView" */ './Main/Main'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const LoginView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "LoginView" */ './Login'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const MusicView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "MusicView" */ './Music'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const DialogsView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "DialogsView" */ './Dialogs'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const ProfileView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "ProfileView" */ './Profile'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const SettingsView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "SettingsView" */ './Settings'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const UsersView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "UsersView" */ './Users'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const ChatView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "ChatView" */ '../@views/ChatView'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
-
-const NotFoundPageView = lazy(() => {
-  return Promise.all([
-    import(/* webpackChunkName: "NotFoundPageView */ './@common/NotFoundPage'),
-    new Promise((resolve) => setTimeout(resolve, MIN_LAZY_DELAY)),
-  ]).then(([moduleExports]) => moduleExports);
-});
+const MainView = lazy(() => pMinDelay(import('./Main/Main'), MIN_LAZY_DELAY));
+const LoginView = lazy(() => pMinDelay(import('./Login'), MIN_LAZY_DELAY));
+const MusicView = lazy(() => pMinDelay(import('./Music'), MIN_LAZY_DELAY));
+const DialogsView = lazy(() => pMinDelay(import('./Dialogs'), MIN_LAZY_DELAY));
+const ProfileView = lazy(() => pMinDelay(import('./Profile'), MIN_LAZY_DELAY));
+const SettingsView = lazy(() =>
+  pMinDelay(import('./Settings'), MIN_LAZY_DELAY),
+);
+const UsersView = lazy(() => pMinDelay(import('./Users'), MIN_LAZY_DELAY));
+const ChatView = lazy(() =>
+  pMinDelay(import('../@views/ChatView'), MIN_LAZY_DELAY),
+);
+const NotFoundPageView = lazy(() =>
+  pMinDelay(import('./@common/NotFoundPage'), MIN_LAZY_DELAY),
+);
 
 export const APP_MAIN_ROUTES: IRoute[] = [
   {

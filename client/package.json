@@ -34,6 +34,7 @@
         "history": "^4.x",
         "lodash": "^4.17.21",
         "node-sass": "^6.x",
+        "p-min-delay": "^4.0.1",
         "react": "^17.0.2",
         "react-avatar": "^3.10.0",
         "react-bootstrap": "^1.x",
