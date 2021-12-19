@@ -10,7 +10,7 @@ import {
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { getProfile, getStatus } from '../../@store/profile/selectors';
 
-export const Profile: React.FC = React.memo(() => {
+export const ProfileView = () => {
   const dispatch = useDispatch();
   const userId = useSelector(getUserId);
   const profile = useSelector(getProfile);
@@ -38,6 +38,6 @@ export const Profile: React.FC = React.memo(() => {
       saveAvatar={saveAvatar}
     />
   );
-});
+};
 
-export default Profile;
+export default ProfileView;

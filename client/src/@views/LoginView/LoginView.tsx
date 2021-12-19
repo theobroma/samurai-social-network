@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Alert, Card } from 'react-bootstrap';
-import LoginForm from '../@common/LoginForm/LoginForm';
+import LoginForm from './LoginForm/LoginForm';
 import { getCaptchaUrl } from '../../@store/auth/selectors';
 import { LoginPayload } from '../../@store/auth/types';
 // import { startLoginProcess } from '../../@store/auth/actions';
 import { loginTC } from '../../@store/auth/slice';
 
-export const Login: React.FC = () => {
+export const LoginView = () => {
   const dispatch = useDispatch();
   const captchaUrl = useSelector(getCaptchaUrl);
 
@@ -45,3 +45,5 @@ export const Login: React.FC = () => {
     </Container>
   );
 };
+
+export default LoginView;

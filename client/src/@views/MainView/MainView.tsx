@@ -4,7 +4,7 @@ import { Jumbotron, Container, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { isAuthSelector } from '../../@store/auth/selectors';
 
-const MainApp: React.FC = () => {
+const MainView = () => {
   const isAuth = useSelector(isAuthSelector);
   return (
     <Jumbotron fluid>
@@ -25,4 +25,4 @@ const MainApp: React.FC = () => {
   );
 };
 
-export default MainApp;
+export default MainView;

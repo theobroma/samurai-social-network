@@ -9,24 +9,32 @@ import { GuestLayout, UserLayout } from './@common/PrivateRoute/Layouts';
 
 const MIN_LAZY_DELAY = 300;
 
-const MainView = lazy(() => pMinDelay(import('./Main/Main'), MIN_LAZY_DELAY));
-const LoginView = lazy(() => pMinDelay(import('./Login'), MIN_LAZY_DELAY));
+const MainView = lazy(() =>
+  pMinDelay(import('../@views/MainView'), MIN_LAZY_DELAY),
+);
+const LoginView = lazy(() =>
+  pMinDelay(import('../@views/LoginView'), MIN_LAZY_DELAY),
+);
 const MusicView = lazy(() =>
   pMinDelay(import('../@views/MusicView'), MIN_LAZY_DELAY),
 );
 const DialogsView = lazy(() =>
   pMinDelay(import('../@views/DialogsView'), MIN_LAZY_DELAY),
 );
-const ProfileView = lazy(() => pMinDelay(import('./Profile'), MIN_LAZY_DELAY));
+const ProfileView = lazy(() =>
+  pMinDelay(import('../@views/ProfileView'), MIN_LAZY_DELAY),
+);
 const SettingsView = lazy(() =>
   pMinDelay(import('../@views/SettingsView'), MIN_LAZY_DELAY),
 );
-const UsersView = lazy(() => pMinDelay(import('./Users'), MIN_LAZY_DELAY));
+const UsersView = lazy(() =>
+  pMinDelay(import('../@views/UsersView'), MIN_LAZY_DELAY),
+);
 const ChatView = lazy(() =>
   pMinDelay(import('../@views/ChatView'), MIN_LAZY_DELAY),
 );
 const NotFoundPageView = lazy(() =>
-  pMinDelay(import('./@common/NotFoundPage'), MIN_LAZY_DELAY),
+  pMinDelay(import('../@views/Page404View'), MIN_LAZY_DELAY),
 );
 
 export const APP_MAIN_ROUTES: IRoute[] = [

@@ -11,7 +11,7 @@ import {
 } from '../../@store/users/slice';
 import { UsersFilterType } from '../../@types';
 
-export const Users: React.FC = React.memo(() => {
+export const UsersView = () => {
   const dispatch = useDispatch();
   const {
     items,
@@ -64,6 +64,6 @@ export const Users: React.FC = React.memo(() => {
       followingInProgress={followingInProgress}
     />
   );
-});
+};
 
-export default Users;
+export default UsersView;

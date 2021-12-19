@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Row, Col, Container } from 'react-bootstrap';
 
-export const NotFoundPage: React.FC = () => {
+export const Page404View = () => {
   return (
     <Container>
       <Row>
@@ -21,3 +21,5 @@ export const NotFoundPage: React.FC = () => {
     </Container>
   );
 };
+
+export default Page404View;
