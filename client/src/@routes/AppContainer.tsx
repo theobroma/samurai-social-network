@@ -7,15 +7,19 @@ import { IRoute, ROUTES } from '../@types';
 import AuthenticatedRoute from './@common/PrivateRoute/AuthenticatedRoute';
 import { GuestLayout, UserLayout } from './@common/PrivateRoute/Layouts';
 
-const MIN_LAZY_DELAY = 1000;
+const MIN_LAZY_DELAY = 300;
 
 const MainView = lazy(() => pMinDelay(import('./Main/Main'), MIN_LAZY_DELAY));
 const LoginView = lazy(() => pMinDelay(import('./Login'), MIN_LAZY_DELAY));
-const MusicView = lazy(() => pMinDelay(import('./Music'), MIN_LAZY_DELAY));
-const DialogsView = lazy(() => pMinDelay(import('./Dialogs'), MIN_LAZY_DELAY));
+const MusicView = lazy(() =>
+  pMinDelay(import('../@views/MusicView'), MIN_LAZY_DELAY),
+);
+const DialogsView = lazy(() =>
+  pMinDelay(import('../@views/DialogsView'), MIN_LAZY_DELAY),
+);
 const ProfileView = lazy(() => pMinDelay(import('./Profile'), MIN_LAZY_DELAY));
 const SettingsView = lazy(() =>
-  pMinDelay(import('./Settings'), MIN_LAZY_DELAY),
+  pMinDelay(import('../@views/SettingsView'), MIN_LAZY_DELAY),
 );
 const UsersView = lazy(() => pMinDelay(import('./Users'), MIN_LAZY_DELAY));
 const ChatView = lazy(() =>
