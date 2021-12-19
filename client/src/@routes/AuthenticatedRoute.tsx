@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RouteProps, Route, Redirect } from 'react-router-dom';
-import { isAuthSelector } from '../../../@store/auth/selectors';
+import { isAuthSelector } from '../@store/auth/selectors';
 
 export type AuthenticatedRouteProps = {
   onlyPublic?: boolean;

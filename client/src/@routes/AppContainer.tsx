@@ -4,8 +4,8 @@ import React, { lazy, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import LoadingPage from '../@components/UI/LoadingPage';
 import { IRoute, ROUTES } from '../@types';
-import AuthenticatedRoute from './@common/PrivateRoute/AuthenticatedRoute';
-import { GuestLayout, UserLayout } from './@common/PrivateRoute/Layouts';
+import AuthenticatedRoute from './AuthenticatedRoute';
+import { GuestLayout, UserLayout } from './Layouts';
 
 const MIN_LAZY_DELAY = 300;
 
