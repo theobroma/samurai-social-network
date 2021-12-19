@@ -78,7 +78,7 @@ export const APP_MAIN_ROUTES: IRoute[] = [
   },
 ];
 
-export const App = () => {
+export const AppContainer = () => {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>
