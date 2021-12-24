@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  Outlet,
+} from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import Header from '../@components/Header';
 import Sidebar from '../@components/Sidebar/Sidebar';
@@ -32,12 +40,14 @@ export const UserLayout: React.FC<ILayout> = ({ children }) => {
   );
 };
 
-export const GuestLayout: React.FC<ILayout> = ({ children }) => {
+export const GuestLayout = () => {
   return (
     <>
       <Header className="mb-3" />
       <div className="HolyGrail-body">
-        <main className="HolyGrail-content">{children}</main>
+        <main className="HolyGrail-content">
+          <Outlet />
+        </main>
       </div>
       <Footer className="mt-3" />
     </>

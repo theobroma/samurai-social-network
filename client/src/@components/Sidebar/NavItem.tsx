@@ -9,9 +9,7 @@ interface Props {
 const NavItem: React.FC<Props> = React.memo(({ path, children }) => {
   return (
     <StyledNavItem>
-      <NavLink to={path} exact activeClassName="active">
-        {children}
-      </NavLink>
+      <NavLink to={path}>{children}</NavLink>
     </StyledNavItem>
   );
 });
