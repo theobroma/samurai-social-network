@@ -13,6 +13,7 @@ import LoadingPage from '../@components/UI/LoadingPage';
 import { IRoute, ROUTES } from '../@types';
 // import AuthenticatedRoute from './AuthenticatedRoute';
 import { GuestLayout, UserLayout } from './Layouts';
+import RequireAuth from './RequireAuth';
 
 const MIN_LAZY_DELAY = 300;
 
@@ -105,16 +106,30 @@ export const AppContainer = () => {
           <Route path="/" element={<GuestLayout />}>
             {/* index means default */}
             <Route index element={<MainView />} />
-            {/* <Route
+            <Route path="login" element={<LoginView />} />
+          </Route>
+          <Route path="/" element={<UserLayout />}>
+            <Route
+              path="profile"
+              element={
+                <RequireAuth>
+                  <ProfileView />
+                </RequireAuth>
+              }
+            />
+          </Route>
+          {/* <Route
               path="/details/:mediaType/:id"
               element={<MoviesDetailsView />}
             /> */}
-            {/* Nested favourites */}
-            {/* <Route path="favourites" element={<FavouritesLayout />}>
+          {/* Nested favourites */}
+          {/* <Route path="favourites" element={<FavouritesLayout />}>
               <Route path="movies" element={<FavouritesMoviesView />} />
               <Route path="tv" element={<FavouritesTVView />} />
               <Route index element={<div>Click any tab.</div>} />
             </Route> */}
+
+          <Route path="*" element={<GuestLayout />}>
             <Route path="*" element={<Page404View />} />
           </Route>
         </Routes>

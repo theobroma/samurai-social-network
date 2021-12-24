@@ -12,25 +12,22 @@ import Header from '../@components/Header';
 import Sidebar from '../@components/Sidebar/Sidebar';
 import Footer from '../@components/Footer';
 
-interface ILayout {
-  // All other props
-  [x: string]: any;
-}
-
-export const UserLayout: React.FC<ILayout> = ({ children }) => {
+export const UserLayout = () => {
   return (
     <>
       <Header className="mb-3" />
       <div className="HolyGrail-body">
         <Container>
           <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} lg={4}>
               <nav>
                 <Sidebar />
               </nav>
             </Col>
-            <Col xs={12} md={8}>
-              <main>{children}</main>
+            <Col xs={12} lg={8}>
+              <main>
+                <Outlet />
+              </main>
             </Col>
           </Row>
         </Container>
