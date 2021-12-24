@@ -1,7 +1,7 @@
 // https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay
 import pMinDelay from 'p-min-delay';
 import React, { lazy, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoadingPage from '../@components/UI/LoadingPage';
 import { IRoute, ROUTES } from '../@types';
 import AuthenticatedRoute from './AuthenticatedRoute';
@@ -93,27 +93,29 @@ export const APP_MAIN_ROUTES: IRoute[] = [
 export const AppContainer = () => {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <Switch>
-        <Redirect from="/index.html" to="/" exact />
-        {APP_MAIN_ROUTES.map((route: IRoute) => (
-          <AuthenticatedRoute {...route}>
-            <route.layout>
-              <route.comp />
-            </route.layout>
-          </AuthenticatedRoute>
-        ))}
-        {/* 404 */}
-        {/* https://stackoverflow.com/a/37491381/3988363 */}
-        <Route
-          path="/404"
-          render={() => (
-            <GuestLayout>
-              <NotFoundPageView />
-            </GuestLayout>
-          )}
-        />
-        <Redirect to="/404" />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Redirect from="/index.html" to="/" exact />
+          {APP_MAIN_ROUTES.map((route: IRoute) => (
+            <AuthenticatedRoute {...route}>
+              <route.layout>
+                <route.comp />
+              </route.layout>
+            </AuthenticatedRoute>
+          ))}
+          {/* 404 */}
+          {/* https://stackoverflow.com/a/37491381/3988363 */}
+          <Route
+            path="/404"
+            render={() => (
+              <GuestLayout>
+                <NotFoundPageView />
+              </GuestLayout>
+            )}
+          />
+          <Redirect to="/404" />
+        </Switch>
+      </BrowserRouter>
     </Suspense>
   );
 };

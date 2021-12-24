@@ -1,5 +1,3 @@
-import { connectRouter, RouterState } from 'connected-react-router';
-import { History } from 'history';
 import { combineReducers } from 'redux';
 // import { authReducer, authStateType } from './auth/reducer';
 import { authReducer, AuthInitialStateType } from './auth/slice';
@@ -11,17 +9,15 @@ export interface RootState {
   auth: AuthInitialStateType;
   layout: LayoutInitialStateType;
   profile: profileStateType;
-  router: RouterState;
   users: UsersInitialStateType;
 }
 
 // https://github.com/reduxjs/redux/issues/2709
-export const rootReducer = (history: History) =>
+export const rootReducer = () =>
   combineReducers<RootState>({
     auth: authReducer,
     layout: layoutReducer,
     profile: profileReducer,
-    router: connectRouter(history),
     users: usersReducer,
   });
 

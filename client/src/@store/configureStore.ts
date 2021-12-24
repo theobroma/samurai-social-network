@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createBrowserHistory } from 'history';
 import { createLogger } from 'redux-logger';
 import {
   persistStore,
@@ -14,11 +13,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware } from 'connected-react-router';
 import { rootReducer } from './index';
 import { rootSaga } from '../rootSaga';
-
-export const history = createBrowserHistory();
 
 const persistConfig = {
   key: 'root',
@@ -34,7 +30,7 @@ const logger = createLogger({
 const sagaMiddleware = createSagaMiddleware();
 
 // Middleware: Redux Persist Persisted Reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer(history));
+const persistedReducer = persistReducer(persistConfig, rootReducer());
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -43,7 +39,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger, sagaMiddleware, routerMiddleware(history)),
+    }).concat(logger, sagaMiddleware),
   // devTools: process.env.NODE_ENV === 'development',
   devTools: true,
 });

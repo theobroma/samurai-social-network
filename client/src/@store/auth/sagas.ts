@@ -1,5 +1,5 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+// import { push } from 'connected-react-router';
 import { SagaIterator } from 'redux-saga';
 import { SecurityAPI } from '../../@api/security';
 import { AuthAPI } from '../../@api/auth';
@@ -21,7 +21,7 @@ export function* loginSaga(
     if (response.resultCode === 0) {
       yield put(actions.setUserId(response.data.userId));
       yield put(actions.clearCaptcha());
-      yield put(push('/profile'));
+      // yield put(push('/profile'));
     }
 
     if (response.resultCode === 10) {
@@ -47,7 +47,7 @@ export function* logoutSaga(): SagaIterator<void> {
       yield all([
         put(actions.clearAuthUserData()),
         // put(actions.logoutAsync.success(response)),
-        put(push('/login')),
+        // put(push('/login')),
       ]);
     }
   } catch (err: any) {

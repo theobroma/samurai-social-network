@@ -2,12 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './@utils/theme';
 import { GlobalStyle } from './@utils/global';
 import { AppContainer } from './@routes/AppContainer';
-import { history, store, persistor } from './@store/configureStore';
+import { store, persistor } from './@store/configureStore';
 
 import reportWebVitals from './reportWebVitals';
 // All styles
@@ -27,9 +26,7 @@ render(
         <ThemeProvider
           theme={currentTheme === 'light' ? lightTheme : darkTheme}
         >
-          <ConnectedRouter history={history}>
-            <AppContainer />
-          </ConnectedRouter>
+          <AppContainer />
           <GlobalStyle />
         </ThemeProvider>
       </PersistGate>
