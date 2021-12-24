@@ -15,8 +15,8 @@ import storage from 'redux-persist/lib/storage';
 
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-import { rootReducer } from './@store/index';
-import { rootSaga } from './rootSaga';
+import { rootReducer } from './index';
+import { rootSaga } from '../rootSaga';
 
 export const history = createBrowserHistory();
 

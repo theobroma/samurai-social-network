@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './@utils/theme';
 import { GlobalStyle } from './@utils/global';
 import { AppContainer } from './@routes/AppContainer';
-import { history, store, persistor } from './configureStore';
+import { history, store, persistor } from './@store/configureStore';
 
 import reportWebVitals from './reportWebVitals';
 // All styles
