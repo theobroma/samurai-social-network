@@ -28,8 +28,8 @@ export const PaginationFC: React.FC<Props> = ({
       previousLinkClassName="page-link"
       nextLinkClassName="page-link"
       pageClassName="page-item"
-      // subContainerClassName="pages pagination"
       activeClassName="active"
+      // renderOnZeroPageCount={null}
     />
   );
 };
