@@ -4,7 +4,6 @@ import { Container, Row, Col, Alert, Card } from 'react-bootstrap';
 import LoginForm from './LoginForm/LoginForm';
 import { getCaptchaUrl } from '../../@store/auth/selectors';
 import { LoginPayload } from '../../@store/auth/types';
-// import { startLoginProcess } from '../../@store/auth/actions';
 import { loginTC } from '../../@store/auth/slice';
 
 export const LoginView = () => {
@@ -12,7 +11,6 @@ export const LoginView = () => {
   const captchaUrl = useSelector(getCaptchaUrl);
 
   const submitCallback = (payload: LoginPayload) => {
-    // dispatch(startLoginProcess(payload));
     dispatch(loginTC(payload));
   };
 
