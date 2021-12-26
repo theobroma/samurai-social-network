@@ -1,6 +1,5 @@
 import { RootState } from '../index';
-import { ThemeColors } from '../../@types';
 
-export const getTheme = (state: RootState): ThemeColors => {
+export const getTheme = (state: RootState) => {
   return state.layout.theme;
 };
