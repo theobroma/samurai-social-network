@@ -16,10 +16,13 @@ type AuthLogin = {
 };
 
 export const AuthAPI = {
+  // me() {
+  //   return instance
+  //     .get<APIResponseType<AuthMeData>>(`auth/me`)
+  //     .then((res) => res.data);
+  // },
   me() {
-    return instance
-      .get<APIResponseType<AuthMeData>>(`auth/me`)
-      .then((res) => res.data);
+    return instance.get<any>(`/auth/me`);
   },
   login: async (
     email: string,

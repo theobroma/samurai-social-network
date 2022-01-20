@@ -56,8 +56,8 @@ export const authMeTC = createAsyncThunk('auth/authMe', async (_, thunkAPI) => {
     // thunkAPI.dispatch(setLoadingAC(true));
     await waitForMe(500);
     const res = await AuthAPI.me();
-    if (res.resultCode === ResultCodesEnum.Success) {
-      const { id, email, login } = res.data;
+    if (res.data.resultCode === ResultCodesEnum.Success) {
+      const { id, email, login } = res.data.data;
       thunkAPI.dispatch(
         setAuthUserDataAC({
           userId: id,
@@ -68,7 +68,7 @@ export const authMeTC = createAsyncThunk('auth/authMe', async (_, thunkAPI) => {
       );
     }
 
-    return { data: res.data };
+    return res.data;
   } catch (err: any) {
     if (!err.response) {
       throw err;
