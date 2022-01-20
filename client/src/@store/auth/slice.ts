@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ResultCodesEnum, ResultCodeForCapcthaEnum } from '../../@api';
+import { ResultCodeForCapcthaEnum, ResultCodesEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
+import { MeResponseSchema } from '../../@types/zod/z.auth';
 import { waitForMe } from '../../@utils/waitforme';
 
 const authInitialState = {
@@ -66,6 +67,14 @@ export const authMeTC = createAsyncThunk('auth/authMe', async (_, thunkAPI) => {
           isAuth: true, // duplication  as loginTC.fulfilled
         }),
       );
+    }
+
+    // ZOD validation
+    try {
+      MeResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
     }
 
     return res.data;
