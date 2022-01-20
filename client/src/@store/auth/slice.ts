@@ -34,15 +34,25 @@ export const loginTC = createAsyncThunk(
       thunkAPI.dispatch(setLoadingAC(true));
       await waitForMe(500);
       const res = await AuthAPI.login(param.email, param.password);
-      if (res.resultCode === ResultCodesEnum.Success) {
+      if (res.data.resultCode === ResultCodesEnum.Success) {
         // success, get auth data
         thunkAPI.dispatch(authMeTC());
       } else if (
         res.data.resultCode === ResultCodeForCapcthaEnum.CaptchaIsRequired
       ) {
+        // TODO:
         // thunkAPI.dispatch(getCaptchaUrl());
       }
-      return { data: res.data };
+
+      // ZOD validation
+      try {
+        LoginResponseSchema.parse(res.data);
+      } catch (error) {
+        // Log & alert error <-- very important!
+        console.log(error);
+      }
+
+      return res.data;
     } catch (err: any) {
       if (!err.response) {
         throw err;
