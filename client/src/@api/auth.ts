@@ -1,4 +1,9 @@
 import {
+  LoginResponseType,
+  LogoutResponseType,
+  MeResponseType,
+} from '../@types';
+import {
   instance,
   APIResponseType,
   ResultCodesEnum,
@@ -22,7 +27,7 @@ export const AuthAPI = {
   //     .then((res) => res.data);
   // },
   me() {
-    return instance.get<any>(`/auth/me`);
+    return instance.get<MeResponseType>(`/auth/me`);
   },
   login: async (
     email: string,
@@ -44,12 +49,15 @@ export const AuthAPI = {
       return e.message;
     }
   },
-  logout: async (): Promise<any> => {
-    try {
-      const res = await instance.delete('auth/login');
-      return res.data;
-    } catch (e: any) {
-      return e.message;
-    }
+  // logout: async (): Promise<any> => {
+  //   try {
+  //     const res = await instance.delete('auth/login');
+  //     return res.data;
+  //   } catch (e: any) {
+  //     return e.message;
+  //   }
+  // },
+  logout() {
+    return instance.delete<LogoutResponseType>(`/auth/login`);
   },
 };

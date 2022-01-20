@@ -6,7 +6,6 @@ export const LoginResponseSchema = z.object({
   fieldsErrors: z.array(z.unknown()),
   resultCode: z.number(),
 });
-
 export type LoginResponseType = z.infer<typeof LoginResponseSchema>;
 
 export const MeResponseSchema = z.object({
@@ -15,5 +14,12 @@ export const MeResponseSchema = z.object({
   fieldsErrors: z.array(z.unknown()),
   resultCode: z.number(),
 });
-
 export type MeResponseType = z.infer<typeof MeResponseSchema>;
+
+export const LogoutResponseSchema = LoginResponseSchema.omit({
+  data: true,
+}).extend({
+  data: z.object({ userId: z.optional(z.number()) }),
+  //   data: z.any(),
+});
+export type LogoutResponseType = z.infer<typeof LogoutResponseSchema>;

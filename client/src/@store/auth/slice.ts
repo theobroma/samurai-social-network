@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ResultCodeForCapcthaEnum, ResultCodesEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
-import { MeResponseSchema } from '../../@types/zod/z.auth';
+import {
+  LoginResponseSchema,
+  LogoutResponseSchema,
+  MeResponseSchema,
+} from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const authInitialState = {
@@ -95,7 +99,7 @@ export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     // thunkAPI.dispatch(setLoadingAC(true));
     await waitForMe(500);
     const res = await AuthAPI.logout();
-    if (res.resultCode === ResultCodesEnum.Success) {
+    if (res.data.resultCode === ResultCodesEnum.Success) {
       thunkAPI.dispatch(
         setAuthUserDataAC({
           userId: null,
@@ -105,6 +109,15 @@ export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
         }),
       );
     }
+
+    // ZOD validation
+    try {
+      LogoutResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
+    }
+
     return true; // return doesn't matter
   } catch (err: any) {
     if (!err.response) {
