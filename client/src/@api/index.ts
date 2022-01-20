@@ -2,11 +2,14 @@
 import axios from 'axios';
 import { UserType, PhotosType } from '../@types';
 
+export const API_KEY = process.env.REACT_APP_API_KEY as string;
+export const API_URL = 'https://social-network.samuraijs.com/api/1.0/';
+
 export const instance = axios.create({
-  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+  baseURL: API_URL,
   withCredentials: true,
   headers: {
-    'API-KEY': `${process.env.REACT_APP_API_KEY}`,
+    'API-KEY': API_KEY,
   },
 });
 
