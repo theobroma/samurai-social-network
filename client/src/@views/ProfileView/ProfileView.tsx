@@ -8,8 +8,10 @@ import {
   updateAvatarAsync,
 } from '../../@store/profile/actions';
 import { Profile as ProfileComponent } from '../../@components/Profile';
-import { getProfile, getStatus } from '../../@store/profile/selectors';
+import { getProfile } from '../../@store/profile/selectors';
 import { getProfileTC } from '../../@store/profile/slice';
+import { getStatus } from '../../@store/status/selectors';
+import { getStatusTC } from '../../@store/status/slice';
 
 export const ProfileView = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,8 @@ export const ProfileView = () => {
     if (userId) {
       // dispatch(fetchProfileAsync.request(userId));
       dispatch(getProfileTC({ userId }));
-      dispatch(fetchStatusAsync.request(userId));
+      // dispatch(fetchStatusAsync.request(userId));
+      dispatch(getStatusTC({ userId }));
     }
   }, [dispatch, userId]);
 
