@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 import { AuthInitialStateType, authReducer } from './auth/slice';
 import { LayoutInitialStateType, layoutReducer } from './layout/slice';
 import { ProfileInitialStateType, profileReducer } from './profile/slice';
+import { StatusInitialStateType, statusReducer } from './status/slice';
 import { UsersInitialStateType, usersReducer } from './users/slice';
 
 export interface RootState {
   auth: AuthInitialStateType;
   layout: LayoutInitialStateType;
   profile: ProfileInitialStateType;
+  status: StatusInitialStateType;
   users: UsersInitialStateType;
 }
 
@@ -17,6 +19,7 @@ export const rootReducer = () =>
     auth: authReducer,
     layout: layoutReducer,
     profile: profileReducer,
+    status: statusReducer,
     users: usersReducer,
   });
 
