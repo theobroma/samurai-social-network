@@ -3,10 +3,11 @@ import { actions, ProfileActionType } from './actions';
 
 export const profileInitialState = {
   profile: {
-    userId: null,
-    lookingForAJob: null,
-    lookingForAJobDescription: null,
-    fullName: null,
+    aboutMe: '',
+    userId: 0,
+    lookingForAJob: false,
+    lookingForAJobDescription: '',
+    fullName: '',
     contacts: {
       github: '',
       vk: '',

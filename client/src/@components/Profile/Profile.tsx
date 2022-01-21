@@ -11,7 +11,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 
 import { updateProfileAsync } from '../../@store/profile/actions';
-import { ProfileType } from '../../@types';
+import { ProfileResponseType } from '../../@types';
 import {
   ProfileStatus,
   ProfileData,
@@ -20,7 +20,7 @@ import {
 } from './ProfileInfo';
 
 type Props = {
-  profile: ProfileType;
+  profile: ProfileResponseType;
   status: string;
   updateStatus: (status: string) => void;
   saveAvatar: (file: File) => void;

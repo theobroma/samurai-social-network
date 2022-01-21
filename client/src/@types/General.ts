@@ -1,21 +1,4 @@
-// export type DialogType = {
-//   id: number;
-//   name: string;
-// };
-// export type MessageType = {
-//   id: number;
-//   text: string;
-// };
-// export type PostType = {
-//   id: number;
-//   text: string;
-//   likesCount: number;
-// };
-
-export type PhotosType = {
-  small: string | null;
-  large: string | null;
-};
+import { PhotosType } from './zod/z.profile';
 
 export type UserType = {
   id: number;

@@ -19,24 +19,28 @@ import {
 
 type ContactProps = {
   title: ContactsKeys;
-  value: string;
+  value: string | null;
 };
 
-const Contact: React.FC<ContactProps> = ({ title, value = '', children }) => (
-  <li>
-    <a
-      href={value}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ cursor: 'pointer' }}
-    >
+const Contact: React.FC<ContactProps> = ({ title, value, children }) => {
+  const val = value || '';
+  return (
+    <li>
       <span className="mr-2" style={{ color: ContactsColorsEnum[title] }}>
         {children}
       </span>
-      <span className="text-secondary">{title}</span>
-    </a>
-  </li>
-);
+      <span className="text-secondary mr-3">{title}</span>
+      <a
+        href={val}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ cursor: 'pointer' }}
+      >
+        <span className="text-secondary">{val}</span>
+      </a>
+    </li>
+  );
+};
 
 type Props = {
   contacts: ContactsType;

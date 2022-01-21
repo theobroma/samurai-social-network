@@ -1,10 +1,10 @@
 import { instance, APIResponseType, PhotosDataType } from './index';
-import { ProfileType, IDType } from '../@types';
+import { ProfileResponseType, IDType } from '../@types';
 
 export const ProfileAPI = {
   getProfile: async (id: IDType) => {
     try {
-      const response = await instance.get<ProfileType>(`profile/${id}`);
+      const response = await instance.get<ProfileResponseType>(`profile/${id}`);
       return response.data;
     } catch (e: any) {
       return e.message;
@@ -45,7 +45,7 @@ export const ProfileAPI = {
       return e.message;
     }
   },
-  updateProfile: async (profile: ProfileType) => {
+  updateProfile: async (profile: ProfileResponseType) => {
     try {
       const response = await instance.put<any>(`profile`, profile);
       return response.data;
