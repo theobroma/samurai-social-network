@@ -15,6 +15,6 @@ export type UsersFilterType = {
   friend: boolean | null;
 };
 
-export type IDType = number | null;
+export type IDType = number;
 
 export type LoadingStateType = 'idle' | 'pending';

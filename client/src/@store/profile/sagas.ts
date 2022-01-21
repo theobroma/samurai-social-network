@@ -16,10 +16,10 @@ export function* getProfileSaga(
 ): SagaIterator<void> {
   try {
     const res = yield call(ProfileAPI.getProfile, action.payload);
-    if (res.error) {
-      yield put(fetchProfileAsync.failure(res.error));
+    if (res.data.error) {
+      yield put(fetchProfileAsync.failure(res.data.error));
     } else {
-      yield put(fetchProfileAsync.success(res));
+      yield put(fetchProfileAsync.success(res.data));
     }
   } catch (err: any) {
     yield put(fetchProfileAsync.failure(err));
@@ -31,8 +31,8 @@ export function* getStatusSaga(
 ): SagaIterator<void> {
   try {
     // const userId: number | null = yield select(getUserId);
-    const response = yield call(ProfileAPI.getStatus, action.payload);
-    yield put(fetchStatusAsync.success(response));
+    const res = yield call(ProfileAPI.getStatus, action.payload);
+    yield put(fetchStatusAsync.success(res.data));
   } catch (err: any) {
     yield put(fetchStatusAsync.failure(err));
   }

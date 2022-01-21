@@ -2,21 +2,11 @@ import { instance, APIResponseType, PhotosDataType } from './index';
 import { ProfileResponseType, IDType } from '../@types';
 
 export const ProfileAPI = {
-  getProfile: async (id: IDType) => {
-    try {
-      const response = await instance.get<ProfileResponseType>(`profile/${id}`);
-      return response.data;
-    } catch (e: any) {
-      return e.message;
-    }
+  getProfile(id: IDType) {
+    return instance.get<ProfileResponseType>(`profile/${id}`);
   },
-  getStatus: async (id: IDType) => {
-    try {
-      const response = await instance.get<string>(`profile/status/${id}`);
-      return response.data;
-    } catch (e: any) {
-      return e.message;
-    }
+  getStatus(id: IDType) {
+    return instance.get<string>(`profile/status/${id}`);
   },
   updateStatus: async (status: string) => {
     try {
