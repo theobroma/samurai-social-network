@@ -14,6 +14,7 @@ import { setTheme } from '../../@store/layout/slice';
 import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 import logo from '../../@assets/images/logo.png';
 import { logoutTC } from '../../@store/auth/slice';
+import { getProfileTC } from '../../@store/profile/slice';
 
 interface Props {
   className?: string;
@@ -28,7 +29,8 @@ export const Header: React.FC<Props> = ({ className = null }) => {
 
   useEffect(() => {
     if (userId && !profile.userId) {
-      dispatch(fetchProfileAsync.request(userId));
+      // dispatch(fetchProfileAsync.request(userId));
+      dispatch(getProfileTC({ userId }));
     }
   }, [dispatch, userId, profile.userId]);
 

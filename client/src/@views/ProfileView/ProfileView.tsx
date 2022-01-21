@@ -9,6 +9,7 @@ import {
 } from '../../@store/profile/actions';
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { getProfile, getStatus } from '../../@store/profile/selectors';
+import { getProfileTC } from '../../@store/profile/slice';
 
 export const ProfileView = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ export const ProfileView = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchProfileAsync.request(userId));
+      // dispatch(fetchProfileAsync.request(userId));
+      dispatch(getProfileTC({ userId }));
       dispatch(fetchStatusAsync.request(userId));
     }
   }, [dispatch, userId]);

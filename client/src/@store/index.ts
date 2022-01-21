@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux';
-// import { authReducer, authStateType } from './auth/reducer';
-import { authReducer, AuthInitialStateType } from './auth/slice';
+import { AuthInitialStateType, authReducer } from './auth/slice';
 import { LayoutInitialStateType, layoutReducer } from './layout/slice';
-import { profileReducer, profileStateType } from './profile/reducer';
+import { ProfileInitialStateType, profileReducer } from './profile/slice';
 import { UsersInitialStateType, usersReducer } from './users/slice';
 
 export interface RootState {
   auth: AuthInitialStateType;
   layout: LayoutInitialStateType;
-  profile: profileStateType;
+  profile: ProfileInitialStateType;
   users: UsersInitialStateType;
 }
 
