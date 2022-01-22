@@ -10,6 +10,7 @@ import {
 } from './actions';
 import { getUserId } from '../auth/selectors';
 import { IDType } from '../../@types';
+import { StatusAPI } from '../../@api/status';
 
 export function* getProfileSaga(
   action: ReturnType<typeof fetchProfileAsync.request>,
@@ -31,7 +32,7 @@ export function* getStatusSaga(
 ): SagaIterator<void> {
   try {
     // const userId: number | null = yield select(getUserId);
-    const res = yield call(ProfileAPI.getStatus, action.payload);
+    const res = yield call(StatusAPI.getStatus, action.payload);
     yield put(fetchStatusAsync.success(res.data));
   } catch (err: any) {
     yield put(fetchStatusAsync.failure(err));
@@ -42,7 +43,7 @@ export function* updateStatusSaga(
   action: ReturnType<typeof updateStatusAsync.request>,
 ): SagaIterator<void> {
   try {
-    const response = yield call(ProfileAPI.updateStatus, action.payload);
+    const response = yield call(StatusAPI.updateStatus, action.payload);
     yield put(updateStatusAsync.success(response));
     // refetch status
     const userId: IDType = yield select(getUserId);
