@@ -39,27 +39,33 @@ export const getStatusTC = createAsyncThunk<string, { userId: IDType }, any>(
   },
 );
 
-export const updateStatusTC = createAsyncThunk<any, { status: string }, any>(
-  'status/updateStatus',
-  async (param, thunkAPI) => {
-    try {
-      await waitForMe(500);
-      const res = await StatusAPI.updateStatus(param.status);
-      // TODO: refetch
-      // ZOD validation
-      try {
-        StandardResponseSchema.parse(res.data);
-      } catch (error) {
-        // Log & alert error <-- very important!
-        console.log(error);
-      }
-
-      return res.data;
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(err.response.data);
+export const updateStatusTC = createAsyncThunk<
+  any,
+  { status: string },
+  { state: any }
+>('status/updateStatus', async (param, thunkAPI) => {
+  try {
+    await waitForMe(500);
+    const res = await StatusAPI.updateStatus(param.status);
+    // refetch status
+    if (res.status === 200) {
+      const state = thunkAPI.getState();
+      const { userId } = state.auth;
+      thunkAPI.dispatch(getStatusTC({ userId }));
     }
-  },
-);
+    // ZOD validation
+    try {
+      StandardResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
+    }
+
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
 export const statusSlice = createSlice({
   name: 'status',
@@ -69,7 +75,7 @@ export const statusSlice = createSlice({
     builder.addCase(getStatusTC.pending, (state) => {
       state.isFetching = true;
       //   clear data
-      state.status = '';
+      // state.status = '';
       state.isSuccess = false;
       state.isError = false;
       state.errorMessage = '';
