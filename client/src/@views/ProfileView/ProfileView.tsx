@@ -11,7 +11,7 @@ import { Profile as ProfileComponent } from '../../@components/Profile';
 import { getProfile } from '../../@store/profile/selectors';
 import { getProfileTC } from '../../@store/profile/slice';
 import { getStatus } from '../../@store/status/selectors';
-import { getStatusTC } from '../../@store/status/slice';
+import { getStatusTC, updateStatusTC } from '../../@store/status/slice';
 
 export const ProfileView = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,8 @@ export const ProfileView = () => {
   }, [dispatch, userId]);
 
   const handleUpdateStatus = (newStatus: string) => {
-    dispatch(updateStatusAsync.request(newStatus));
+    // dispatch(updateStatusAsync.request(newStatus));
+    dispatch(updateStatusTC({ status: newStatus }));
   };
   const saveAvatar = (file: File) => {
     dispatch(updateAvatarAsync.request(file));

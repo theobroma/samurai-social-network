@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { StatusAPI } from '../../@api/status';
-import { IDType, StatusResponseSchema } from '../../@types';
+import {
+  IDType,
+  StandardResponseSchema,
+  StatusResponseSchema,
+} from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const statusInitialState = {
@@ -20,10 +24,31 @@ export const getStatusTC = createAsyncThunk<string, { userId: IDType }, any>(
     try {
       await waitForMe(500);
       const res = await StatusAPI.getStatus(param.userId);
-
       // ZOD validation
       try {
         StatusResponseSchema.parse(res.data);
+      } catch (error) {
+        // Log & alert error <-- very important!
+        console.log(error);
+      }
+
+      return res.data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  },
+);
+
+export const updateStatusTC = createAsyncThunk<any, { status: string }, any>(
+  'status/updateStatus',
+  async (param, thunkAPI) => {
+    try {
+      await waitForMe(500);
+      const res = await StatusAPI.updateStatus(param.status);
+      // TODO: refetch
+      // ZOD validation
+      try {
+        StandardResponseSchema.parse(res.data);
       } catch (error) {
         // Log & alert error <-- very important!
         console.log(error);
