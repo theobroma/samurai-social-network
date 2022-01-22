@@ -1,4 +1,5 @@
 import {
+  CaptchaResponseType,
   LoginResponseType,
   LogoutResponseType,
   MeResponseType,
@@ -24,5 +25,8 @@ export const AuthAPI = {
   },
   logout() {
     return instance.delete<LogoutResponseType>(`/auth/login`);
+  },
+  getCaptchaUrl() {
+    return instance.get<CaptchaResponseType>('security/get-captcha-url');
   },
 };

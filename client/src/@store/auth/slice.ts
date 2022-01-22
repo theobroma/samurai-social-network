@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ResultCodeForCapcthaEnum, ResultCodesEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
 import {
+  CaptchaResponseSchema,
+  CaptchaResponseType,
   LoginResponseSchema,
   LogoutResponseSchema,
   MeResponseSchema,
@@ -40,8 +42,7 @@ export const loginTC = createAsyncThunk(
       } else if (
         res.data.resultCode === ResultCodeForCapcthaEnum.CaptchaIsRequired
       ) {
-        // TODO:
-        // thunkAPI.dispatch(getCaptchaUrl());
+        thunkAPI.dispatch(getCaptchaUrlTC());
       }
 
       // ZOD validation
@@ -140,6 +141,28 @@ export const logoutTC = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     // thunkAPI.dispatch(setLoadingAC(false));
   }
 });
+
+export const getCaptchaUrlTC = createAsyncThunk<CaptchaResponseType, void>(
+  'auth/getCaptchaUrl',
+  async (_, thunkAPI) => {
+    try {
+      await waitForMe(500);
+      const res = await AuthAPI.getCaptchaUrl();
+
+      // ZOD validation
+      try {
+        CaptchaResponseSchema.parse(res.data);
+      } catch (error) {
+        // Log & alert error <-- very important!
+        console.log(error);
+      }
+
+      return res.data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  },
+);
 
 export const slice = createSlice({
   name: 'auth',

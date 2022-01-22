@@ -16,6 +16,7 @@ export const MeResponseSchema = z.object({
 });
 export type MeResponseType = z.infer<typeof MeResponseSchema>;
 
+// same as standard
 export const LogoutResponseSchema = LoginResponseSchema.omit({
   data: true,
 }).extend({
@@ -23,3 +24,8 @@ export const LogoutResponseSchema = LoginResponseSchema.omit({
   //   data: z.any(),
 });
 export type LogoutResponseType = z.infer<typeof LogoutResponseSchema>;
+
+export const CaptchaResponseSchema = z.object({
+  url: z.string(),
+});
+export type CaptchaResponseType = z.infer<typeof CaptchaResponseSchema>;
