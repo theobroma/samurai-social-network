@@ -4,13 +4,14 @@ import { ProfileAPI } from '../../@api/profile';
 import {
   ProfileResponseSchema,
   ProfileResponseType,
+  ProfileType,
   StandardResponseSchema,
   StandardResponseType,
 } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 export const profileInitialState = {
-  profile: {} as ProfileResponseType,
+  profile: {} as ProfileType,
   // utils
   isFetching: false,
   isSuccess: false,
@@ -44,7 +45,7 @@ export const getProfileTC = createAsyncThunk<
 
 export const updateProfileTC = createAsyncThunk<
   StandardResponseType,
-  ProfileResponseType,
+  ProfileType,
   { state: any }
 >('status/updateStatus', async (param, thunkAPI) => {
   try {
@@ -78,7 +79,7 @@ export const profileSlice = createSlice({
     builder.addCase(getProfileTC.pending, (state) => {
       state.isFetching = true;
       //   clear data
-      state.profile = {} as ProfileResponseType;
+      state.profile = {} as ProfileType;
       state.isSuccess = false;
       state.isError = false;
       state.errorMessage = '';

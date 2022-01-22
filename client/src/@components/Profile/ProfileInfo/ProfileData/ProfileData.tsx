@@ -1,12 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Avatar from 'react-avatar';
-import { ProfileResponseType } from '../../../../@types';
+import { ProfileType } from '../../../../@types';
 import { StyledName, StyledLabel, StyledValue } from './Styled';
 import UploadButton from './UploadButton';
 
 type ProfileDataProps = {
-  profile: ProfileResponseType;
+  profile: ProfileType;
   saveAvatar: (file: File) => void;
 };
 

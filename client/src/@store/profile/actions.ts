@@ -1,5 +1,5 @@
 import { createAsyncAction, ActionType } from 'typesafe-actions';
-import { ProfileResponseType, IDType } from '../../@types';
+import { ProfileResponseType, IDType, ProfileType } from '../../@types';
 import { APIResponseType } from '../../@api';
 
 // Create the set of async actions
@@ -13,7 +13,7 @@ export const updateProfileAsync = createAsyncAction(
   '@@profile/UPDATE_PROFILE_REQUEST',
   '@@profile/UPDATE_PROFILE_SUCCESS',
   '@@profile/UPDATE_PROFILE_FAILURE',
-)<ProfileResponseType, APIResponseType, Error>();
+)<ProfileType, APIResponseType, Error>();
 
 export const fetchStatusAsync = createAsyncAction(
   '@@profile/FETCH_STATUS_REQUEST',

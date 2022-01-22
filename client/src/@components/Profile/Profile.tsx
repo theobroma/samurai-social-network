@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateProfileAsync } from '../../@store/profile/actions';
 import { updateProfileTC } from '../../@store/profile/slice';
-import { ProfileResponseType } from '../../@types';
+import { ProfileType } from '../../@types';
 import {
   ProfileStatus,
   ProfileData,
@@ -21,7 +21,7 @@ import {
 } from './ProfileInfo';
 
 type Props = {
-  profile: ProfileResponseType;
+  profile: ProfileType;
   status: string;
   updateStatus: (status: string) => void;
   saveAvatar: (file: File) => void;
@@ -36,7 +36,7 @@ export const Profile: React.FC<Props> = ({
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
-  const submitCallback = (newProfile: ProfileResponseType) => {
+  const submitCallback = (newProfile: ProfileType) => {
     // dispatch(updateProfileAsync.request(newProfile));
     dispatch(updateProfileTC(newProfile));
     setIsEditing(false);

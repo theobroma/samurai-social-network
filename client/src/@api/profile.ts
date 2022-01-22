@@ -1,5 +1,10 @@
 import { instance } from './index';
-import { ProfileResponseType, IDType } from '../@types';
+import {
+  ProfileResponseType,
+  IDType,
+  ProfileType,
+  StandardResponseType,
+} from '../@types';
 
 export const ProfileAPI = {
   getProfile(id: IDType) {
@@ -14,7 +19,7 @@ export const ProfileAPI = {
       },
     });
   },
-  updateProfile(profile: ProfileResponseType) {
-    return instance.put<any>(`profile`, profile);
+  updateProfile(profile: ProfileType) {
+    return instance.put<StandardResponseType>(`profile`, profile);
   },
 };

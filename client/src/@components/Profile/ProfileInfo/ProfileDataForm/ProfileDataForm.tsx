@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import Form from 'react-bootstrap/Form';
 import { Button, Spinner } from 'react-bootstrap';
-import { ProfileResponseType } from '../../../../@types';
+import { ProfileType } from '../../../../@types';
 
 interface IValues {
   // lookingForAJob: boolean | null;
@@ -19,7 +19,7 @@ interface IValues {
 
 interface FormProps {
   submitCallback: (payload: any) => void;
-  profile: ProfileResponseType;
+  profile: ProfileType;
   cancelCallback: () => void;
 }
 

@@ -1,9 +1,9 @@
 import { createReducer } from 'typesafe-actions';
-import { ProfileResponseType } from '../../@types';
+import { ProfileType } from '../../@types';
 import { actions, ProfileActionType } from './actions';
 
 export const profileInitialState = {
-  profile: {} as ProfileResponseType,
+  profile: {} as ProfileType,
   status: '',
 };
 

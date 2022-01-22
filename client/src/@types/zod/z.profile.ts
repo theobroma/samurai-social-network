@@ -32,3 +32,5 @@ export const ProfileResponseSchema = z.object({
 });
 
 export type ProfileResponseType = z.infer<typeof ProfileResponseSchema>;
+// same as response. alias type. more semantic. prevent confusing
+export type ProfileType = z.infer<typeof ProfileResponseSchema>;
