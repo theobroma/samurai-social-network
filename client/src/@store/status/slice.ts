@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { StatusAPI } from '../../@api/status';
-import { IDType } from '../../@types';
+import { IDType, StatusResponseSchema } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const statusInitialState = {
@@ -22,14 +22,12 @@ export const getStatusTC = createAsyncThunk<string, { userId: IDType }, any>(
       const res = await StatusAPI.getStatus(param.userId);
 
       // ZOD validation
-      //   try {
-      //     SimilarMediaAllResponseSchema.parse(res.data);
-      //     // SimilarMoviesResponseSchema.parse(res.data);
-      //     // SimilarTVResponseSchema.parse(res.data);
-      //   } catch (error) {
-      //     // Log & alert error <-- very important!
-      //     console.log(error);
-      //   }
+      try {
+        StatusResponseSchema.parse(res.data);
+      } catch (error) {
+        // Log & alert error <-- very important!
+        console.log(error);
+      }
 
       return res.data;
     } catch (err: any) {

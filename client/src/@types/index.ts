@@ -6,3 +6,4 @@ export * from './ThemeColors';
 // zod
 export * from './zod/z.auth';
 export * from './zod/z.profile';
+export * from './zod/z.status';
