@@ -71,7 +71,7 @@ export const updateProfileTC = createAsyncThunk<
   }
 });
 
-export const updateAvatarTC = createAsyncThunk<any, any, { state: any }>(
+export const updateAvatarTC = createAsyncThunk<any, File, { state: any }>(
   'profile/updateAvatar',
   async (file, thunkAPI) => {
     try {

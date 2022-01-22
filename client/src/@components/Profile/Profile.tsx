@@ -9,8 +9,6 @@ import {
 } from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
-
-import { updateProfileAsync } from '../../@store/profile/actions';
 import { updateProfileTC } from '../../@store/profile/slice';
 import { ProfileType } from '../../@types';
 import {
@@ -37,7 +35,6 @@ export const Profile: React.FC<Props> = ({
   const [isEditing, setIsEditing] = useState(false);
 
   const submitCallback = (newProfile: ProfileType) => {
-    // dispatch(updateProfileAsync.request(newProfile));
     dispatch(updateProfileTC(newProfile));
     setIsEditing(false);
   };

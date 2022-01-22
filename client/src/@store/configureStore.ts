@@ -12,9 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './index';
-import { rootSaga } from '../rootSaga';
 
 const persistConfig = {
   key: 'root',
@@ -27,8 +25,6 @@ const logger = createLogger({
   collapsed: true,
 });
 
-const sagaMiddleware = createSagaMiddleware();
-
 // Middleware: Redux Persist Persisted Reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer());
 
@@ -39,12 +35,10 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger, sagaMiddleware),
+    }).concat(logger),
   // devTools: process.env.NODE_ENV === 'development',
   devTools: true,
 });
-
-sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 export default { store, persistor };
