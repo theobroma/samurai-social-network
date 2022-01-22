@@ -11,6 +11,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 
 import { updateProfileAsync } from '../../@store/profile/actions';
+import { updateProfileTC } from '../../@store/profile/slice';
 import { ProfileResponseType } from '../../@types';
 import {
   ProfileStatus,
@@ -35,8 +36,9 @@ export const Profile: React.FC<Props> = ({
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
-  const submitCallback = (payload: any) => {
-    dispatch(updateProfileAsync.request(payload));
+  const submitCallback = (newProfile: ProfileResponseType) => {
+    // dispatch(updateProfileAsync.request(newProfile));
+    dispatch(updateProfileTC(newProfile));
     setIsEditing(false);
   };
 

@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IDType } from '../../@types/General';
 import { ProfileAPI } from '../../@api/profile';
-import { ProfileResponseSchema, ProfileResponseType } from '../../@types';
+import {
+  ProfileResponseSchema,
+  ProfileResponseType,
+  StandardResponseSchema,
+  StandardResponseType,
+} from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 export const profileInitialState = {
@@ -17,7 +22,7 @@ export type ProfileInitialStateType = typeof profileInitialState;
 export const getProfileTC = createAsyncThunk<
   ProfileResponseType,
   { userId: IDType },
-  any
+  { state: any }
 >('profile/getProfile', async (param, thunkAPI) => {
   try {
     await waitForMe(500);
@@ -26,6 +31,34 @@ export const getProfileTC = createAsyncThunk<
     // ZOD validation
     try {
       ProfileResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
+    }
+
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
+
+export const updateProfileTC = createAsyncThunk<
+  StandardResponseType,
+  ProfileResponseType,
+  { state: any }
+>('status/updateStatus', async (param, thunkAPI) => {
+  try {
+    await waitForMe(500);
+    const res = await ProfileAPI.updateProfile(param);
+    // refetch profile
+    if (res.status === 200) {
+      const state = thunkAPI.getState();
+      const { userId } = state.auth;
+      thunkAPI.dispatch(getProfileTC({ userId }));
+    }
+    // ZOD validation
+    try {
+      StandardResponseSchema.parse(res.data);
     } catch (error) {
       // Log & alert error <-- very important!
       console.log(error);
