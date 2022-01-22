@@ -71,6 +71,33 @@ export const updateProfileTC = createAsyncThunk<
   }
 });
 
+export const updateAvatarTC = createAsyncThunk<any, any, { state: any }>(
+  'profile/updateAvatar',
+  async (file, thunkAPI) => {
+    try {
+      await waitForMe(500);
+      const res = await ProfileAPI.saveAvatar(file);
+      // refetch profile
+      if (res.status === 200) {
+        const state = thunkAPI.getState();
+        const { userId } = state.auth;
+        thunkAPI.dispatch(getProfileTC({ userId }));
+      }
+      // ZOD validation
+      // try {
+      //   StandardResponseSchema.parse(res.data);
+      // } catch (error) {
+      //   // Log & alert error <-- very important!
+      //   console.log(error);
+      // }
+
+      return res.data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  },
+);
+
 export const profileSlice = createSlice({
   name: 'profile',
   initialState: profileInitialState,
