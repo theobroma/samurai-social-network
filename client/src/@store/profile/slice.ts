@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IDType } from '../../@types/General';
 import { ProfileAPI } from '../../@api/profile';
-import { ProfileResponseType } from '../../@types';
+import { ProfileResponseSchema, ProfileResponseType } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 export const profileInitialState = {
@@ -24,14 +24,12 @@ export const getProfileTC = createAsyncThunk<
     const res = await ProfileAPI.getProfile(param.userId);
 
     // ZOD validation
-    //   try {
-    //     SimilarMediaAllResponseSchema.parse(res.data);
-    //     // SimilarMoviesResponseSchema.parse(res.data);
-    //     // SimilarTVResponseSchema.parse(res.data);
-    //   } catch (error) {
-    //     // Log & alert error <-- very important!
-    //     console.log(error);
-    //   }
+    try {
+      ProfileResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
+    }
 
     return res.data;
   } catch (err: any) {

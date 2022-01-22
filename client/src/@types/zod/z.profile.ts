@@ -21,7 +21,7 @@ const PhotosSchema = z.object({
 
 export type PhotosType = z.infer<typeof PhotosSchema>;
 
-const ProfileResponseSchema = z.object({
+export const ProfileResponseSchema = z.object({
   aboutMe: z.string(),
   contacts: ContactsShema,
   lookingForAJob: z.boolean(),
