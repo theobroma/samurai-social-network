@@ -17,6 +17,7 @@ import { authSlice } from './auth/slice';
 import { layoutSlice } from './layout/slice';
 import { profileSlice } from './profile/slice';
 import { statusSlice } from './status/slice';
+import { usersApi } from './users/api';
 import { usersSlice } from './users/slice';
 
 const logger = createLogger({
@@ -37,7 +38,7 @@ const reducers = {
   [statusSlice.name]: statusSlice.reducer,
   [usersSlice.name]: usersSlice.reducer,
   // [anyApi.reducerPath]: anyApi.reducer,
-  // [trendingTVapi.reducerPath]: trendingTVapi.reducer,
+  [usersApi.reducerPath]: usersApi.reducer,
 };
 
 const combinedReducer = combineReducers<typeof reducers>(reducers);
@@ -60,7 +61,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    }).concat(logger, usersApi.middleware),
   // devTools: process.env.NODE_ENV === 'development',
   devTools: true,
 });
