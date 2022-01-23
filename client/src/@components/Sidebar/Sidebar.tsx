@@ -28,6 +28,10 @@ const Sidebar: React.FC = React.memo(() => {
         <FaUsers className="mr-3" />
         Users
       </NavItem>
+      <NavItem path="/users-rtkq">
+        <FaUsers className="mr-3" />
+        Users RTKQ
+      </NavItem>
       <NavItem path="/dialogs">
         <FaRegComments className="mr-3" />
         Messages
