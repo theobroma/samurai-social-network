@@ -1,5 +1,5 @@
 import { RootState } from '../configureStore';
 
-export const getTheme = (state: RootState) => {
+export const themeSelector = (state: RootState) => {
   return state.layout.theme;
 };

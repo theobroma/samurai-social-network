@@ -1,5 +1,5 @@
 import { RootState } from '../configureStore';
 
-export const getStatus = (state: RootState) => {
+export const statusSelector = (state: RootState) => {
   return state.status.status;
 };

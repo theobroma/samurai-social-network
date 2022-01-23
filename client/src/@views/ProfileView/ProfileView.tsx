@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { userIdSelector } from '../../@store/auth/selectors';
-import { getProfile } from '../../@store/profile/selectors';
+import { profileSelector } from '../../@store/profile/selectors';
 import { getProfileTC, updateAvatarTC } from '../../@store/profile/slice';
-import { getStatus } from '../../@store/status/selectors';
+import { statusSelector } from '../../@store/status/selectors';
 import { getStatusTC, updateStatusTC } from '../../@store/status/slice';
 
 export const ProfileView = () => {
   const dispatch = useDispatch();
   const userId = useSelector(userIdSelector);
-  const profile = useSelector(getProfile);
-  const status = useSelector(getStatus);
+  const profile = useSelector(profileSelector);
+  const status = useSelector(statusSelector);
 
   useEffect(() => {
     if (userId) {

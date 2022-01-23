@@ -1,9 +1,9 @@
 import { RootState } from '../configureStore';
 
-export const getUsers = (state: RootState) => {
+export const usersSelector = (state: RootState) => {
   return state.users;
 };
 
-export const getUsersFilter = (state: RootState) => {
+export const usersFilterSelector = (state: RootState) => {
   return state.users.filter;
 };

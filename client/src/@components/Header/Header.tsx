@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import classes from './Header.module.scss';
 import { userIdSelector } from '../../@store/auth/selectors';
-import { getProfile } from '../../@store/profile/selectors';
-import { getTheme } from '../../@store/layout/selectors';
+import { profileSelector } from '../../@store/profile/selectors';
+import { themeSelector } from '../../@store/layout/selectors';
 import { setTheme } from '../../@store/layout/slice';
 import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 import logo from '../../@assets/images/logo.png';
@@ -21,8 +21,8 @@ export const Header: React.FC<Props> = ({ className = null }) => {
   const dispatch = useDispatch();
   const userId = useSelector(userIdSelector);
   // No need to fetch profile cause of redirect to "profile" page after login where already "fetchProfileAsync.request"
-  const profile = useSelector(getProfile);
-  const theme = useSelector(getTheme);
+  const profile = useSelector(profileSelector);
+  const theme = useSelector(themeSelector);
 
   useEffect(() => {
     if (userId && !profile.userId) {

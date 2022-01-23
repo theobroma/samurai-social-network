@@ -1,5 +1,5 @@
 import { RootState } from '../configureStore';
 
-export const getProfile = (state: RootState) => {
+export const profileSelector = (state: RootState) => {
   return state.profile.profile;
 };
