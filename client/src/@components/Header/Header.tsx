@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import classes from './Header.module.scss';
-import { getUserId } from '../../@store/auth/selectors';
+import { userIdSelector } from '../../@store/auth/selectors';
 import { getProfile } from '../../@store/profile/selectors';
 import { getTheme } from '../../@store/layout/selectors';
 import { setTheme } from '../../@store/layout/slice';
@@ -19,7 +19,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className = null }) => {
   const dispatch = useDispatch();
-  const userId = useSelector(getUserId);
+  const userId = useSelector(userIdSelector);
   // No need to fetch profile cause of redirect to "profile" page after login where already "fetchProfileAsync.request"
   const profile = useSelector(getProfile);
   const theme = useSelector(getTheme);

@@ -1,10 +1,10 @@
 import { RootState } from '../configureStore';
 
-export const getUserId = (state: RootState) => {
+export const userIdSelector = (state: RootState) => {
   return state.auth.userId;
 };
 
-export const getCaptchaUrl = (state: RootState) => {
+export const captchaUrlSelector = (state: RootState) => {
   return state.auth.captchaUrl;
 };
 
