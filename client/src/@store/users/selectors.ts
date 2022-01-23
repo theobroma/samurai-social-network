@@ -1,4 +1,4 @@
-import { RootState } from '../index';
+import { RootState } from '../configureStore';
 
 export const getUsers = (state: RootState) => {
   return state.users;

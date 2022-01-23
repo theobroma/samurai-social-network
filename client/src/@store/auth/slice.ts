@@ -164,7 +164,7 @@ export const getCaptchaUrlTC = createAsyncThunk<CaptchaResponseType, void>(
   },
 );
 
-export const slice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState: authInitialState,
   reducers: {
@@ -187,5 +187,5 @@ export const slice = createSlice({
   },
 });
 
-export const authReducer = slice.reducer;
-export const { setLoadingAC, setAuthUserDataAC } = slice.actions;
+export const authReducer = authSlice.reducer;
+export const { setLoadingAC, setAuthUserDataAC } = authSlice.actions;

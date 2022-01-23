@@ -1,4 +1,4 @@
-import { RootState } from '../@store/index';
+import { RootState } from '../@store/configureStore';
 
 export const loadState = () => {
   try {

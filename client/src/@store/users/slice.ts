@@ -75,7 +75,7 @@ export const unfollowUserTC = createAsyncThunk<any, number, { state: any }>(
   },
 );
 
-export const slice = createSlice({
+export const usersSlice = createSlice({
   name: 'users',
   initialState: usersInitialState,
   reducers: {
@@ -115,5 +115,5 @@ export const slice = createSlice({
   },
 });
 
-export const usersReducer = slice.reducer;
-export const { setCurrentPage, setUsersFilter } = slice.actions;
+export const usersReducer = usersSlice.reducer;
+export const { setCurrentPage, setUsersFilter } = usersSlice.actions;

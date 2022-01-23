@@ -7,7 +7,7 @@ const layoutInitialState = {
 
 export type LayoutInitialStateType = typeof layoutInitialState;
 
-export const slice = createSlice({
+export const layoutSlice = createSlice({
   name: 'layout',
   initialState: layoutInitialState,
   reducers: {
@@ -17,5 +17,5 @@ export const slice = createSlice({
   },
 });
 
-export const layoutReducer = slice.reducer;
-export const { setTheme } = slice.actions;
+export const layoutReducer = layoutSlice.reducer;
+export const { setTheme } = layoutSlice.actions;
