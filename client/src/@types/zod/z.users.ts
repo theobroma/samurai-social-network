@@ -15,7 +15,7 @@ export type UserType = z.infer<typeof UserSchema>;
 const UsersResponseSchema = z.object({
   items: UserSchema,
   totalCount: z.number(),
-  error: z.null(),
+  error: z.string().nullable(),
 });
 
 export type UsersResponseType = z.infer<typeof UsersResponseSchema>;

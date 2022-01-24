@@ -1,6 +1,6 @@
 // REACT_APP_API_KEY is https://social-network.samuraijs.com/ access string
 import axios from 'axios';
-import { UserType, PhotosType } from '../@types';
+import { PhotosType } from '../@types';
 
 export const API_KEY = process.env.REACT_APP_API_KEY as string;
 export const API_URL = 'https://social-network.samuraijs.com/api/1.0/';
@@ -27,12 +27,6 @@ export type APIResponseType<D = DataType, RC = ResultCodesEnum> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;
-};
-
-export type GetItemsType = {
-  items: Array<UserType>;
-  totalCount: number;
-  error: string | null;
 };
 
 export type PhotosDataType = {

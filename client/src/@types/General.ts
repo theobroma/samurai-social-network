@@ -1,5 +1,3 @@
-import { PhotosType } from './zod/z.profile';
-
 export type ItemsViewType = 'LIST' | 'GRID';
 
 export type UsersFilterType = {

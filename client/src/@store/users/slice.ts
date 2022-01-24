@@ -38,7 +38,7 @@ export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
       // }
       await waitForMe(1000);
       const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
-      return res;
+      return res.data;
     } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
