@@ -5,10 +5,13 @@ import {
 } from '@reduxjs/toolkit';
 import { UsersAPI } from '../../@api/users';
 import {
+  IDType,
   LoadingStateType,
-  UserType,
+  StandardResponseType,
   UsersFilterType,
   UsersResponseSchema,
+  UsersResponseType,
+  UserType,
 } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
@@ -31,61 +34,55 @@ const usersInitialState = {
 
 export type UsersInitialStateType = typeof usersInitialState;
 
-export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
-  'users/fetchUsers',
-  async (_, thunkAPI) => {
-    const { currentPage, pageSize, filter, currentRequestId, loading } =
-      thunkAPI.getState().users;
+export const fetchUsersTC = createAsyncThunk<
+  UsersResponseType,
+  void,
+  { state: any }
+>('users/fetchUsers', async (_, thunkAPI) => {
+  const { currentPage, pageSize, filter } = thunkAPI.getState().users;
+  try {
+    await waitForMe(1000);
+    const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
+
+    // ZOD validation
     try {
-      // TODO:
-      // if (loading !== 'pending' || thunkAPI.requestId !== currentRequestId) {
-      //   return null;
-      // }
-      await waitForMe(1000);
-      const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
-
-      // ZOD validation
-      try {
-        UsersResponseSchema.parse(res.data);
-      } catch (error) {
-        // Log & alert error <-- very important!
-        console.log(error);
-      }
-
-      return res.data;
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(err.response.data);
+      UsersResponseSchema.parse(res.data);
+    } catch (error) {
+      // Log & alert error <-- very important!
+      console.log(error);
     }
-  },
-);
 
-export const followUserTC = createAsyncThunk<any, number, { state: any }>(
-  'users/followUser',
-  async (id, thunkAPI) => {
-    try {
-      const res = await UsersAPI.followUser(id);
-      return res;
-    } catch (err: any) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return thunkAPI.rejectWithValue(err.response.data);
-    }
-  },
-);
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
-export const unfollowUserTC = createAsyncThunk<any, number, { state: any }>(
-  'users/unfollowUser',
-  async (id, thunkAPI) => {
-    try {
-      const res = await UsersAPI.unfollowUser(id);
-      return res;
-    } catch (err: any) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return thunkAPI.rejectWithValue(err.response.data);
-    }
-  },
-);
+export const followUserTC = createAsyncThunk<
+  StandardResponseType,
+  IDType,
+  { state: any }
+>('users/followUser', async (id, thunkAPI) => {
+  try {
+    const res = await UsersAPI.followUser(id);
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
+
+export const unfollowUserTC = createAsyncThunk<
+  StandardResponseType,
+  IDType,
+  { state: any }
+>('users/unfollowUser', async (id, thunkAPI) => {
+  try {
+    const res = await UsersAPI.unfollowUser(id);
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
 export const usersSlice = createSlice({
   name: 'users',

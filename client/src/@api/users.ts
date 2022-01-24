@@ -1,5 +1,9 @@
-import { UsersFilterType, UsersResponseType } from '../@types';
-import { APIResponseType, instance } from './index';
+import {
+  StandardResponseType,
+  UsersFilterType,
+  UsersResponseType,
+} from '../@types';
+import { instance } from './index';
 
 export const UsersAPI = {
   // pageSize max = 100
@@ -10,22 +14,10 @@ export const UsersAPI = {
       }`,
     );
   },
-
-  followUser: async (id: number) => {
-    try {
-      const response = await instance.post<APIResponseType>(`follow/${id}`);
-      return response.data;
-    } catch (e: any) {
-      return e.message;
-    }
+  followUser(id: number) {
+    return instance.post<StandardResponseType>(`follow/${id}`);
   },
-
-  unfollowUser: async (id: number) => {
-    try {
-      const response = await instance.delete<APIResponseType>(`follow/${id}`);
-      return response.data;
-    } catch (e: any) {
-      return e.message;
-    }
+  unfollowUser(id: number) {
+    return instance.delete<StandardResponseType>(`follow/${id}`);
   },
 };
