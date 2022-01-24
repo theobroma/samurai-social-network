@@ -14,7 +14,7 @@ const ContactsShema = z.object({
 export type ContactsType = z.infer<typeof ContactsShema>;
 export type ContactsKeys = Extract<keyof ContactsType, string>;
 
-const PhotosSchema = z.object({
+export const PhotosSchema = z.object({
   small: z.string().nullable(),
   large: z.string().nullable(),
 });
