@@ -4,7 +4,12 @@ import {
   SerializedError,
 } from '@reduxjs/toolkit';
 import { UsersAPI } from '../../@api/users';
-import { LoadingStateType, UserType, UsersFilterType } from '../../@types';
+import {
+  LoadingStateType,
+  UserType,
+  UsersFilterType,
+  UsersResponseSchema,
+} from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const usersInitialState = {
@@ -38,10 +43,17 @@ export const fetchUsersTC = createAsyncThunk<any, void, { state: any }>(
       // }
       await waitForMe(1000);
       const res = await UsersAPI.getUsers(currentPage, pageSize, filter);
+
+      // ZOD validation
+      try {
+        UsersResponseSchema.parse(res.data);
+      } catch (error) {
+        // Log & alert error <-- very important!
+        console.log(error);
+      }
+
       return res.data;
     } catch (err: any) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
       return thunkAPI.rejectWithValue(err.response.data);
     }
   },

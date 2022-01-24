@@ -13,13 +13,14 @@ export const PaginationFC: React.FC<Props> = ({
   pageSize = 10,
   handlePageClick,
 }) => {
+  const pageCount = Math.ceil(totalCount / pageSize);
   return (
     <ReactPaginate
       previousLabel="prev"
       nextLabel="next"
       breakLabel={<StyledBreakLabel>...</StyledBreakLabel>}
       breakClassName="page-item"
-      pageCount={totalCount / pageSize || 10}
+      pageCount={pageCount}
       marginPagesDisplayed={2}
       pageRangeDisplayed={3}
       onPageChange={(state) => handlePageClick(state)}
