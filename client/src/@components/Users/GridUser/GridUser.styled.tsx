@@ -6,7 +6,8 @@ export const StyledGridUser = styled.div`
   }
 
   .name {
-    font-family: Roboto-Bold;
+    font-family: Roboto;
+    font-weight: 500;
     font-size: 16px;
     color: #636363;
   }

@@ -4,7 +4,8 @@ export const StyledListUser = styled.div`
   border-bottom: 1px solid var(--steel_gray_80);
   .name {
     transition: color 0.15s ease-in-out;
-    font-family: Roboto-Bold;
+    font-family: Roboto;
+    font-weight: 500;
     font-size: 16px;
     color: #636363;
     &:hover {

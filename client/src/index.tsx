@@ -13,7 +13,11 @@ import reportWebVitals from './reportWebVitals';
 import './@assets/styles/index.scss';
 import LoadingPage from './@components/UI/LoadingPage';
 // Open Source fonts
-import '@fontsource/roboto'; // Defaults to weight 400.
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+// Gothic-a1
 import '@fontsource/gothic-a1'; // Defaults to weight 400.
 
 const currentTheme = store.getState().layout.theme;
