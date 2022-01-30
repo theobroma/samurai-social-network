@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ResultCodeForCapcthaEnum, ResultCodesEnum } from '../../@api';
 import { AuthAPI } from '../../@api/auth';
 import {
   CaptchaResponseSchema,
@@ -7,6 +6,8 @@ import {
   LoginResponseSchema,
   LogoutResponseSchema,
   MeResponseSchema,
+  ResultCodeForCapcthaEnum,
+  ResultCodesEnum,
 } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 

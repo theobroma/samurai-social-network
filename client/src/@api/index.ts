@@ -11,11 +11,3 @@ export const instance = axios.create({
     'API-KEY': API_KEY,
   },
 });
-
-export enum ResultCodesEnum {
-  Success = 0,
-  Error = 1,
-}
-export enum ResultCodeForCapcthaEnum {
-  CaptchaIsRequired = 10,
-}

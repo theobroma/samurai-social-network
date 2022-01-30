@@ -8,3 +8,13 @@ export type UsersFilterType = {
 export type IDType = number;
 
 export type LoadingStateType = 'idle' | 'pending';
+
+export type ThemeColors = 'light' | 'dark';
+
+export enum ResultCodesEnum {
+  Success = 0,
+  Error = 1,
+}
+export enum ResultCodeForCapcthaEnum {
+  CaptchaIsRequired = 10,
+}
