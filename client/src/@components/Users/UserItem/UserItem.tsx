@@ -8,7 +8,13 @@ type Props = {
 const UserItem = ({ user }: Props) => {
   console.log(user);
   return (
-    <div>
+    <div className="col-6 col-md-4 text-center py-3">
+      <img
+        className="avatar-img"
+        src={user.photos.small || 'https://picsum.photos/seed/picsum/100/100'}
+        aria-hidden
+        alt="photo"
+      />
       <span>{user.name}</span>
     </div>
   );
