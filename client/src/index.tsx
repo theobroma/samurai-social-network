@@ -19,9 +19,26 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 // Gothic-a1
 import '@fontsource/gothic-a1'; // Defaults to weight 400.
+import { instance } from './@api';
+import { logoutTC } from './@store/auth/slice';
 
 const currentTheme = store.getState().layout.theme;
 const rootEl = document.getElementById('root');
+
+/**
+ * Interceptor to automatically logout current user if any API call returns 401
+ */
+instance.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (Number(err?.response?.status) === 401) {
+      store.dispatch(logoutTC());
+      // console.log('err 401');
+    }
+    // debugger;
+    return Promise.reject(err);
+  },
+);
 
 render(
   <React.StrictMode>

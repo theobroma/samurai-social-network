@@ -13,22 +13,3 @@ export const instance = axios.create({
     'API-KEY': API_KEY,
   },
 });
-
-/**
- * Interceptor to automatically logout current user if any API call returns 401
- */
-instance.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    if (Number(err?.response?.status) === 401) {
-      // Token expired, or hacked
-      // api?.auth?.logout(); // Logout user and reload Application
-
-      console.log('err 401');
-    }
-    // debugger;
-    return Promise.reject(err);
-  },
-);
-
-export default instance;
