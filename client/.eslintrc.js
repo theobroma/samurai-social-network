@@ -12,7 +12,9 @@ module.exports = {
         'import/prefer-default-export': 0,
         'jsx-a11y/control-has-associated-label': 0,
         'jsx-a11y/label-has-associated-control': 0,
+        'no-alert':1,
         'no-console': 0,
+        'no-debugger':1,
         'no-param-reassign': 0,
         'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
         'no-restricted-exports': 0, // Nothing to restrict.

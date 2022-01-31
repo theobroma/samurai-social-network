@@ -6,7 +6,7 @@ type Props = {
 };
 
 const UserItem = ({ user }: Props) => {
-  console.log(user);
+  // console.log(user);
   return (
     <div className="col-6 col-md-4 text-center py-3">
       <img
