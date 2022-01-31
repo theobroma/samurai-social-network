@@ -6,12 +6,10 @@
     "author": "Aleksandr Siryi",
     "license": "ISC",
     "main": "index.js",
-    "dependencies": {
-        "concurrently": "^6.x"
-    },
+    "dependencies": {},
     "devDependencies": {},
     "engines": {
-        "node": "^14"
+        "node": "^16"
     },
     "scripts": {
         "build": "cd client && npm run build",

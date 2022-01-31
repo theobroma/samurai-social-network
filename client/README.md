@@ -1,11 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-<br/>
-Typescript, Eslint, Prettier and React using [this tutorial](https://itnext.io/how-to-setup-typescript-eslint-prettier-and-react-in-5-minutes-44cfe8af5081).<br/>
+# Client for SamuraiJS Social Network application.
 
-### Именование файлов и папок
+## Usefull links
 
-#### Общие положения
+### Setup
 
-1. Все папки и файлы в них, структурированы по принципу "все нужное внутри". Это означает, что необходимый компонент/вспомогательная функция/файл хранилища расположен именно там, где он используется. Например, если компонент `HiHeader` используется ТОЛЬКО в файле `./src/#/#hi/Hi.tsx`, то он ДОЛЖЕН находится в папке `./src/#/#hi/HiHeader`, т.е. папка компонента должна находиться рядом с файлом, где этот компонент используется.
-2. _@_ модификатор папки. Если компонент, вспомогательнай функция или любой другой полезный файл используется в нескольких местах, то он должен быть вынесен в одну из папок, помеченных модификатором _@_. Или наоборот: если папка помечена модификатором _@_, значит ее содержимое используется минимум в 2 местах
-3. _#_ модификатор папки. Если компонент представляет собой страницу проекта (роут), то папка с таким компонентом содержит модификатор _#_. (Например, файлы компонентов для роута `/p/f2c6742e-2394-4982-8979-5f01c5ab2a50` находятся в папке `./src/#/#p/#-projectId`). Иногда группа страниц может содержать общую часть вида (лейаут), - файл общего вида для группы страниц (роутов) содержится в этом случае в промежуточной папке c модификатором _#_, соответсвующей общей части роута. Например, для залогиненного пользователя для страниц `/` и `/projects/53/tasks` есть общий вид. Этот общий вид содержится в файле `./src/#/Main.tsx`, а сами страницы (роуты) соотвественно в папках `./src/#/#` и `./src/#/#projects/#-projectId`. В свою очередь у страниц `/projects/53/tasks` и `/projects/53/members` есть общая часть вида, содержащаяся в файле `./src/#/#projects/Projects.tsx`. Такимо образом модификаторы папок позволяют легко понимать, какого рода файлы где находятся и одновременно оставляют структуру достаточно плоской и понятной.
+- [How to setup Typescript, Eslint, Prettier and React in 5 minutes](https://itnext.io/how-to-setup-typescript-eslint-prettier-and-react-in-5-minutes-44cfe8af5081)
+
+### Info
+
+1. [Zod](https://engineering.udacity.com/why-you-should-be-doing-schema-validation-in-react-projects-ce3c4b1df02f)
+2. [Structure](https://engineering.udacity.com/react-folder-structure-for-enterprise-level-applications-f8384eff162b)
+3. [Leave React.FC behind](https://medium.com/xgeeks/clean-up-your-react-component-types-45acec85d4c3)
+4. [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Serve on localhost:3000
+npm start
+
+# Build for production
+npm run build
+
+# Format with prettier
+npm run format
+
+# Lint with eslint
+npm run lint
+```
