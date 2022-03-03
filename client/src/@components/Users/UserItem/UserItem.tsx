@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserType } from '../../../@types';
+import { UserItemStyled } from './UserItem.styled';
 
 type Props = {
   user: UserType;
@@ -8,15 +9,15 @@ type Props = {
 const UserItem = ({ user }: Props) => {
   // console.log(user);
   return (
-    <div className="col-6 col-md-4 text-center py-3">
+    <UserItemStyled className="col-6 col-md-4 text-center py-3">
       <img
-        className="avatar-img"
+        className="avatar-img img-fluid"
         src={user.photos.small || 'https://picsum.photos/seed/picsum/100/100'}
         aria-hidden
         alt="photo"
       />
       <span>{user.name}</span>
-    </div>
+    </UserItemStyled>
   );
 };
 export default UserItem;
