@@ -1,16 +1,21 @@
 ## React+typescript SamuraiJS Social Network application.
 
-### API documentation
+## :fire: Built With
 
-<br/>
-https://social-network.samuraijs.com/docs
-<br/>
+This project was built using these technologies.
 
-### Installation
+- [React.js v17](https://17.reactjs.org/)
+- [Bootstrap v4](https://react-bootstrap-v4.netlify.app/)
+
+### :clipboard: API documentation
+
+[https://social-network.samuraijs.com/docs](https://social-network.samuraijs.com/docs/)
+
+### :cloud: Installation
 
 ##### 0. Clone the current repository
 
-##### 1. For local work, you need to install [package manager npm](https://www.npmjs.com/get-npm) and [node.js server](https://nodejs.org/en/) (usually installed together)
+##### 1. For local work, you need to install [yarn package manager](https://classic.yarnpkg.com/lang/en/) and [node.js server](https://nodejs.org/en/)
 
 ##### 2. Create file /client/.env.local using /client/.env.example.
 
@@ -18,16 +23,18 @@ https://social-network.samuraijs.com/docs
 
 ##### 4. Paste it into /client/.env.local as constant "REACT_APP_API_KEY".
 
-##### 5. Install local dependencies with npm package manager
+##### 5. Install local dependencies with package manager
+
+:warning: To work with React v17 @types : Yarn resolutions to the rescue
 
 ```bash
-$ npm i
+$ yarn
 ```
 
-##### 6. Run the project locally using the npm package manager
+##### 6. Run the project locally
 
 ```bash
-$ npm start
+$ yarn start
 ```
 
 ##### 5. The app should automatically open in the browser and update automatically whenever the code changes
