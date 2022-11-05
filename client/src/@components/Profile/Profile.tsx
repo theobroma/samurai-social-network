@@ -8,7 +8,7 @@ import {
   OverlayTrigger,
 } from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 import { updateProfileTC } from '../../@store/profile/slice';
 import { ProfileType } from '../../@types';
 import {
@@ -31,7 +31,7 @@ export const Profile: React.FC<Props> = ({
   updateStatus,
   saveAvatar,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
   const submitCallback = (newProfile: ProfileType) => {

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import classes from './Header.module.scss';
 import { userIdSelector } from '../../@store/auth/selectors';
@@ -12,17 +11,18 @@ import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
 import logo from '../../@assets/images/logo.png';
 import { logoutTC } from '../../@store/auth/slice';
 import { getProfileTC } from '../../@store/profile/slice';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 
 interface Props {
   className?: string;
 }
 
 export const Header: React.FC<Props> = ({ className = null }) => {
-  const dispatch = useDispatch();
-  const userId = useSelector(userIdSelector);
+  const dispatch = useAppDispatch();
+  const userId = useAppSelector(userIdSelector);
   // No need to fetch profile cause of redirect to "profile" page after login where already "fetchProfileAsync.request"
-  const profile = useSelector(profileSelector);
-  const theme = useSelector(themeSelector);
+  const profile = useAppSelector(profileSelector);
+  const theme = useAppSelector(themeSelector);
 
   useEffect(() => {
     if (userId && !profile.userId) {

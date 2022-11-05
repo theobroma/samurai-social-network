@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { Container, Row, Col, Alert, Card } from 'react-bootstrap';
 import LoginForm from './LoginForm/LoginForm';
 import { captchaUrlSelector } from '../../@store/auth/selectors';
 import { LoginPayload } from '../../@store/auth/types';
 import { loginTC } from '../../@store/auth/slice';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 
 export const LoginView = () => {
-  const dispatch = useDispatch();
-  const captchaUrl = useSelector(captchaUrlSelector);
+  const dispatch = useAppDispatch();
+  const captchaUrl = useAppSelector(captchaUrlSelector);
 
   const submitCallback = (payload: LoginPayload) => {
     dispatch(loginTC(payload));

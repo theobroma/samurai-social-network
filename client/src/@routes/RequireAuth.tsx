@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import { isAuthSelector } from '../@store/auth/selectors';
+import { useAppSelector } from '../@store/configureStore';
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const isAuth = useSelector(isAuthSelector);
+  const isAuth = useAppSelector(isAuthSelector);
   const location = useLocation();
 
   if (!isAuth) {

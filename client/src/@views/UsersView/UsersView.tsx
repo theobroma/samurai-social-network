@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Users as UsersComponent } from '../../@components/Users/Users';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 import { usersSelector } from '../../@store/users/selectors';
 import {
   fetchUsersTC,
@@ -12,7 +12,7 @@ import {
 import { UsersFilterType } from '../../@types';
 
 export const UsersView = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     items,
     pageSize,
@@ -20,7 +20,7 @@ export const UsersView = () => {
     currentPage,
     filter,
     followingInProgress,
-  } = useSelector(usersSelector);
+  } = useAppSelector(usersSelector);
 
   useEffect(() => {
     // dispatch(fetchUsersAsync.request({ currentPage, pageSize: 10 }));
