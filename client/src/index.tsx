@@ -3,24 +3,26 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './@utils/theme';
-import { GlobalStyle } from './@utils/global';
-import { AppContainer } from './@routes/AppContainer';
-import { store, persistor } from './@store/configureStore';
 
+import LoadingPage from './@components/UI/LoadingPage';
+import { AppContainer } from './@routes/AppContainer';
+import { logoutTC } from './@store/auth/slice';
+import { persistor, store } from './@store/configureStore';
+import { GlobalStyle } from './@utils/global';
+import { darkTheme, lightTheme } from './@utils/theme';
+import { instance } from './@api';
 import reportWebVitals from './reportWebVitals';
+
 // All styles
 import './@assets/styles/index.scss';
-import LoadingPage from './@components/UI/LoadingPage';
 // Open Source fonts
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+
 // Gothic-a1
 import '@fontsource/gothic-a1'; // Defaults to weight 400.
-import { instance } from './@api';
-import { logoutTC } from './@store/auth/slice';
 
 const currentTheme = store.getState().layout.theme;
 const rootEl = document.getElementById('root');

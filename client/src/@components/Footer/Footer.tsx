@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Container, Row, Col } from 'react-bootstrap';
-import { ImGithub } from 'react-icons/im';
+import { Col, Container, Row } from 'react-bootstrap';
 import { FaLinkedin } from 'react-icons/fa';
-import { SubFooter } from './SubFooter';
+import { ImGithub } from 'react-icons/im';
+import styled from 'styled-components';
+
 import { SocialLink } from './SocialLink';
+import { SubFooter } from './SubFooter';
 
 export const StyledFooter = styled.footer`
   background: #303b59;

@@ -1,6 +1,6 @@
 // UploadButton : https://medium.com/codex/use-a-button-to-upload-files-on-your-react-app-with-bootstrap-ef963cbe8280
 // ref+TS : https://www.designcise.com/web/tutorial/how-to-fix-useref-react-hook-cannot-assign-to-read-only-property-typescript-error
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 type Props = {
   handleUpload: (file: File) => void;
@@ -52,7 +52,7 @@ const UploadButton: React.FC<Props> = ({ handleUpload }) => {
       >
         Choose file
       </button>
-      {uploadedFileName && (
+      {!!uploadedFileName && (
         <>
           <span className="mr-3">{uploadedFileName}</span>
           <button

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
 import Avatar from 'react-avatar';
-import { ProfileType } from '../../../../@types';
-import { StyledName, StyledLabel, StyledValue } from './Styled';
+import { Col, Row } from 'react-bootstrap';
+
+import type { ProfileType } from '../../../../@types';
+
+import { StyledLabel, StyledName, StyledValue } from './Styled';
 import UploadButton from './UploadButton';
 
 type ProfileDataProps = {
@@ -23,7 +25,7 @@ export const ProfileData: React.FC<ProfileDataProps> = ({
       <Col>
         <div>
           <div>
-            {profile.photos && (
+            {!!profile.photos && (
               <Avatar
                 name={profile.fullName || 'fullName'}
                 size="150"

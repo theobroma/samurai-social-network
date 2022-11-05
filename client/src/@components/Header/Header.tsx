@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
-import { Form, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
-import classes from './Header.module.scss';
-import { userIdSelector } from '../../@store/auth/selectors';
-import { profileSelector } from '../../@store/profile/selectors';
-import { themeSelector } from '../../@store/layout/selectors';
-import { setTheme } from '../../@store/layout/slice';
-import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
+
 import logo from '../../@assets/images/logo.png';
+import { userIdSelector } from '../../@store/auth/selectors';
 import { logoutTC } from '../../@store/auth/slice';
-import { getProfileTC } from '../../@store/profile/slice';
 import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
+import { themeSelector } from '../../@store/layout/selectors';
+import { profileSelector } from '../../@store/profile/selectors';
+import { getProfileTC } from '../../@store/profile/slice';
+import { NoAvatarSVG } from '../UI/SVG/NoAvatarSVG';
+
+import classes from './Header.module.scss';
 
 interface Props {
   className?: string;
@@ -100,7 +101,7 @@ export const Header: React.FC<Props> = ({ className = null }) => {
             <img src={logo} alt="samurai-logo" />
           </NavLink>
         </Navbar.Brand>
-        {userId && NavbarBlock}
+        {!!userId && NavbarBlock}
       </Container>
     </Navbar>
   );

@@ -1,10 +1,11 @@
-import { instance } from './index';
-import {
-  ProfileResponseType,
+import type {
   IDType,
+  ProfileResponseType,
   ProfileType,
   StandardResponseType,
 } from '../@types';
+
+import { instance } from './index';
 
 export const ProfileAPI = {
   getProfile(id: IDType) {

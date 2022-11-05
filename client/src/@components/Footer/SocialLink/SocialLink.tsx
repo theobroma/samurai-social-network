@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './SocialLink.module.scss';
 
 type Props = {

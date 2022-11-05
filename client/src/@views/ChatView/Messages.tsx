@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { MessageItem } from './MessageItem';
 
 type MessageItemProps = React.ComponentProps<typeof MessageItem>;
@@ -23,7 +24,7 @@ const Messages: React.FC<MessagesProps> = ({ wsChanel }) => {
   return (
     <div className="chat-container">
       <ul className="chat-box chatContainerScroll">
-        {messages &&
+        {!!messages &&
           messages.map((item: MessageItemProps) => (
             <MessageItem
               message={item.message}

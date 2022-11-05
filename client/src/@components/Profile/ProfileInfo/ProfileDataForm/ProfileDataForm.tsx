@@ -1,8 +1,10 @@
 import React from 'react';
-import { Formik, FormikHelpers } from 'formik';
-import Form from 'react-bootstrap/Form';
+import type { FormikHelpers } from 'formik';
+import { Formik } from 'formik';
 import { Button, Spinner } from 'react-bootstrap';
-import { ProfileType } from '../../../../@types';
+import Form from 'react-bootstrap/Form';
+
+import type { ProfileType } from '../../../../@types';
 
 interface IValues {
   // lookingForAJob: boolean | null;

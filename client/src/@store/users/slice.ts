@@ -1,18 +1,16 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  SerializedError,
-} from '@reduxjs/toolkit';
+import type { SerializedError } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import { UsersAPI } from '../../@api/users';
-import {
+import type {
   IDType,
   LoadingStateType,
   StandardResponseType,
   UsersFilterType,
-  UsersResponseSchema,
   UsersResponseType,
   UserType,
 } from '../../@types';
+import { UsersResponseSchema } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const usersInitialState = {

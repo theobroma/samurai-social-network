@@ -1,11 +1,9 @@
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
+
 import { PaginationFC } from '../../@components/UI/Pagination';
-import GridUser from '../../@components/Users/GridUser/GridUser';
-import ListUser from '../../@components/Users/ListUser/ListUser';
 import UserItem from '../../@components/Users/UserItem';
 import { useListPostsQuery } from '../../@store/users/api';
-import { UserType } from '../../@types';
 
 const UsersRTKQView = () => {
   const [page, setPage] = React.useState(1);
@@ -62,7 +60,7 @@ const UsersRTKQView = () => {
           </Col>
         </Row>
         <Row>
-          {users &&
+          {!!users &&
             users.items.map((user) => (
               <UserItem
                 user={user}

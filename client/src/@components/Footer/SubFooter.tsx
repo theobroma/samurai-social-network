@@ -1,6 +1,6 @@
 import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Container, Row, Col } from 'react-bootstrap';
 
 export const StyledSubFooter = styled.div`
   background-color: #29334f;

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
+
+import type { ItemsViewType, UsersFilterType, UserType } from '../../@types';
+import { PaginationFC } from '../UI/Pagination';
+
 import GridUser from './GridUser/GridUser';
 import ListUser from './ListUser/ListUser';
-import { UserType, ItemsViewType, UsersFilterType } from '../../@types';
-import { PaginationFC } from '../UI/Pagination';
 import { ListGridSwitcher } from './ListGridSwitcher';
 import { UserSearchForm } from './UserSearchForm';
 
@@ -65,7 +67,7 @@ export const Users: React.FC<PropsType> = ({
           </Col>
         </Row>
         <Row>
-          {users &&
+          {!!users &&
             users.map((user: UserType) =>
               viewType === 'LIST' ? (
                 <ListUser

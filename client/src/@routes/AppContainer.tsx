@@ -1,8 +1,10 @@
 // https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay
-import pMinDelay from 'p-min-delay';
 import React, { lazy, Suspense } from 'react';
+import pMinDelay from 'p-min-delay';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import LoadingPage from '../@components/UI/LoadingPage';
+
 import { GuestLayout, UserLayout } from './Layouts';
 import RequireAuth from './RequireAuth';
 

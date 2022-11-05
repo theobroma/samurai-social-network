@@ -1,21 +1,21 @@
 import React from 'react';
-import { nanoid } from '@reduxjs/toolkit';
 import {
-  FaInstagram,
-  FaGlobe,
-  FaTwitter,
-  FaYoutube,
-  FaGithub,
-  FaLink,
-  FaVk,
   FaFacebook,
+  FaGithub,
+  FaGlobe,
+  FaInstagram,
+  FaLink,
+  FaTwitter,
+  FaVk,
+  FaYoutube,
 } from 'react-icons/fa';
+
+import { nanoid } from '@reduxjs/toolkit';
+
+import type { ContactsKeys, ContactsType } from '../../../../@types';
+import { ContactsColorsEnum } from '../../../../@types';
+
 import { StyledSocialList } from './Styled';
-import {
-  ContactsColorsEnum,
-  ContactsKeys,
-  ContactsType,
-} from '../../../../@types';
 
 type ContactProps = {
   title: ContactsKeys;
@@ -49,7 +49,7 @@ type Props = {
 export const ContactsData: React.FC<Props> = ({ contacts }) => {
   const BlockSocial = (
     <StyledSocialList>
-      {contacts && (
+      {!!contacts && (
         <>
           <Contact title="github" value={contacts.github} key={nanoid()}>
             <FaGithub />

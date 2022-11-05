@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { Users as UsersComponent } from '../../@components/Users/Users';
 import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 import { usersSelector } from '../../@store/users/selectors';
@@ -9,7 +10,7 @@ import {
   setUsersFilter,
   unfollowUserTC,
 } from '../../@store/users/slice';
-import { UsersFilterType } from '../../@types';
+import type { UsersFilterType } from '../../@types';
 
 export const UsersView = () => {
   const dispatch = useAppDispatch();

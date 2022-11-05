@@ -1,4 +1,5 @@
-import { IDType, StatusResponseType } from '../@types';
+import type { IDType, StatusResponseType } from '../@types';
+
 import { instance } from './index';
 
 export const StatusAPI = {

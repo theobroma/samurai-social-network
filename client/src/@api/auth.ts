@@ -1,9 +1,10 @@
-import {
+import type {
   CaptchaResponseType,
   LoginResponseType,
   LogoutResponseType,
   MeResponseType,
 } from '../@types';
+
 import { instance } from './index';
 
 export const AuthAPI = {

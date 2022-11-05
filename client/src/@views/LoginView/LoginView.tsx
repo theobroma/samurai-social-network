@@ -1,11 +1,12 @@
 import React from 'react';
+import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
 
-import { Container, Row, Col, Alert, Card } from 'react-bootstrap';
-import LoginForm from './LoginForm/LoginForm';
 import { captchaUrlSelector } from '../../@store/auth/selectors';
-import { LoginPayload } from '../../@store/auth/types';
 import { loginTC } from '../../@store/auth/slice';
+import type { LoginPayload } from '../../@store/auth/types';
 import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
+
+import LoginForm from './LoginForm/LoginForm';
 
 export const LoginView = () => {
   const dispatch = useAppDispatch();

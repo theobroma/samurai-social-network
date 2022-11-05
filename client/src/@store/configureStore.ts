@@ -1,5 +1,5 @@
-import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import type { TypedUseSelectorHook } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import {
   FLUSH,
@@ -12,6 +12,10 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import type { Reducer } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import { RESET_STATE_ACTION_TYPE } from './actions/resetState';
 import { authSlice } from './auth/slice';
 import { layoutSlice } from './layout/slice';

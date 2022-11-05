@@ -1,4 +1,4 @@
-import { RootState } from '../configureStore';
+import type { RootState } from '../configureStore';
 
 export const statusSelector = (state: RootState) => {
   return state.status.status;

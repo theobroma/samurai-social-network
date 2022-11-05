@@ -1,7 +1,8 @@
 import React from 'react';
-import { Col, Row, Button } from 'react-bootstrap';
-import { BsListUl, BsGrid3X3Gap } from 'react-icons/bs';
-import { ItemsViewType } from '../../../@types';
+import { Button, Col, Row } from 'react-bootstrap';
+import { BsGrid3X3Gap, BsListUl } from 'react-icons/bs';
+
+import type { ItemsViewType } from '../../../@types';
 
 type Props = {
   viewType: ItemsViewType;

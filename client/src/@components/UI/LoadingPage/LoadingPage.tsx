@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 
 export const LoadingPage: React.FC = () => {
   return (

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Formik, FormikHelpers } from 'formik';
-import { Form, Button } from 'react-bootstrap';
-import { UsersFilterType } from '../../../@types';
+import type { FormikHelpers } from 'formik';
+import { Formik } from 'formik';
+import { Button, Form } from 'react-bootstrap';
+
+import type { UsersFilterType } from '../../../@types';
 
 type Props = {
   handleSetUsersFilter: (filter: UsersFilterType) => void;

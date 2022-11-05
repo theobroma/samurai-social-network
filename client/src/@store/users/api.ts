@@ -1,7 +1,8 @@
 // https://stackoverflow.com/questions/67855976/rtk-query-get-state-from-another-slice-using-getstate/67858311
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL, API_KEY } from '../../@api';
-import { UsersResponseType } from '../../@types';
+
+import { API_KEY, API_URL } from '../../@api';
+import type { UsersResponseType } from '../../@types';
 
 const pageSize = 10;
 

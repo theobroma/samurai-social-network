@@ -1,7 +1,8 @@
 // https://blog.agney.dev/styled-components-&-typescript/
 // import original module declarations
+import type { lightTheme } from '../@utils/theme';
+
 import 'styled-components';
-import { lightTheme } from '../@utils/theme';
 // and extend them!
 declare module 'styled-components' {
   //   export interface DefaultTheme {

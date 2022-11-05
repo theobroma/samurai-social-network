@@ -1,17 +1,17 @@
 import React from 'react';
 import {
   FaHome,
-  FaRegComments,
-  FaUsers,
   FaMusic,
+  FaRegComments,
   FaRegSun,
-  FaUserCircle,
   FaRocketchat,
+  FaUserCircle,
+  FaUsers,
 } from 'react-icons/fa';
 import { FiLogIn } from 'react-icons/fi';
 
-import { StyledSideNav } from './Styled';
 import NavItem from './NavItem';
+import { StyledSideNav } from './Styled';
 
 const Sidebar: React.FC = React.memo(() => {
   return (

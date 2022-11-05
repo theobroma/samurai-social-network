@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Row, Col, Container } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 
 export const Page404View = () => {
   return (

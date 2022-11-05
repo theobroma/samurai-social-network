@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { Profile as ProfileComponent } from '../../@components/Profile';
 import { userIdSelector } from '../../@store/auth/selectors';
 import { useAppDispatch, useAppSelector } from '../../@store/configureStore';

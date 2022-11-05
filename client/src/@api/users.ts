@@ -1,8 +1,9 @@
-import {
+import type {
   StandardResponseType,
   UsersFilterType,
   UsersResponseType,
 } from '../@types';
+
 import { instance } from './index';
 
 export const UsersAPI = {

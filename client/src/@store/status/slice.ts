@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import { StatusAPI } from '../../@api/status';
-import {
-  IDType,
-  StandardResponseSchema,
-  StatusResponseSchema,
-} from '../../@types';
+import type { IDType } from '../../@types';
+import { StandardResponseSchema, StatusResponseSchema } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
 
 const statusInitialState = {

@@ -1,9 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
-import { BsPlus, BsCheck } from 'react-icons/bs';
+import { BsCheck, BsPlus } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+
+import type { UserType } from '../../../@types';
+
 import { StyledGridUser } from './GridUser.styled';
-import { UserType } from '../../../@types';
 
 type Props = {
   user: UserType;

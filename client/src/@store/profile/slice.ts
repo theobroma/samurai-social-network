@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IDType } from '../../@types/General';
+
 import { ProfileAPI } from '../../@api/profile';
-import {
-  ProfileResponseSchema,
+import type {
   ProfileResponseType,
   ProfileType,
-  StandardResponseSchema,
   StandardResponseType,
 } from '../../@types';
+import { ProfileResponseSchema, StandardResponseSchema } from '../../@types';
+import type { IDType } from '../../@types/General';
 import { waitForMe } from '../../@utils/waitforme';
 
 export const profileInitialState = {

@@ -1,4 +1,4 @@
-import { RootState } from '../configureStore';
+import type { RootState } from '../configureStore';
 
 export const userIdSelector = (state: RootState) => {
   return state.auth.userId;

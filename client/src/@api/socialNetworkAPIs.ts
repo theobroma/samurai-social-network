@@ -1,6 +1,7 @@
 // just example file.NOT USED
 // @ts-nocheck
-import axios, { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
+import axios from 'axios';
 
 export type AuthData = {
   id: number | null;

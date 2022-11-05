@@ -1,4 +1,6 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent } from 'react';
+
 import usePrevious from '../../../../@hooks/usePrevious';
 
 type PropsType = {

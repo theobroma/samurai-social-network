@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import {
-  Col,
-  Card,
-  Row,
   Button,
-  Tooltip,
+  Card,
+  Col,
   OverlayTrigger,
+  Row,
+  Tooltip,
 } from 'react-bootstrap';
 import { BsPencilSquare } from 'react-icons/bs';
-import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
+
+import { useAppDispatch } from '../../@store/configureStore';
 import { updateProfileTC } from '../../@store/profile/slice';
-import { ProfileType } from '../../@types';
+import type { ProfileType } from '../../@types';
+
 import {
-  ProfileStatus,
-  ProfileData,
   ContactsData,
+  ProfileData,
   ProfileDataForm,
+  ProfileStatus,
 } from './ProfileInfo';
 
 type Props = {

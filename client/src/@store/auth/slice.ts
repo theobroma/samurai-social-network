@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import { AuthAPI } from '../../@api/auth';
+import type { CaptchaResponseType } from '../../@types';
 import {
   CaptchaResponseSchema,
-  CaptchaResponseType,
   LoginResponseSchema,
   LogoutResponseSchema,
   MeResponseSchema,

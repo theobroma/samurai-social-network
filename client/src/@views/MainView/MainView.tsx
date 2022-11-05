@@ -1,6 +1,7 @@
 import React from 'react';
+import { Button, Container, Jumbotron } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Jumbotron, Container, Button } from 'react-bootstrap';
+
 import { isAuthSelector } from '../../@store/auth/selectors';
 import { useAppSelector } from '../../@store/configureStore';
 

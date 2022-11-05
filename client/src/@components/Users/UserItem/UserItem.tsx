@@ -1,5 +1,7 @@
 import React from 'react';
-import { UserType } from '../../../@types';
+
+import type { UserType } from '../../../@types';
+
 import { UserItemStyled } from './UserItem.styled';
 
 type Props = {
