@@ -1,92 +1,92 @@
 {
-    "name": "samurai-social-network",
-    "version": "1.0.0",
-    "license": "ISC",
-    "private": false,
-    "dependencies": {
-        "@fontsource/gothic-a1": "^4.5.6",
-        "@fontsource/roboto": "^4.5.5",
-        "@reduxjs/toolkit": "^1.8.1",
-        "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^13.0.1",
-        "@testing-library/user-event": "^14.1.0",
-        "@types/classnames": "^2.3.0",
-        "@types/jest": "^27.4.1",
-        "@types/lodash": "^4.14.181",
-        "@types/node": "^18.x",
-        "@types/react": "^17.x",
-        "@types/react-bootstrap": "^1.0.1",
-        "@types/react-dom": "^17.x",
-        "@types/react-paginate": "^7.1.1",
-        "@types/react-redux": "^7.1.24",
-        "@types/redux-logger": "^3.0.9",
-        "@types/styled-components": "^5.1.25",
-        "@types/uuid": "^8.3.4",
-        "@types/yup": "^0.29.13",
-        "axios": "^0.26.1",
-        "bootstrap": "^4.x",
-        "classnames": "^2.3.1",
-        "formik": "^2.2.9",
-        "lodash": "^4.17.21",
-        "p-min-delay": "^4.0.1",
-        "react": "^17.x",
-        "react-avatar": "^4.x",
-        "react-bootstrap": "^1.x",
-        "react-dom": "^17.x",
-        "react-icons": "4.3.1",
-        "react-paginate": "^8.1.3",
-        "react-redux": "^7.2.8",
-        "react-router-dom": "^6.x",
-        "react-scripts": "5.0.1",
-        "redux": "^4.1.2",
-        "redux-logger": "^3.0.6",
-        "redux-persist": "^6.0.0",
-        "sass": "^1.55.0",
-        "styled-components": "^5.3.5",
-        "typescript": "~4.6.3",
-        "uuid": "^8.3.2",
-        "web-vitals": "^2.1.4",
-        "yup": "^0.32.11",
-        "zod": "^3.14.4"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --watchAll=false --verbose --runInBand",
-        "coverage": "yarn test --coverage",
-        "eject": "react-scripts eject",
-        "format": "prettier --write src/**/*.{js,jsx,ts,tsx,yml,json,css,scss,md}",
-        "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
-        "serve": "serve -s build"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "eslint": "^8.x",
-        "eslint-config-airbnb-typescript-prettier": "^5.0.0",
-        "prettier": "^2.6.2"
-    },
-    "engines": {
-        "node": "^18.x"
-    },
-    "resolutions": {
-        "@types/react": "17.x",
-        "@types/react-dom": "17.x"
-    }
+  "name": "samurai-social-network",
+  "version": "1.0.0",
+  "license": "ISC",
+  "private": false,
+  "dependencies": {
+    "@fontsource/gothic-a1": "^4.5.9",
+    "@fontsource/roboto": "^4.5.8",
+    "@reduxjs/toolkit": "^1.9.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/classnames": "^2.3.0",
+    "@types/jest": "^29.2.2",
+    "@types/lodash": "^4.14.188",
+    "@types/node": "^18.x",
+    "@types/react": "^17.x",
+    "@types/react-bootstrap": "^1.0.1",
+    "@types/react-dom": "^17.x",
+    "@types/react-paginate": "^7.1.1",
+    "@types/react-redux": "^7.1.24",
+    "@types/redux-logger": "^3.0.9",
+    "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^8.3.4",
+    "@types/yup": "^0.29.14",
+    "axios": "^1.1.3",
+    "bootstrap": "^4.x",
+    "classnames": "^2.3.2",
+    "formik": "^2.2.9",
+    "lodash": "^4.17.21",
+    "p-min-delay": "^4.0.1",
+    "react": "^17.x",
+    "react-avatar": "^5.x",
+    "react-bootstrap": "^1.x",
+    "react-dom": "^17.x",
+    "react-icons": "4.6.0",
+    "react-paginate": "^8.1.3",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.x",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.56.0",
+    "styled-components": "^5.3.6",
+    "typescript": "~4.8.4",
+    "uuid": "^9.0.0",
+    "web-vitals": "^3.x",
+    "yup": "^0.32.11",
+    "zod": "^3.19.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false --verbose --runInBand",
+    "coverage": "yarn test --coverage",
+    "eject": "react-scripts eject",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,yml,json,css,scss,md}",
+    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "serve": "serve -s build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.x",
+    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": "^18.x"
+  },
+  "resolutions": {
+    "@types/react": "17.x",
+    "@types/react-dom": "17.x"
+  }
 }
